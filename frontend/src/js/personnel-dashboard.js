@@ -32,3 +32,71 @@ async function loadDashboard() {
 }
 
 loadDashboard();
+
+async function loadClientList(){
+
+    try {
+
+        const response = await fetch(
+            'http://localhost:3001/api/auth/clients'
+        );
+
+
+        const data = await response.json();
+
+
+        const table = document.querySelector('#client-list');
+
+
+        if (!table) return;
+
+
+        if (data.success){
+
+
+            table.innerHTML = data.clients.map(client => `
+
+                <tr>
+
+                    <td>
+                        ${client.firstname}
+                        ${client.lastname}
+                    </td>
+
+
+                    <td>
+                        ${client.email || '-'}
+                    </td>
+
+
+                    <td>
+                        ${client.phone_number || '-'}
+                    </td>
+
+
+                    <td>
+                        <span class="status">
+                            ${client.status}
+                        </span>
+                    </td>
+
+
+                </tr>
+
+
+            `).join('');
+
+
+        }
+
+
+    } catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+
+loadClientList();
