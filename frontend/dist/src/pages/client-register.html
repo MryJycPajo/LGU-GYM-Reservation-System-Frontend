@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a7047" />
+    <title>Client Registration | LGU Gym Reservation System</title>
+    <script type="module" crossorigin src="/assets/clientRegister-CVHp39PL.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-BVCvSGnQ.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+    <link rel="stylesheet" crossorigin href="/assets/clientRegister-BGwBMsz0.css">
+  </head>
+  <body>
+    <main class="client-page">
+      <aside class="client-aside">
+        <a class="aside-brand" href="./login.html"><span class="seal">LGU</span><span>LGU GYM<br /><b>RESERVATION SYSTEM</b></span></a>
+        <div class="aside-copy"><p class="eyebrow">CLIENT REGISTRATION</p><h1>Join the<br /><em>community.</em></h1><p>Create your client profile to make gym facility reservations simple, organized, and accessible.</p></div>
+        <div class="aside-note"><span>✓</span> Your information is used only for facility reservations.</div>
+        <div class="rings" aria-hidden="true"></div>
+      </aside>
+      <section class="form-section">
+        <a class="back-link" href="./login.html">← Back</a>
+        <div class="form-content">
+          <header><p class="eyebrow">CLIENT PROFILE</p><h2>Register as a client</h2><p>Tell us a little about yourself to get started.</p></header>
+          <form id="client-form" novalidate>
+            <div class="section-label"><span>01</span> Personal details</div>
+            <div class="form-grid">
+              <div class="field client-id"><label for="client-id">Client ID</label><input id="client-id" name="clientId" readonly /><small>Automatically generated</small></div>
+              <div class="field"><label for="last-name">Last Name <b>*</b></label><input id="last-name" name="lastName" required /><p class="error"></p></div>
+              <div class="field"><label for="first-name">First Name <b>*</b></label><input id="first-name" name="firstName" required /><p class="error"></p></div>
+              <div class="field"><label for="middle-name">Middle Name <b>*</b></label><input id="middle-name" name="middleName" required /><p class="error"></p></div>
+              <div class="field"><label for="birthdate">Birthdate <b>*</b></label><input id="birthdate" name="birthdate" type="date" required /><p class="error"></p></div>
+              <div class="field"><label for="gender">Gender <b>*</b></label><select id="gender" name="gender" required><option value="">Select gender</option><option>Female</option><option>Male</option><option>Prefer not to say</option></select><p class="error"></p></div>
+              <div class="field"><label for="civil-status">Civil Status <b>*</b></label><select id="civil-status" name="civilStatus" required><option value="">Select civil status</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select><p class="error"></p></div>
+              <div class="field wide"><label for="address">Complete Address <b>*</b></label><input id="address" name="address" placeholder="House no., street, barangay, municipality/city, province" required /><p class="error"></p></div>
+            </div>
+            <div class="section-label"><span>02</span> Contact information</div>
+            <div class="form-grid contact-grid">
+              <div class="field"><label for="contact">Contact Number <b>*</b></label><input id="contact" name="contact" type="tel" inputmode="numeric" placeholder="09XXXXXXXXX" required /><p class="error"></p></div>
+              <div class="field"><label for="email">Email Address <b>*</b></label><input id="email" name="email" type="email" placeholder="name@example.com" required /><p class="error"></p></div>
+              <div class="field"><label for="emergency-name">Emergency Contact Name <b>*</b></label><input id="emergency-name" name="emergencyName" required /><p class="error"></p></div>
+              <div class="field"><label for="emergency-contact">Emergency Contact Number <b>*</b></label><input id="emergency-contact" name="emergencyContact" type="tel" inputmode="numeric" placeholder="09XXXXXXXXX" required /><p class="error"></p></div>
+            </div>
+            <div class="actions"><button type="reset" class="clear-button">Clear form</button><button type="submit" class="register-button">Register Client <span>→</span></button></div>
+          </form>
+        </div>
+        <footer>© 2026 Local Government Unit</footer>
+      </section>
+    </main>
+    <div class="modal" id="success-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="success-title"><div class="modal-card"><div class="success-mark">✓</div><p class="eyebrow">REGISTRATION COMPLETE</p><h2 id="success-title">Welcome to the community!</h2><p>Your client profile has been saved successfully. You may now proceed to the login page.</p><button id="modal-close" type="button">Back to Login</button></div></div>
+  </body>
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#087348">
+
+    <title>Personnel Dashboard | LGU Gym</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-shell">
+
+    <aside class="sidebar" id="sidebar">
+
+        <a class="admin-brand" href="./personnel-dashboard.html">
+            <span class="brand-seal">LGU</span>
+
+            <span>
+                LGU GYM
+                <small>RESERVATION SYSTEM</small>
+            </span>
+        </a>
+
+        <nav>
+
+            <a class="nav-item active" href="./personnel-dashboard.html">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a class="nav-item" href="./client-register.html">
+                <span>👤</span>
+                Register Client
+            </a>
+
+            <a class="nav-item" href="./client-accounts.html">
+                <span>📋</span>
+                Client Accounts
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a class="nav-item" href="./login.html">
+                <span>←</span>
+                Logout
+            </a>
+
+            <p>© 2026 Local Government Unit</p>
+
+        </div>
+
+    </aside>
+
+    <main class="admin-main">
+
+        <header class="topbar">
+
+            <button class="menu-button" id="menu-button">
+                ☰
+            </button>
+
+            <div class="crumb">
+
+                PERSONNEL PORTAL
+                <span>/</span>
+                DASHBOARD
+
+            </div>
+
+            <div class="admin-profile">
+
+                <span class="profile-avatar">P</span>
+
+                <span>
+
+                    <b>Personnel</b>
+
+                    <small>LGU Gym Staff</small>
+
+                </span>
+
+            </div>
+
+        </header>
+
+        <div class="dashboard-content">
+
+            <section class="welcome">
+
+                <div>
+
+                    <p class="eyebrow">
+                        OVERVIEW
+                    </p>
+
+                    <h1>
+                        Welcome, Personnel!
+                    </h1>
+
+                    <p>
+                        Manage client registrations and monitor client accounts.
+                    </p>
+
+                </div>
+
+                <a class="manage-button"
+                   href="./client-register.html">
+
+                    Register Client
+                    <span>→</span>
+
+                </a>
+
+            </section>
+
+            <section class="stat-grid">
+
+                <article class="stat-card">
+
+                    <span class="stat-icon clients">
+                        👥
+                    </span>
+
+                    <div>
+
+                        <p>Total Clients</p>
+
+                        <strong id="totalClients">0</strong>
+
+                        <small>Registered Clients</small>
+
+                    </div>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <span class="stat-icon pending">
+                        ⏳
+                    </span>
+
+                    <div>
+
+                        <p>Pending Clients</p>
+
+                        <strong id="pendingClients">0</strong>
+
+                        <small>Waiting Approval</small>
+
+                    </div>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <span class="stat-icon approved">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <p>Approved Clients</p>
+
+                        <strong id="approvedClients">0</strong>
+
+                        <small>Approved Accounts</small>
+
+                    </div>
+
+                </article>
+
+                <article class="stat-card">
+
+                    <span class="stat-icon personnel">
+                        🏋️
+                    </span>
+
+                    <div>
+
+                        <p>Your Status</p>
+
+                        <strong>Approved</strong>
+
+                        <small>Personnel Account</small>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+            <section class="overview-grid">
+
+                <article class="panel recent-panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <h2>
+                                Recent Clients
+                            </h2>
+
+                            <p>
+                                Latest registered clients.
+                            </p>
+
+                        </div>
+
+                        <a href="./client-accounts.html">
+
+                            View All
+
+                        </a>
+
+                    </div>
+
+                    <div id="recentClients"
+                         class="recent-list">
+
+                    </div>
+
+                </article>
+
+                <article class="panel action-panel">
+
+                    <span class="action-mark">
+                        ✓
+                    </span>
+
+                    <p class="eyebrow">
+
+                        QUICK ACTION
+
+                    </p>
+
+                    <h2>
+
+                        Register a New Client
+
+                    </h2>
+
+                    <p>
+
+                        Create new client accounts for walk-in customers.
+
+                    </p>
+
+                    <a href="./client-register.html">
+
+                        Register Client
+
+                        <span>→</span>
+
+                    </a>
+
+                </article>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="../js/personnel-dashboard.js"></script>
+
+</body>
+</html>

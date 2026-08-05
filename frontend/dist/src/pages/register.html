@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b7047" />
+    <title>Personnel Registration | LGU Gym Reservation System</title>
+    <script type="module" crossorigin src="/assets/register-CmKKPxPt.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-BVCvSGnQ.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+    <link rel="stylesheet" crossorigin href="/assets/register-DImJde4g.css">
+  </head>
+  <body>
+    <main class="registration-page">
+      <header class="site-header">
+        <a class="brand" href="./login.html" aria-label="LGU Gym Reservation System login">
+          <span class="seal" aria-hidden="true"><span>LGU</span></span>
+          <span><strong>LGU GYM</strong><small>RESERVATION SYSTEM</small></span>
+        </a>
+        <a class="login-link" href="./login.html">← Back to Login</a>
+      </header>
+
+      <section class="page-intro">
+        <p class="eyebrow">PERSONNEL PORTAL</p>
+        <h1>Create your account</h1>
+        <p>Complete the form below to request access to the LGU Gym Reservation System.</p>
+      </section>
+
+      <section class="registration-card" aria-label="Personnel registration form">
+        <div class="card-heading">
+          <div><h2>Personnel information</h2><p>Fields marked with <span aria-hidden="true">*</span> are required.</p></div>
+          <div class="status-chip"><span></span>Pending Approval</div>
+        </div>
+        <form id="registration-form" novalidate>
+          <div class="form-grid">
+            <div class="field id-field"><label for="personnel-id">Personnel ID</label><input id="personnel-id" name="personnelId" readonly /><small>Automatically generated</small></div>
+            <div class="field"><label for="position">Position <b>*</b></label><select id="position" name="position" required><option value="">Select position</option><option>Gym Personnel</option><option>Administrative Staff</option><option>Sports Coordinator</option><option>Facility Manager</option><option>Security Personnel</option></select><p class="error"></p></div>
+            <div class="field"><label for="last-name">Last Name <b>*</b></label><input id="last-name" name="lastName" type="text" required /><p class="error"></p></div>
+            <div class="field"><label for="first-name">First Name <b>*</b></label><input id="first-name" name="firstName" type="text" required /><p class="error"></p></div>
+            <div class="field"><label for="middle-name">Middle Name <b>*</b></label><input id="middle-name" name="middleName" type="text" required /><p class="error"></p></div>
+            <div class="field"><label for="birthdate">Birthdate <b>*</b></label><input id="birthdate" name="birthdate" type="date" required /><p class="error"></p></div>
+            <div class="field"><label for="gender">Gender <b>*</b></label><select id="gender" name="gender" required><option value="">Select gender</option><option>Female</option><option>Male</option><option>Prefer not to say</option></select><p class="error"></p></div>
+            <div class="field full"><label for="address">Complete Address <b>*</b></label><input id="address" name="address" type="text" placeholder="House no., street, barangay, municipality/city, province" required /><p class="error"></p></div>
+            <div class="field"><label for="contact">Contact Number <b>*</b></label><input id="contact" name="contact" type="tel" inputmode="numeric" placeholder="09XXXXXXXXX" required /><p class="error"></p></div>
+            <div class="field"><label for="email">Email Address <b>*</b></label><input id="email" name="email" type="email" placeholder="name@example.com" required /><p class="error"></p></div>
+          </div>
+          <div class="account-divider"><span>ACCOUNT CREDENTIALS</span></div>
+          <div class="form-grid credentials">
+            <div class="field"><label for="username">Username <b>*</b></label><input id="username" name="username" type="text" autocomplete="username" required /><p class="error"></p></div>
+            <div class="field"><label for="password">Password <b>*</b></label><input id="password" name="password" type="password" autocomplete="new-password" required /><p class="error"></p></div>
+            <div class="field"><label for="confirm-password">Confirm Password <b>*</b></label><input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required /><p class="error"></p></div>
+          </div>
+          <p class="password-note">Use at least 8 characters for your password.</p>
+          <div class="form-actions"><button class="clear-button" type="reset">Clear</button><button class="register-button" type="submit">Submit Registration <span>→</span></button></div>
+        </form>
+      </section>
+      <footer>© 2026 Local Government Unit · Gym Reservation System</footer>
+    </main>
+
+    <div class="modal" id="success-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-dialog"><div class="success-icon">✓</div><p class="eyebrow">REGISTRATION RECEIVED</p><h2 id="modal-title">Thank you for registering!</h2><p>Your account has been submitted successfully. Please wait for administrator approval.</p><div class="modal-status"><span></span> Account status: <strong>Pending Approval</strong></div><button id="modal-close" type="button">Back to Login</button></div>
+    </div>
+  </body>
+</html>

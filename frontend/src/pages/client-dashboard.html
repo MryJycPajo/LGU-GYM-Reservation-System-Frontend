@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#087348" /><title>Client Dashboard | LGU Gym</title>
+    <link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" />
+  </head>
+<body>
+
+<div class="admin-shell">
+
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <a class="admin-brand" href="./dashboard.html">
+      <span class="brand-seal">LGU</span>
+      <span>
+        LGU GYM
+        <small>RESERVATION SYSTEM</small>
+      </span>
+    </a>
+
+
+    <nav>
+
+      <a class="nav-item active" href="./dashboard.html">
+        <span>▦</span>
+        Dashboard
+      </a>
+
+
+      <a class="nav-item" href="./reservation.html">
+        <span>▣</span>
+        My Reservation
+      </a>
+
+
+      <a class="nav-item" href="./profile.html">
+        <span>♙</span>
+        My Profile
+      </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <a class="nav-item" href="../login.html">
+        <span>←</span>
+        Logout
+      </a>
+
+
+      <p>
+        © 2026 Local Government Unit
+      </p>
+
+    </div>
+
+
+  </aside>
+
+
+
+  <!-- MAIN -->
+
+  <main class="admin-main">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+      <button 
+      class="menu-button" 
+      id="menu-button">
+      ☰
+      </button>
+
+
+      <div class="crumb">
+        CLIENT PORTAL
+        <span>/</span>
+        DASHBOARD
+      </div>
+
+
+      <div class="admin-profile">
+
+        <span class="profile-avatar">
+          C
+        </span>
+
+
+        <span>
+          <b id="client-name">
+            Client
+          </b>
+
+          <small>
+            Gym Member
+          </small>
+
+        </span>
+
+      </div>
+
+
+    </header>
+
+
+
+
+    <div class="dashboard-content">
+
+
+      <!-- WELCOME -->
+
+      <section class="welcome">
+
+
+        <div>
+
+          <p class="eyebrow">
+            CLIENT OVERVIEW
+          </p>
+
+
+          <h1>
+            Welcome back!
+          </h1>
+
+
+          <p>
+            Manage your gym reservations and account information.
+          </p>
+
+
+        </div>
+
+
+        <a class="manage-button" href="./reservation.html">
+
+          Reserve Gym
+
+          <span>
+            →
+          </span>
+
+        </a>
+
+
+      </section>
+
+
+
+
+
+      <!-- CLIENT CARDS -->
+
+      <section class="stat-grid">
+
+
+        <article class="stat-card">
+
+          <span class="stat-icon clients">
+            ✓
+          </span>
+
+
+          <div>
+
+            <p>
+              Account Status
+            </p>
+
+
+            <strong>
+              Active
+            </strong>
+
+
+            <small>
+              Approved account
+            </small>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="stat-card">
+
+
+          <span class="stat-icon approved">
+            ▣
+          </span>
+
+
+          <div>
+
+            <p>
+              Gym Access
+            </p>
+
+
+            <strong>
+              Available
+            </strong>
+
+
+            <small>
+              You can reserve facilities
+            </small>
+
+
+          </div>
+
+
+        </article>
+
+
+
+      </section>
+
+
+
+
+
+
+
+      <section class="overview-grid">
+
+
+        <article class="panel recent-panel">
+
+
+          <div class="panel-title">
+
+            <div>
+
+              <h2>
+                My Reservations
+              </h2>
+
+
+              <p>
+                Your latest gym bookings.
+              </p>
+
+
+            </div>
+
+
+          </div>
+
+
+
+          <div id="reservation-list"
+          class="recent-list">
+
+
+            <p>
+              No reservations yet.
+            </p>
+
+
+          </div>
+
+
+
+        </article>
+
+
+
+
+
+        <article class="panel action-panel">
+
+
+          <span class="action-mark">
+            ✓
+          </span>
+
+
+          <p class="eyebrow">
+            CLIENT ACTION
+          </p>
+
+
+          <h2>
+            Book your gym schedule
+          </h2>
+
+
+          <p>
+            Choose your preferred date and facility schedule.
+          </p>
+
+
+          <a href="./reservation.html">
+
+            Make Reservation
+
+            <span>
+              →
+            </span>
+
+          </a>
+
+
+        </article>
+
+
+
+      </section>
+
+
+
+    </div>
+
+
+  </main>
+
+
+</div>
+
+
+
+
+<script type="module" src="../js/client-dashboard.js"></script>
+
+</body>
+</html>

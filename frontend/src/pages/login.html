@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a5f3d" />
+    <title>Login | LGU Gym Reservation System</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <main class="login-page">
+      <div class="backdrop" aria-hidden="true"></div>
+      <section class="login-card" aria-labelledby="login-title">
+        <header class="card-header">
+<div class="municipality-logo">
+  <img src="/images/logo.jpg" alt="Municipality Logo">
+</div>
+          <p class="municipality-name"></p>
+          <h1 id="login-title">LGU Gym<br /><strong>Reservation System</strong></h1>
+          <p class="welcome-text">Welcome back. Please sign in to continue.</p>
+        </header>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="username">Username</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" /></svg>
+              <input id="username" name="username" type="text" autocomplete="username" placeholder="Enter your username" required />
+            </div>
+            <p class="field-error" id="username-error"></p>
+          </div>
+          <div class="field">
+            <div class="label-row"><label for="password">Password</label><a href="#forgot-password" id="forgot-link">Forgot Password?</a></div>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+              <button class="password-toggle" type="button" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></svg></button>
+            </div>
+            <p class="field-error" id="password-error"></p>
+          </div>
+          <label class="remember"><input type="checkbox" name="remember" /><span class="checkmark"></span>Remember Me</label>
+          <button class="login-button" type="submit">Login <span>-></span></button>
+          <p class="register-link">
+  Don't have an account?
+  <a href="./register.html">Register here</a>
+</p>
+          <p class="form-message" id="form-message" role="status"></p>
+        </form>
+        <p class="card-footer">Secure access for authorized LGU personnel and clients.</p>
+      </section>
+      <p class="page-footer">Copyright 2026 Local Government Unit &middot; Gym Reservation System</p>
+    </main>
+    <script type="module" src="../js/login.js"></script>
+  </body>
+</html>
