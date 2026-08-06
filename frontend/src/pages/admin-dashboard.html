@@ -22,7 +22,23 @@
             <article class="stat-card"><span class="stat-icon pending">◷</span><div><p>Pending Approvals</p><strong id="pending-personnel">0</strong><small>Awaiting your review</small></div></article>
             <article class="stat-card"><span class="stat-icon approved">✓</span><div><p>Approved Accounts</p><strong id="approved-accounts">0</strong><small>Approved personnel access</small></div></article>
           </section>
-          <section class="overview-grid"><article class="panel recent-panel"><div class="panel-title"><div><h2>Recent personnel applications</h2><p>Latest accounts requiring attention.</p></div><a href="./user-accounts.html">View all</a></div><div id="recent-personnel" class="recent-list"></div></article><article class="panel action-panel"><span class="action-mark">✓</span><p class="eyebrow">ADMIN ACTION</p><h2>Keep accounts up to date</h2><p>Review personnel registrations and approve or decline their access from User Accounts.</p><a href="./user-accounts.html">Review Personnel <span>→</span></a></article></section>
+          <section class="overview-grid"><article class="panel recent-panel"><div class="panel-title"><div><h2>Recent personnel applications</h2><p>Latest accounts requiring attention.</p></div><a href="./user-accounts.html">View all</a></div><div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="recent-personnel-table">
+
+        </tbody>
+    </table>
+</div>
+</section>
         </div>
       </main>
     </div>
