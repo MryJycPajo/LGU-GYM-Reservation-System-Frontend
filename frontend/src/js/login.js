@@ -36,9 +36,28 @@ form.addEventListener('submit', async (event) => {
     });
 
     const data = await response.json();
+    
+    console.log('LOGIN RESPONSE:', data);
 
     if (data.success) {
       message.textContent = 'Login Successful!';
+
+      // Save logged-in client information
+if (data.role === 'client') {
+
+  localStorage.setItem(
+    'client',
+    JSON.stringify({
+      account_id: data.account_id,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      middlename: data.middlename,
+      email: data.email,
+      phone_number: data.phone_number
+    })
+  );
+
+}
 
       if (data.role === 'admin') {
         window.location.href = '/src/pages/admin-dashboard.html';

@@ -1,1 +1,327 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#087348" /><title>Services | LGU Gym</title><link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" /><link rel="stylesheet" href="../css/client-dashboard.css" /></head><body><div class="admin-shell client-shell"><aside class="sidebar" id="sidebar"><a class="admin-brand" href="./client-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a><nav aria-label="Client navigation"><a class="nav-item" href="./client-dashboard.html"><span>⌂</span>Dashboard</a><a class="nav-item" href="./profile.html"><span>♙</span>My Profile</a><a class="nav-item" href="./change-password.html"><span>⌘</span>Change Password</a><a class="nav-item active" href="./services.html"><span>●</span>Services</a><a class="nav-item" href="./reservation.html"><span>□</span>My Reservations</a><a class="nav-item" href="./billing.html"><span>₱</span>Billing &amp; Payments</a><a class="nav-item" href="./history.html"><span>≡</span>History</a></nav><div class="sidebar-bottom"><a class="nav-item" href="../login.html"><span>←</span>Logout</a><p>© 2026 Local Government Unit</p></div></aside><main class="admin-main"><header class="topbar"><button class="menu-button" id="menu-button" type="button" aria-label="Open navigation">☰</button><div class="crumb">CLIENT PORTAL <span>/</span> SERVICES</div><div class="admin-profile"><span class="profile-avatar">C</span><span><b id="client-name">Juan Dela Cruz</b><small>Gym Member</small></span></div></header><div class="dashboard-content client-single-content"><section class="client-section" aria-labelledby="services-title"><div class="section-intro"><div><p class="eyebrow">LGU GYM SERVICES</p><h1 id="services-title">Available Services</h1><p>Select a service, then provide your preferred reservation details.</p></div></div><div class="service-layout"><article class="service-option"><span class="service-symbol">●</span><h2>Gym Reservation</h2><p>Reserve the LGU Gym for approved activities, events, and community programs.</p><button class="outline-button" id="select-service-btn" type="button">Select Service</button></article><article class="panel form-panel reservation-form"><p class="eyebrow">RESERVATION DETAILS</p><h2>Reservation Details</h2><p>Complete these fields after selecting a service.</p><form class="client-form"><label>Service<select id="reservation-service"><option>Gym Reservation</option></select></label><label>Date<input id="reservation-date" type="date" /></label><label>Time<input id="reservation-time" type="time" /></label><label class="full-field">Reservation Details<textarea id="reservation-details" placeholder="Describe your activity or reservation purpose"></textarea></label><div class="form-footer"><span></span><button class="primary-button" id="submit-reservation-btn" type="button">Submit Reservation</button></div></form></article></div></section></div></main></div><script type="module" src="../js/client-dashboard.js"></script></body></html>
+```html id="p4n7zc"
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>Services | LGU Gym</title>
+
+  <link
+    rel="stylesheet"
+    href="../style.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/admin.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/client-dashboard.css"
+  />
+
+</head>
+
+<body>
+
+  <div class="admin-shell client-shell">
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+      <a
+        class="admin-brand"
+        href="./client-dashboard.html"
+      >
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
+
+      <nav aria-label="Client navigation">
+
+        <a
+          class="nav-item"
+          href="./client-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a
+          class="nav-item"
+          href="./profile.html"
+        >
+          <span>♙</span>
+          My Profile
+        </a>
+
+        <a
+          class="nav-item"
+          href="./change-password.html"
+        >
+          <span>⌘</span>
+          Change Password
+        </a>
+
+        <a
+          class="nav-item active"
+          href="./services.html"
+        >
+          <span>●</span>
+          Services
+        </a>
+
+        <a
+          class="nav-item"
+          href="./reservation.html"
+        >
+          <span>□</span>
+          My Reservations
+        </a>
+
+        <a
+          class="nav-item"
+          href="./billing.html"
+        >
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+        <a
+          class="nav-item"
+          href="./history.html"
+        >
+          <span>≡</span>
+          History
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="../login.html"
+        >
+          <span>←</span>
+          Logout
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+    <main class="admin-main">
+
+      <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+        <div class="crumb">
+          CLIENT PORTAL
+          <span>/</span>
+          SERVICES
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            C
+          </span>
+
+          <span>
+
+            <b id="client-name">
+              Juan Dela Cruz
+            </b>
+
+            <small>
+              Gym Member
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+      <div class="dashboard-content client-single-content">
+
+        <section
+          class="client-section"
+          aria-labelledby="services-title"
+        >
+
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                LGU GYM SERVICES
+              </p>
+
+              <h1 id="services-title">
+                Available Services
+              </h1>
+
+              <p>
+                Select a service, then provide your preferred reservation details.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="service-layout">
+
+            <article class="service-option">
+
+              <span class="service-symbol">
+                ●
+              </span>
+
+              <h2>
+                Gym Reservation
+              </h2>
+
+              <p>
+                Reserve the LGU Gym for approved activities, events, and community programs.
+              </p>
+
+              <button
+                class="outline-button"
+                id="select-service-btn"
+                type="button"
+              >
+                Select Service
+              </button>
+
+            </article>
+
+            <article class="panel form-panel reservation-form">
+
+              <p class="eyebrow">
+                RESERVATION DETAILS
+              </p>
+
+              <h2>
+                Reservation Details
+              </h2>
+
+              <p>
+                Complete these fields after selecting a service.
+              </p>
+
+              <form class="client-form">
+
+                <label>
+                  Service
+
+                  <select id="reservation-service">
+                    <option>
+                      Gym Reservation
+                    </option>
+                  </select>
+
+                </label>
+
+                <label>
+                  Date
+
+                  <input
+                    id="reservation-date"
+                    type="date"
+                  />
+
+                </label>
+
+                <label>
+                  Time
+
+                  <input
+                    id="reservation-time"
+                    type="time"
+                  />
+
+                </label>
+
+                <label class="full-field">
+
+                  Reservation Details
+
+                  <textarea
+                    id="reservation-details"
+                    placeholder="Describe your activity or reservation purpose"
+                  ></textarea>
+
+                </label>
+
+                <div class="form-footer">
+
+                  <span></span>
+
+                  <button
+                    class="primary-button"
+                    id="submit-reservation-btn"
+                    type="button"
+                  >
+                    Submit Reservation
+                  </button>
+
+                </div>
+
+              </form>
+
+            </article>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script
+    type="module"
+    src="../js/client-dashboard.js"
+  ></script>
+
+</body>
+
+</html>
+```

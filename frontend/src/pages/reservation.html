@@ -1,1 +1,342 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#087348" /><title>My Reservations | LGU Gym</title><link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" /><link rel="stylesheet" href="../css/client-dashboard.css" /></head><body><div class="admin-shell client-shell"><aside class="sidebar" id="sidebar"><a class="admin-brand" href="./client-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a><nav aria-label="Client navigation"><a class="nav-item" href="./client-dashboard.html"><span>⌂</span>Dashboard</a><a class="nav-item" href="./profile.html"><span>♙</span>My Profile</a><a class="nav-item" href="./change-password.html"><span>⌘</span>Change Password</a><a class="nav-item" href="./services.html"><span>●</span>Services</a><a class="nav-item active" href="./reservation.html"><span>□</span>My Reservations</a><a class="nav-item" href="./billing.html"><span>₱</span>Billing &amp; Payments</a><a class="nav-item" href="./history.html"><span>≡</span>History</a></nav><div class="sidebar-bottom"><a class="nav-item" href="../login.html"><span>←</span>Logout</a><p>© 2026 Local Government Unit</p></div></aside><main class="admin-main"><header class="topbar"><button class="menu-button" id="menu-button" type="button" aria-label="Open navigation">☰</button><div class="crumb">CLIENT PORTAL <span>/</span> MY RESERVATIONS</div><div class="admin-profile"><span class="profile-avatar">C</span><span><b id="client-name">Juan Dela Cruz</b><small>Gym Member</small></span></div></header><div class="dashboard-content client-single-content"><section class="client-section" aria-labelledby="reservations-title"><div class="section-intro"><div><p class="eyebrow">RESERVATION MANAGEMENT</p><h1 id="reservations-title">My Reservations</h1><p>View your submitted gym reservation requests.</p></div><a class="outline-button link-button" href="./services.html">+ Make a Reservation</a></div><article class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Reservation ID</th><th>Service</th><th>Date</th><th>Time</th><th>Status</th><th>Payment Status</th><th>Action</th></tr></thead><tbody id="client-reservations"><tr><td>#100001</td><td>Gym Use</td><td>Aug 20, 2026</td><td>9:00 AM</td><td><span class="status approved">Approved</span></td><td><span class="status paid">Paid</span></td><td><button class="table-button" type="button">View</button></td></tr><tr><td>#100002</td><td>Gym Use</td><td>Aug 25, 2026</td><td>2:00 PM</td><td><span class="status pending-approval">Pending</span></td><td><span class="status unpaid">Unpaid</span></td><td><button class="table-button" type="button">View</button></td></tr></tbody></table></div></article></section></div></main></div><script type="module" src="../js/client-dashboard.js"></script></body></html>
+```html id="m9q2vk"
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>My Reservations | LGU Gym</title>
+
+  <link
+    rel="stylesheet"
+    href="../style.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/admin.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/client-dashboard.css"
+  />
+
+</head>
+
+<body>
+
+  <div class="admin-shell client-shell">
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+      <a
+        class="admin-brand"
+        href="./client-dashboard.html"
+      >
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
+
+      <nav aria-label="Client navigation">
+
+        <a
+          class="nav-item"
+          href="./client-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a
+          class="nav-item"
+          href="./profile.html"
+        >
+          <span>♙</span>
+          My Profile
+        </a>
+
+        <a
+          class="nav-item"
+          href="./change-password.html"
+        >
+          <span>⌘</span>
+          Change Password
+        </a>
+
+        <a
+          class="nav-item"
+          href="./services.html"
+        >
+          <span>●</span>
+          Services
+        </a>
+
+        <a
+          class="nav-item active"
+          href="./reservation.html"
+        >
+          <span>□</span>
+          My Reservations
+        </a>
+
+        <a
+          class="nav-item"
+          href="./billing.html"
+        >
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+        <a
+          class="nav-item"
+          href="./history.html"
+        >
+          <span>≡</span>
+          History
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="../login.html"
+        >
+          <span>←</span>
+          Logout
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+    <main class="admin-main">
+
+      <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+        <div class="crumb">
+          CLIENT PORTAL
+          <span>/</span>
+          MY RESERVATIONS
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            C
+          </span>
+
+          <span>
+
+            <b id="client-name">
+              Juan Dela Cruz
+            </b>
+
+            <small>
+              Gym Member
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+      <div class="dashboard-content client-single-content">
+
+        <section
+          class="client-section"
+          aria-labelledby="reservations-title"
+        >
+
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                RESERVATION MANAGEMENT
+              </p>
+
+              <h1 id="reservations-title">
+                My Reservations
+              </h1>
+
+              <p>
+                View your submitted gym reservation requests.
+              </p>
+
+            </div>
+
+            <a
+              class="outline-button link-button"
+              href="./services.html"
+            >
+              + Make a Reservation
+            </a>
+
+          </div>
+
+          <article class="panel table-panel">
+
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+                    <th>Reservation ID</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Action</th>
+                  </tr>
+
+                </thead>
+
+                <tbody id="client-reservations">
+
+                  <tr>
+
+                    <td>
+                      #100001
+                    </td>
+
+                    <td>
+                      Gym Use
+                    </td>
+
+                    <td>
+                      Aug 20, 2026
+                    </td>
+
+                    <td>
+                      9:00 AM
+                    </td>
+
+                    <td>
+                      <span class="status approved">
+                        Approved
+                      </span>
+                    </td>
+
+                    <td>
+                      <span class="status paid">
+                        Paid
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="table-button"
+                        type="button"
+                      >
+                        View
+                      </button>
+                    </td>
+
+                  </tr>
+
+                  <tr>
+
+                    <td>
+                      #100002
+                    </td>
+
+                    <td>
+                      Gym Use
+                    </td>
+
+                    <td>
+                      Aug 25, 2026
+                    </td>
+
+                    <td>
+                      2:00 PM
+                    </td>
+
+                    <td>
+                      <span class="status pending-approval">
+                        Pending
+                      </span>
+                    </td>
+
+                    <td>
+                      <span class="status unpaid">
+                        Unpaid
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        class="table-button"
+                        type="button"
+                      >
+                        View
+                      </button>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script
+    type="module"
+    src="../js/client-dashboard.js"
+  ></script>
+
+</body>
+
+</html>
+```

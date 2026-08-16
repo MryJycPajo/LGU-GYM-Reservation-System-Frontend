@@ -1,1 +1,332 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#087348" /><title>Pending Approvals | LGU Gym</title><link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" /><link rel="stylesheet" href="../css/admin-ui.css" /></head><body class="admin-static-page"><div class="admin-shell admin-ui-page"><aside class="sidebar"><a class="admin-brand" href="./admin-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a><nav aria-label="Admin navigation"><a class="nav-item" href="./admin-dashboard.html"><span>⌂</span>Dashboard</a><a class="nav-item" href="./user-accounts.html"><span>♙</span>User Accounts</a><a class="nav-item active" href="./pending-approvals.html"><span>◷</span>Pending Approvals</a><a class="nav-item" href="./admin-reservations.html"><span>●</span>Reservations</a><a class="nav-item" href="./admin-billing.html"><span>₱</span>Billing &amp; Payments</a><a class="nav-item" href="./admin-history.html"><span>≡</span>History / Records</a><a class="nav-item" href="./admin-reports.html"><span>▥</span>Reports</a></nav><div class="sidebar-bottom"><a class="nav-item" href="./login.html"><span>←</span>Log Out</a><p>© 2026 Local Government Unit</p></div></aside><main class="admin-main"><header class="topbar"><div class="crumb">ADMIN PORTAL <span>/</span> PENDING APPROVALS</div><div class="admin-profile"><span class="profile-avatar">A</span><span><b>Administrator</b><small>System Admin</small></span></div></header><div class="dashboard-content"><section class="admin-section"><div class="section-intro"><div><p class="eyebrow">ACCOUNT REVIEW</p><h1>Pending Approvals</h1><p>Accounts waiting for Admin review.</p></div></div><article class="panel table-panel"><div class="filter-row"><button class="filter-chip active" type="button">All</button><button class="filter-chip" type="button">Client</button><button class="filter-chip" type="button">Personnel</button></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Status</th><th>Action</th></tr></thead><tbody id="pending-accounts-list"><tr><td>100004</td><td>Pedro Cruz</td><td><span class="type-pill client">Client</span></td><td><span class="status pending-approval">Pending</span></td><td><button class="table-button" type="button">View</button></td></tr><tr><td>100005</td><td>Ana Reyes</td><td><span class="type-pill personnel">Personnel</span></td><td><span class="status pending-approval">Pending</span></td><td><button class="table-button" type="button">View</button></td></tr></tbody></table></div></article><article class="panel details-card"><h2>Account Details</h2><div class="details-grid"><div><small>Account ID</small><b>100004</b></div><div><small>Name</small><b>Pedro Cruz</b></div><div><small>Account Type</small><b>Client</b></div><div><small>Status</small><b>Pending</b></div><div><small>Created By</small><b>Personnel Name</b></div><div><small>Date Created</small><b>August 16, 2026</b></div><div class="approval-note"><small>Approval Status</small><b>Waiting for Admin Approval</b></div></div><div class="approval-actions"><button class="approve-action" id="approve-account-btn" type="button">Approve</button><button class="decline-action" id="decline-account-btn" type="button">Decline</button></div></article></section></div></main></div></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#087348" />
+
+  <title>Pending Approvals | LGU Gym</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/admin-ui.css" />
+</head>
+
+<body class="admin-static-page">
+
+  <div class="admin-shell admin-ui-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <a class="admin-brand" href="./admin-dashboard.html">
+        <span class="brand-seal">LGU</span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
+
+      <nav aria-label="Admin navigation">
+
+        <a class="nav-item" href="./admin-dashboard.html">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a class="nav-item" href="./user-accounts.html">
+          <span>♙</span>
+          User Accounts
+        </a>
+
+        <a class="nav-item active" href="./pending-approvals.html">
+          <span>◷</span>
+          Pending Approvals
+        </a>
+
+        <a class="nav-item" href="./admin-reservations.html">
+          <span>●</span>
+          Reservations
+        </a>
+
+        <a class="nav-item" href="./admin-billing.html">
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+        <a class="nav-item" href="./admin-history.html">
+          <span>≡</span>
+          History / Records
+        </a>
+
+        <a class="nav-item" href="./admin-reports.html">
+          <span>▥</span>
+          Reports
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a class="nav-item" href="./login.html">
+          <span>←</span>
+          Log Out
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <div class="crumb">
+          ADMIN PORTAL
+          <span>/</span>
+          PENDING APPROVALS
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            A
+          </span>
+
+          <span>
+            <b>Administrator</b>
+            <small>System Admin</small>
+          </span>
+
+        </div>
+
+      </header>
+
+
+      <!-- DASHBOARD CONTENT -->
+      <div class="dashboard-content">
+
+        <section class="admin-section">
+
+          <!-- PAGE INTRO -->
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                ACCOUNT REVIEW
+              </p>
+
+              <h1>
+                Pending Approvals
+              </h1>
+
+              <p>
+                Accounts waiting for Admin review.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- PENDING ACCOUNTS TABLE -->
+          <article class="panel table-panel">
+
+            <!-- FILTERS -->
+            <div class="filter-row">
+
+              <button
+                class="filter-chip active"
+                type="button">
+                All
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button">
+                Client
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button">
+                Personnel
+              </button>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+
+                </thead>
+
+                <tbody id="pending-accounts-list">
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+
+          <!-- ACCOUNT DETAILS -->
+          <article class="panel details-card">
+
+            <h2>
+              Account Details
+            </h2>
+
+            <div class="details-grid">
+
+              <div>
+
+                <small>
+                  Account ID
+                </small>
+
+                <b>
+                  100004
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <small>
+                  Name
+                </small>
+
+                <b>
+                  Pedro Cruz
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <small>
+                  Account Type
+                </small>
+
+                <b>
+                  Client
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <small>
+                  Status
+                </small>
+
+                <b>
+                  Pending
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <small>
+                  Created By
+                </small>
+
+                <b>
+                  Personnel Name
+                </b>
+
+              </div>
+
+
+              <div>
+
+                <small>
+                  Date Created
+                </small>
+
+                <b>
+                  August 16, 2026
+                </b>
+
+              </div>
+
+
+              <div class="approval-note">
+
+                <small>
+                  Approval Status
+                </small>
+
+                <b>
+                  Waiting for Admin Approval
+                </b>
+
+              </div>
+
+            </div>
+
+
+            <!-- APPROVAL ACTIONS -->
+            <div class="approval-actions">
+
+              <button
+                class="approve-action"
+                id="approve-account-btn"
+                type="button">
+                Approve
+              </button>
+
+              <button
+                class="decline-action"
+                id="decline-account-btn"
+                type="button">
+                Decline
+              </button>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="../js/pending-approvals.js"></script>
+
+
+</body>
+</html>

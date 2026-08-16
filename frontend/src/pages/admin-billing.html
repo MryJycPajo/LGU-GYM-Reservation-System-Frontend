@@ -1,1 +1,407 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#087348" /><title>Billing &amp; Payments | LGU Gym</title><link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" /><link rel="stylesheet" href="../css/admin-ui.css" /></head><body class="admin-static-page"><div class="admin-shell admin-ui-page"><aside class="sidebar"><a class="admin-brand" href="./admin-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a><nav aria-label="Admin navigation"><a class="nav-item" href="./admin-dashboard.html"><span>⌂</span>Dashboard</a><a class="nav-item" href="./user-accounts.html"><span>♙</span>User Accounts</a><a class="nav-item" href="./pending-approvals.html"><span>◷</span>Pending Approvals</a><a class="nav-item" href="./admin-reservations.html"><span>●</span>Reservations</a><a class="nav-item active" href="./admin-billing.html"><span>₱</span>Billing &amp; Payments</a><a class="nav-item" href="./admin-history.html"><span>≡</span>History / Records</a><a class="nav-item" href="./admin-reports.html"><span>▥</span>Reports</a></nav><div class="sidebar-bottom"><a class="nav-item" href="./login.html"><span>←</span>Log Out</a><p>© 2026 Local Government Unit</p></div></aside><main class="admin-main"><header class="topbar"><div class="crumb">ADMIN PORTAL <span>/</span> BILLING &amp; PAYMENTS</div><div class="admin-profile"><span class="profile-avatar">A</span><span><b>Administrator</b><small>System Admin</small></span></div></header><div class="dashboard-content"><section class="admin-section"><div class="section-intro"><div><p class="eyebrow">PAYMENT MONITORING</p><h1>Billing &amp; Payments</h1><p>Review reservation billing and payment records.</p></div></div><article class="panel table-panel"><div class="filter-row"><input class="search-input" id="admin-billing-search" type="search" placeholder="Search client, reservation ID, or date" /><button class="filter-chip active" type="button">All</button><button class="filter-chip" type="button">Paid</button><button class="filter-chip" type="button">Unpaid</button></div><div class="table-wrap"><table><thead><tr><th>Reservation ID</th><th>Client</th><th>Service</th><th>Amount</th><th>Payment Status</th><th>Payment Date</th></tr></thead><tbody id="admin-billing-list"><tr><td>100001</td><td>Juan Cruz</td><td>Gym Use</td><td>₱500.00</td><td><span class="status approved">Paid</span></td><td>Aug 18, 2026</td></tr><tr><td>100002</td><td>Ana Santos</td><td>Gym Use</td><td>₱500.00</td><td><span class="status pending-approval">Unpaid</span></td><td>—</td></tr></tbody></table></div></article></section></div></main></div></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>
+    Billing &amp; Payments | LGU Gym
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="../style.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/admin.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/admin-ui.css"
+  />
+
+</head>
+
+
+<body class="admin-static-page">
+
+  <div class="admin-shell admin-ui-page">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <a
+        class="admin-brand"
+        href="./admin-dashboard.html"
+      >
+
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>
+            RESERVATION SYSTEM
+          </small>
+        </span>
+
+      </a>
+
+
+      <nav aria-label="Admin navigation">
+
+        <a
+          class="nav-item"
+          href="./admin-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./user-accounts.html"
+        >
+          <span>♙</span>
+          User Accounts
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./pending-approvals.html"
+        >
+          <span>◷</span>
+          Pending Approvals
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./admin-reservations.html"
+        >
+          <span>●</span>
+          Reservations
+        </a>
+
+
+        <a
+          class="nav-item active"
+          href="./admin-billing.html"
+        >
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./admin-history.html"
+        >
+          <span>≡</span>
+          History / Records
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./admin-reports.html"
+        >
+          <span>▥</span>
+          Reports
+        </a>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="./login.html"
+        >
+          <span>←</span>
+          Log Out
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="admin-main">
+
+
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+
+        <div class="crumb">
+
+          ADMIN PORTAL
+
+          <span>
+            /
+          </span>
+
+          BILLING &amp; PAYMENTS
+
+        </div>
+
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            A
+          </span>
+
+          <span>
+
+            <b>
+              Administrator
+            </b>
+
+            <small>
+              System Admin
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+
+
+      <!-- DASHBOARD CONTENT -->
+
+      <div class="dashboard-content">
+
+        <section class="admin-section">
+
+
+          <!-- PAGE INTRO -->
+
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                PAYMENT MONITORING
+              </p>
+
+              <h1>
+                Billing &amp; Payments
+              </h1>
+
+              <p>
+                Review reservation billing and payment records.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- BILLING TABLE -->
+
+          <article class="panel table-panel">
+
+
+            <!-- SEARCH AND FILTER -->
+
+            <div class="filter-row">
+
+              <input
+                class="search-input"
+                id="admin-billing-search"
+                type="search"
+                placeholder="Search client, reservation ID, or date"
+              />
+
+
+              <button
+                class="filter-chip active"
+                type="button"
+              >
+                All
+              </button>
+
+
+              <button
+                class="filter-chip"
+                type="button"
+              >
+                Paid
+              </button>
+
+
+              <button
+                class="filter-chip"
+                type="button"
+              >
+                Unpaid
+              </button>
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+
+                    <th>
+                      Reservation ID
+                    </th>
+
+                    <th>
+                      Client
+                    </th>
+
+                    <th>
+                      Service
+                    </th>
+
+                    <th>
+                      Amount
+                    </th>
+
+                    <th>
+                      Payment Status
+                    </th>
+
+                    <th>
+                      Payment Date
+                    </th>
+
+                  </tr>
+
+                </thead>
+
+
+                <tbody id="admin-billing-list">
+
+
+                  <!-- PAID -->
+
+                  <tr>
+
+                    <td>
+                      100001
+                    </td>
+
+                    <td>
+                      Juan Cruz
+                    </td>
+
+                    <td>
+                      Gym Use
+                    </td>
+
+                    <td>
+                      ₱500.00
+                    </td>
+
+                    <td>
+
+                      <span class="status approved">
+                        Paid
+                      </span>
+
+                    </td>
+
+                    <td>
+                      Aug 18, 2026
+                    </td>
+
+                  </tr>
+
+
+
+                  <!-- UNPAID -->
+
+                  <tr>
+
+                    <td>
+                      100002
+                    </td>
+
+                    <td>
+                      Ana Santos
+                    </td>
+
+                    <td>
+                      Gym Use
+                    </td>
+
+                    <td>
+                      ₱500.00
+                    </td>
+
+                    <td>
+
+                      <span class="status pending-approval">
+                        Unpaid
+                      </span>
+
+                    </td>
+
+                    <td>
+                      —
+                    </td>
+
+                  </tr>
+
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+
+</html>
