@@ -9,11 +9,12 @@
 
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/personnel.css">
 </head>
 
 <body>
 
-<div class="admin-shell">
+<div class="admin-shell personnel-dashboard">
 
     <aside class="sidebar" id="sidebar">
 
@@ -26,23 +27,13 @@
             </span>
         </a>
 
-        <nav>
-
-            <a class="nav-item active" href="./personnel-dashboard.html">
-                <span>▦</span>
-                Dashboard
-            </a>
-
-            <a class="nav-item" href="./client-register.html">
-                <span>👤</span>
-                Register Client
-            </a>
-
-            <a class="nav-item" href="./client-accounts.html">
-                <span>📋</span>
-                Client Accounts
-            </a>
-
+        <nav aria-label="Personnel navigation">
+            <a class="nav-item active" href="./personnel-dashboard.html"><span>⌂</span>Dashboard</a>
+            <a class="nav-item" href="./personnel-profile.html"><span>♙</span>My Profile</a>
+            <a class="nav-item" href="./personnel-change-password.html"><span>⌘</span>Change Password</a>
+            <a class="nav-item" href="./personnel-create-account.html"><span>+</span>Create Account</a>
+            <a class="nav-item" href="./personnel-accounts.html"><span>□</span>Accounts I Created</a>
+            <a class="nav-item" href="./personnel-history.html"><span>≡</span>History / Records</a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -105,18 +96,12 @@
                     </h1>
 
                     <p>
-                        Manage client registrations and monitor client accounts.
+                        Manage client and personnel account registrations and monitor their approval status.
                     </p>
 
                 </div>
 
-                <a class="manage-button"
-                   href="./client-register.html">
-
-                    Register Client
-                    <span>→</span>
-
-                </a>
+                <div class="personnel-welcome-actions"><a class="manage-button" href="./client-register.html">+ Create Client Account</a><a class="manage-button secondary-manage-button" href="./register.html">+ Create Personnel Account</a></div>
 
             </section>
 
@@ -130,11 +115,11 @@
 
                     <div>
 
-                        <p>Total Clients</p>
+                        <p>Accounts Created</p>
 
                         <strong id="totalClients">0</strong>
 
-                        <small>Registered Clients</small>
+                        <small>Total Accounts</small>
 
                     </div>
 
@@ -148,7 +133,7 @@
 
                     <div>
 
-                        <p>Pending Clients</p>
+                        <p>Pending</p>
 
                         <strong id="pendingClients">0</strong>
 
@@ -166,7 +151,7 @@
 
                     <div>
 
-                        <p>Approved Clients</p>
+                        <p>Approved</p>
 
                         <strong id="approvedClients">0</strong>
 
@@ -204,12 +189,12 @@
 
                         <div>
 
-                            <h2>
-                                Recent Clients
-                            </h2>
+                        <h2>
+                            Accounts I Created
+                        </h2>
 
                             <p>
-                                Latest registered clients.
+                            Latest accounts registered by you.
                             </p>
 
                         </div>

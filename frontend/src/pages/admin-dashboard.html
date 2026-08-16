@@ -3,39 +3,37 @@
   <head>
     <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#087348" /><title>Admin Dashboard | LGU Gym</title>
-    <link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../style.css" /><link rel="stylesheet" href="../css/admin.css" /><link rel="stylesheet" href="../css/admin-ui.css" />
   </head>
   <body>
     <div class="admin-shell">
       <aside class="sidebar" id="sidebar">
         <a class="admin-brand" href="./admin-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a>
-        <nav aria-label="Admin navigation"><a class="nav-item active" href="./admin-dashboard.html"><span>▦</span>Dashboard</a><a class="nav-item" href="./user-accounts.html"><span>♙</span>User Accounts</a></nav>
-        <div class="sidebar-bottom"><a class="nav-item" href="./login.html"><span>←</span>Back to Login</a><p>© 2026 Local Government Unit</p></div>
+        <nav aria-label="Admin navigation"><a class="nav-item active" href="./admin-dashboard.html"><span>⌂</span>Dashboard</a><a class="nav-item" href="./user-accounts.html"><span>♙</span>User Accounts</a><a class="nav-item" href="./pending-approvals.html"><span>◷</span>Pending Approvals</a><a class="nav-item" href="./admin-reservations.html"><span>●</span>Reservations</a><a class="nav-item" href="./admin-billing.html"><span>₱</span>Billing &amp; Payments</a><a class="nav-item" href="./admin-history.html"><span>≡</span>History / Records</a><a class="nav-item" href="./admin-reports.html"><span>▥</span>Reports</a></nav>
+        <div class="sidebar-bottom"><a class="nav-item" href="./login.html"><span>←</span>Log Out</a><p>© 2026 Local Government Unit</p></div>
       </aside>
       <main class="admin-main">
         <header class="topbar"><button class="menu-button" id="menu-button" aria-label="Open navigation">☰</button><div class="crumb">ADMIN PORTAL <span>/</span> DASHBOARD</div><div class="admin-profile"><span class="profile-avatar">A</span><span><b>Administrator</b><small>System Admin</small></span></div></header>
         <div class="dashboard-content">
-          <section class="welcome"><div><p class="eyebrow">OVERVIEW</p><h1>Welcome back, Admin!</h1><p>Here's a quick look at the LGU Gym Reservation System.</p></div><a class="manage-button" href="./user-accounts.html">Manage User Accounts <span>→</span></a></section>
+          <section class="welcome"><div><p class="eyebrow">OVERVIEW</p><h1>Welcome back, Admin!</h1><p>Monitor users, approvals, reservations, payments, and system activity.</p></div><a class="manage-button" href="./pending-approvals.html">View Pending Approvals <span>→</span></a></section>
           <section class="stat-grid" aria-label="Account statistics">
             <article class="stat-card"><span class="stat-icon clients">♙</span><div><p>Total Clients</p><strong id="total-clients">0</strong><small>Registered client profiles</small></div></article>
             <article class="stat-card"><span class="stat-icon personnel">♟</span><div><p>Total Personnel</p><strong id="total-personnel">0</strong><small>Personnel applications</small></div></article>
             <article class="stat-card"><span class="stat-icon pending">◷</span><div><p>Pending Approvals</p><strong id="pending-personnel">0</strong><small>Awaiting your review</small></div></article>
             <article class="stat-card"><span class="stat-icon approved">✓</span><div><p>Approved Accounts</p><strong id="approved-accounts">0</strong><small>Approved personnel access</small></div></article>
           </section>
-          <section class="overview-grid"><article class="panel recent-panel"><div class="panel-title"><div><h2>Recent personnel applications</h2><p>Latest accounts requiring attention.</p></div><a href="./user-accounts.html">View all</a></div><div class="table-wrap">
+          <section class="overview-grid"><article class="panel recent-panel"><div class="panel-title"><div><h2>Pending Approvals</h2><p>Latest accounts requiring your review.</p></div><a href="./pending-approvals.html">View all pending</a></div><div class="table-wrap">
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Status</th>
+                <th>Type</th>
                 <th>Action</th>
             </tr>
         </thead>
 
-        <tbody id="recent-personnel-table">
-
-        </tbody>
+        <tbody id="recent-personnel-table"><tr><td>100004</td><td>Pedro Cruz</td><td><span class="type-pill client">Client</span></td><td><a class="table-button" href="./pending-approvals.html">View</a></td></tr><tr><td>100005</td><td>Ana Reyes</td><td><span class="type-pill personnel">Personnel</span></td><td><a class="table-button" href="./pending-approvals.html">View</a></td></tr></tbody>
     </table>
 </div>
 </section>
