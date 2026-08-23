@@ -1,23 +1,18 @@
+
 <!doctype html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   />
-
   <meta
     name="theme-color"
     content="#087348"
   />
 
-  <title>
-    History / Records | LGU Gym
-  </title>
+  <title>History / Records | LGU Gym</title>
 
   <link
     rel="stylesheet"
@@ -33,38 +28,30 @@
     rel="stylesheet"
     href="../css/admin-ui.css"
   />
-
 </head>
-
 
 <body class="admin-static-page">
 
   <div class="admin-shell admin-ui-page">
 
-
     <!-- SIDEBAR -->
-
     <aside class="sidebar">
 
       <a
         class="admin-brand"
         href="./admin-dashboard.html"
       >
-
         <span class="brand-seal">
           LGU
         </span>
 
         <span>
           LGU GYM
-
           <small>
             RESERVATION SYSTEM
           </small>
         </span>
-
       </a>
-
 
       <nav aria-label="Admin navigation">
 
@@ -76,7 +63,6 @@
           Dashboard
         </a>
 
-
         <a
           class="nav-item"
           href="./user-accounts.html"
@@ -84,7 +70,6 @@
           <span>♙</span>
           User Accounts
         </a>
-
 
         <a
           class="nav-item"
@@ -94,7 +79,6 @@
           Pending Approvals
         </a>
 
-
         <a
           class="nav-item"
           href="./admin-reservations.html"
@@ -102,7 +86,6 @@
           <span>●</span>
           Reservations
         </a>
-
 
         <a
           class="nav-item"
@@ -112,7 +95,6 @@
           Billing &amp; Payments
         </a>
 
-
         <a
           class="nav-item active"
           href="./admin-history.html"
@@ -120,7 +102,6 @@
           <span>≡</span>
           History / Records
         </a>
-
 
         <a
           class="nav-item"
@@ -131,7 +112,6 @@
         </a>
 
       </nav>
-
 
       <div class="sidebar-bottom">
 
@@ -152,28 +132,17 @@
     </aside>
 
 
-
     <!-- MAIN CONTENT -->
-
     <main class="admin-main">
 
-
       <!-- TOPBAR -->
-
       <header class="topbar">
 
         <div class="crumb">
-
           ADMIN PORTAL
-
-          <span>
-            /
-          </span>
-
+          <span>/</span>
           HISTORY / RECORDS
-
         </div>
-
 
         <div class="admin-profile">
 
@@ -182,7 +151,6 @@
           </span>
 
           <span>
-
             <b>
               Administrator
             </b>
@@ -190,7 +158,6 @@
             <small>
               System Admin
             </small>
-
           </span>
 
         </div>
@@ -198,16 +165,12 @@
       </header>
 
 
-
       <!-- DASHBOARD CONTENT -->
-
       <div class="dashboard-content">
 
         <section class="admin-section">
 
-
           <!-- PAGE INTRO -->
-
           <div class="section-intro">
 
             <div>
@@ -221,7 +184,7 @@
               </h1>
 
               <p>
-                Review account, reservation, and payment records.
+                Review completed reservation and payment records.
               </p>
 
             </div>
@@ -229,61 +192,47 @@
           </div>
 
 
-
           <!-- HISTORY TABLE -->
-
           <article class="panel table-panel">
 
-
             <!-- SEARCH AND FILTER -->
-
             <div class="filter-row">
 
               <input
                 class="search-input"
                 id="admin-history-search"
                 type="search"
-                placeholder="Search records"
+                placeholder="Search client, reservation ID, or service"
               />
-
 
               <button
                 class="filter-chip active"
                 type="button"
+                data-filter="all"
               >
                 All
               </button>
 
-
               <button
                 class="filter-chip"
                 type="button"
+                data-filter="completed"
               >
-                Accounts
+                Completed
               </button>
 
-
               <button
                 class="filter-chip"
                 type="button"
+                data-filter="paid"
               >
-                Reservations
-              </button>
-
-
-              <button
-                class="filter-chip"
-                type="button"
-              >
-                Payments
+                Paid
               </button>
 
             </div>
 
 
-
             <!-- TABLE -->
-
             <div class="table-wrap">
 
               <table>
@@ -297,19 +246,27 @@
                     </th>
 
                     <th>
-                      Record ID
+                      Reservation ID
                     </th>
 
                     <th>
-                      Activity
+                      Client
                     </th>
 
                     <th>
-                      User
+                      Service
                     </th>
 
                     <th>
-                      Status
+                      Amount
+                    </th>
+
+                    <th>
+                      Reservation Status
+                    </th>
+
+                    <th>
+                      Payment Status
                     </th>
 
                   </tr>
@@ -319,69 +276,13 @@
 
                 <tbody id="admin-history-list">
 
-
-                  <!-- ACCOUNT RECORD -->
-
                   <tr>
 
-                    <td>
-                      Aug 16, 2026
-                    </td>
-
-                    <td>
-                      100004
-                    </td>
-
-                    <td>
-                      Account Registration
-                    </td>
-
-                    <td>
-                      Pedro Cruz
-                    </td>
-
-                    <td>
-
-                      <span class="status approved">
-                        Approved
-                      </span>
-
+                    <td colspan="7">
+                      Loading history records...
                     </td>
 
                   </tr>
-
-
-
-                  <!-- RESERVATION RECORD -->
-
-                  <tr>
-
-                    <td>
-                      Aug 16, 2026
-                    </td>
-
-                    <td>
-                      100002
-                    </td>
-
-                    <td>
-                      Reservation
-                    </td>
-
-                    <td>
-                      Juan Cruz
-                    </td>
-
-                    <td>
-
-                      <span class="status approved">
-                        Completed
-                      </span>
-
-                    </td>
-
-                  </tr>
-
 
                 </tbody>
 
@@ -399,6 +300,12 @@
 
   </div>
 
-</body>
 
+  <!-- ADMIN HISTORY JS -->
+  <script
+    type="module"
+    src="../js/admin-history.js"
+  ></script>
+
+</body>
 </html>

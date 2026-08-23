@@ -1,9 +1,7 @@
-```html id="m9q2vk"
 <!doctype html>
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8" />
 
   <meta
@@ -32,12 +30,13 @@
     rel="stylesheet"
     href="../css/client-dashboard.css"
   />
-
 </head>
 
 <body>
 
   <div class="admin-shell client-shell">
+
+    <!-- SIDEBAR -->
 
     <aside
       class="sidebar"
@@ -48,6 +47,7 @@
         class="admin-brand"
         href="./client-dashboard.html"
       >
+
         <span class="brand-seal">
           LGU
         </span>
@@ -56,7 +56,9 @@
           LGU GYM
           <small>RESERVATION SYSTEM</small>
         </span>
+
       </a>
+
 
       <nav aria-label="Client navigation">
 
@@ -68,6 +70,7 @@
           Dashboard
         </a>
 
+
         <a
           class="nav-item"
           href="./profile.html"
@@ -75,6 +78,7 @@
           <span>♙</span>
           My Profile
         </a>
+
 
         <a
           class="nav-item"
@@ -84,6 +88,7 @@
           Change Password
         </a>
 
+
         <a
           class="nav-item"
           href="./services.html"
@@ -91,6 +96,7 @@
           <span>●</span>
           Services
         </a>
+
 
         <a
           class="nav-item active"
@@ -100,6 +106,7 @@
           My Reservations
         </a>
 
+
         <a
           class="nav-item"
           href="./billing.html"
@@ -107,6 +114,7 @@
           <span>₱</span>
           Billing &amp; Payments
         </a>
+
 
         <a
           class="nav-item"
@@ -117,6 +125,7 @@
         </a>
 
       </nav>
+
 
       <div class="sidebar-bottom">
 
@@ -136,7 +145,12 @@
 
     </aside>
 
+
+    <!-- MAIN CONTENT -->
+
     <main class="admin-main">
+
+      <!-- TOPBAR -->
 
       <header class="topbar">
 
@@ -149,11 +163,17 @@
           ☰
         </button>
 
+
         <div class="crumb">
+
           CLIENT PORTAL
+
           <span>/</span>
+
           MY RESERVATIONS
+
         </div>
+
 
         <div class="admin-profile">
 
@@ -164,7 +184,7 @@
           <span>
 
             <b id="client-name">
-              Juan Dela Cruz
+              Client
             </b>
 
             <small>
@@ -177,12 +197,17 @@
 
       </header>
 
+
+      <!-- DASHBOARD CONTENT -->
+
       <div class="dashboard-content client-single-content">
 
         <section
           class="client-section"
           aria-labelledby="reservations-title"
         >
+
+          <!-- PAGE INTRO -->
 
           <div class="section-intro">
 
@@ -202,6 +227,7 @@
 
             </div>
 
+
             <a
               class="outline-button link-button"
               href="./services.html"
@@ -210,6 +236,9 @@
             </a>
 
           </div>
+
+
+          <!-- RESERVATIONS TABLE -->
 
           <article class="panel table-panel">
 
@@ -220,97 +249,54 @@
                 <thead>
 
                   <tr>
-                    <th>Reservation ID</th>
-                    <th>Service</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                    <th>Payment Status</th>
-                    <th>Action</th>
+
+                    <th>
+                      Reservation ID
+                    </th>
+
+                    <th>
+                      Service
+                    </th>
+
+                    <th>
+                      Date
+                    </th>
+
+                    <th>
+                      Time
+                    </th>
+
+                    <th>
+                      Status
+                    </th>
+
+                    <th>
+                      Payment Status
+                    </th>
+
+                    <th>
+                      Action
+                    </th>
+
                   </tr>
 
                 </thead>
+
+
+                <!--
+                  RESERVATIONS WILL BE LOADED
+                  FROM THE DATABASE HERE
+                -->
 
                 <tbody id="client-reservations">
 
                   <tr>
 
-                    <td>
-                      #100001
-                    </td>
-
-                    <td>
-                      Gym Use
-                    </td>
-
-                    <td>
-                      Aug 20, 2026
-                    </td>
-
-                    <td>
-                      9:00 AM
-                    </td>
-
-                    <td>
-                      <span class="status approved">
-                        Approved
-                      </span>
-                    </td>
-
-                    <td>
-                      <span class="status paid">
-                        Paid
-                      </span>
-                    </td>
-
-                    <td>
-                      <button
-                        class="table-button"
-                        type="button"
-                      >
-                        View
-                      </button>
-                    </td>
-
-                  </tr>
-
-                  <tr>
-
-                    <td>
-                      #100002
-                    </td>
-
-                    <td>
-                      Gym Use
-                    </td>
-
-                    <td>
-                      Aug 25, 2026
-                    </td>
-
-                    <td>
-                      2:00 PM
-                    </td>
-
-                    <td>
-                      <span class="status pending-approval">
-                        Pending
-                      </span>
-                    </td>
-
-                    <td>
-                      <span class="status unpaid">
-                        Unpaid
-                      </span>
-                    </td>
-
-                    <td>
-                      <button
-                        class="table-button"
-                        type="button"
-                      >
-                        View
-                      </button>
+                    <td
+                      colspan="7"
+                      style="text-align: center;"
+                    >
+                      Loading reservations...
                     </td>
 
                   </tr>
@@ -331,12 +317,54 @@
 
   </div>
 
+
+  <!-- CENTER MESSAGE -->
+
+  <div
+    class="message-overlay"
+    id="message-overlay"
+  >
+
+    <div class="message-modal">
+
+      <div
+        class="message-icon"
+        id="message-icon"
+      >
+        ✓
+      </div>
+
+
+      <h2 id="message-title">
+        Success!
+      </h2>
+
+
+      <p id="message-text">
+        Your reservation details are shown here.
+      </p>
+
+
+      <button
+        type="button"
+        class="message-ok-btn"
+        id="message-ok-btn"
+      >
+        OK
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- CLIENT RESERVATIONS JS -->
+
   <script
     type="module"
-    src="../js/client-dashboard.js"
+    src="../js/client-reservations.js"
   ></script>
 
 </body>
 
 </html>
-```

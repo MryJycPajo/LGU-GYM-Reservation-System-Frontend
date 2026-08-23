@@ -3,18 +3,33 @@
 
 <head>
     <meta charset="UTF-8" />
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     />
 
-    <meta name="theme-color" content="#087348" />
+    <meta
+        name="theme-color"
+        content="#087348"
+    />
 
     <title>Reservations | LGU Gym</title>
 
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../css/admin.css" />
-    <link rel="stylesheet" href="../css/admin-ui.css" />
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="../css/admin.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="../css/admin-ui.css"
+    />
 </head>
 
 <body class="admin-static-page">
@@ -28,11 +43,15 @@
                 class="admin-brand"
                 href="./admin-dashboard.html"
             >
-                <span class="brand-seal">LGU</span>
+                <span class="brand-seal">
+                    LGU
+                </span>
 
                 <span>
                     LGU GYM
-                    <small>RESERVATION SYSTEM</small>
+                    <small>
+                        RESERVATION SYSTEM
+                    </small>
                 </span>
             </a>
 
@@ -100,7 +119,7 @@
 
                 <a
                     class="nav-item"
-                    href="./login.html"
+                    href="../login.html"
                 >
                     <span>←</span>
                     Log Out
@@ -135,7 +154,10 @@
 
                     <span>
                         <b>Administrator</b>
-                        <small>System Admin</small>
+
+                        <small>
+                            System Admin
+                        </small>
                     </span>
 
                 </div>
@@ -187,6 +209,7 @@
                             <button
                                 class="filter-chip active"
                                 type="button"
+                                data-status="All"
                             >
                                 All
                             </button>
@@ -194,6 +217,7 @@
                             <button
                                 class="filter-chip"
                                 type="button"
+                                data-status="Pending"
                             >
                                 Pending
                             </button>
@@ -201,6 +225,7 @@
                             <button
                                 class="filter-chip"
                                 type="button"
+                                data-status="Approved"
                             >
                                 Approved
                             </button>
@@ -208,6 +233,7 @@
                             <button
                                 class="filter-chip"
                                 type="button"
+                                data-status="Completed"
                             >
                                 Completed
                             </button>
@@ -215,6 +241,7 @@
                             <button
                                 class="filter-chip"
                                 type="button"
+                                data-status="Declined"
                             >
                                 Declined
                             </button>
@@ -230,14 +257,39 @@
                                 <thead>
 
                                     <tr>
-                                        <th>Reservation ID</th>
-                                        <th>Client</th>
-                                        <th>Service</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Status</th>
-                                        <th>Payment Status</th>
-                                        <th>Action</th>
+
+                                        <th>
+                                            Reservation ID
+                                        </th>
+
+                                        <th>
+                                            Client
+                                        </th>
+
+                                        <th>
+                                            Service
+                                        </th>
+
+                                        <th>
+                                            Date
+                                        </th>
+
+                                        <th>
+                                            Time
+                                        </th>
+
+                                        <th>
+                                            Status
+                                        </th>
+
+                                        <th>
+                                            Payment Status
+                                        </th>
+
+                                        <th>
+                                            Action
+                                        </th>
+
                                     </tr>
 
                                 </thead>
@@ -245,95 +297,14 @@
 
                                 <tbody id="admin-reservations-list">
 
-                                    <!-- SAMPLE APPROVED RESERVATION -->
                                     <tr>
 
-                                        <td>
-                                            #100001
-                                        </td>
+                                        <td
+                                            colspan="8"
+                                            style="text-align: center;"
+                                        >
+                                            Loading reservations...
 
-                                        <td>
-                                            Juan Cruz
-                                        </td>
-
-                                        <td>
-                                            Gym Use
-                                        </td>
-
-                                        <td>
-                                            Aug 20, 2026
-                                        </td>
-
-                                        <td>
-                                            9:00 AM
-                                        </td>
-
-                                        <td>
-                                            <span class="status approved">
-                                                Approved
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <span class="status approved">
-                                                Paid
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <button
-                                                class="table-button"
-                                                type="button"
-                                            >
-                                                View
-                                            </button>
-                                        </td>
-
-                                    </tr>
-
-
-                                    <!-- SAMPLE PENDING RESERVATION -->
-                                    <tr>
-
-                                        <td>
-                                            #100002
-                                        </td>
-
-                                        <td>
-                                            Ana Santos
-                                        </td>
-
-                                        <td>
-                                            Gym Use
-                                        </td>
-
-                                        <td>
-                                            Aug 25, 2026
-                                        </td>
-
-                                        <td>
-                                            2:00 PM
-                                        </td>
-
-                                        <td>
-                                            <span class="status pending-approval">
-                                                Pending
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <span class="status pending-approval">
-                                                Unpaid
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <button
-                                                class="table-button"
-                                                type="button"
-                                            >
-                                                View
-                                            </button>
                                         </td>
 
                                     </tr>
@@ -353,6 +324,223 @@
         </main>
 
     </div>
+
+
+    <!-- =====================================
+         RESERVATION DETAILS MODAL
+         VIEW BUTTON USES THIS
+    ====================================== -->
+
+    <div
+        id="reservation-modal"
+        class="reservation-modal"
+    >
+
+        <div class="reservation-modal-content">
+
+            <div class="reservation-modal-header">
+
+                <h2>
+                    Reservation Details
+                </h2>
+
+                <button
+                    type="button"
+                    id="close-reservation-modal"
+                    class="modal-close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="reservation-details">
+
+                <div class="detail-item">
+
+                    <span>
+                        Reservation ID
+                    </span>
+
+                    <strong id="modal-reservation-id">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Client
+                    </span>
+
+                    <strong id="modal-client-name">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Account ID
+                    </span>
+
+                    <strong id="modal-account-id">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Service
+                    </span>
+
+                    <strong id="modal-service">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="modal-date">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Time
+                    </span>
+
+                    <strong id="modal-time">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong id="modal-status">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Payment Status
+                    </span>
+
+                    <strong id="modal-payment">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item detail-full">
+
+                    <span>
+                        Reservation Details
+                    </span>
+
+                    <p id="modal-details">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="reservation-modal-footer">
+
+                <button
+                    type="button"
+                    id="modal-close-btn"
+                    class="table-button"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         CUSTOM CENTER MESSAGE MODAL
+         APPROVED / DECLINED / PAID / COMPLETED
+    ====================================== -->
+
+    <div
+        id="message-overlay"
+        class="message-overlay"
+    >
+
+        <div class="message-box">
+
+            <div
+                id="message-icon"
+                class="message-icon"
+            >
+                ✓
+            </div>
+
+
+            <h2 id="message-title">
+                Success
+            </h2>
+
+
+            <p id="message-text">
+                Action completed successfully.
+            </p>
+
+
+            <button
+                type="button"
+                id="message-ok-btn"
+                class="message-ok-btn"
+            >
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN RESERVATIONS JS -->
+    <script
+        type="module"
+        src="../js/admin-reservations.js"
+    ></script>
 
 </body>
 

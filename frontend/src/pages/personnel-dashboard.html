@@ -1,79 +1,183 @@
+
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#087348">
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+        name="theme-color"
+        content="#087348"
+    />
 
     <title>Personnel Dashboard | LGU Gym</title>
 
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/personnel.css">
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="../css/admin.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="../css/personnel-dashboard.css"
+    />
 </head>
 
 <body>
 
-<div class="admin-shell personnel-dashboard">
+<div class="admin-shell">
 
+    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
 
-        <a class="admin-brand" href="./personnel-dashboard.html">
-            <span class="brand-seal">LGU</span>
+        <!-- BRAND -->
+        <a
+            class="admin-brand"
+            href="./personnel-dashboard.html"
+        >
+            <span class="brand-seal">
+                LGU
+            </span>
 
             <span>
                 LGU GYM
-                <small>RESERVATION SYSTEM</small>
+                <small>
+                    RESERVATION SYSTEM
+                </small>
             </span>
         </a>
 
+
+        <!-- NAVIGATION -->
         <nav aria-label="Personnel navigation">
-            <a class="nav-item active" href="./personnel-dashboard.html"><span>⌂</span>Dashboard</a>
-            <a class="nav-item" href="./personnel-profile.html"><span>♙</span>My Profile</a>
-            <a class="nav-item" href="./personnel-change-password.html"><span>⌘</span>Change Password</a>
-            <a class="nav-item" href="./personnel-create-account.html"><span>+</span>Create Account</a>
-            <a class="nav-item" href="./personnel-accounts.html"><span>□</span>Accounts I Created</a>
-            <a class="nav-item" href="./personnel-history.html"><span>≡</span>History / Records</a>
+
+            <a
+                class="nav-item active"
+                href="./personnel-dashboard.html"
+            >
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a
+                class="nav-item"
+                href="./personnel-profile.html"
+            >
+                <span>♙</span>
+                My Profile
+            </a>
+
+            <a
+                class="nav-item"
+                href="./personnel-change-password.html"
+            >
+                <span>⌘</span>
+                Change Password
+            </a>
+
+            <a
+                class="nav-item"
+                href="./personnel-create-account.html"
+            >
+                <span>＋</span>
+                Create Client Account
+            </a>
+
+            <a
+                class="nav-item"
+                href="./personnel-accounts.html"
+            >
+                <span>♙</span>
+                Accounts I Created
+            </a>
+
+            <a
+                class="nav-item"
+                href="./personnel-history.html"
+            >
+                <span>≡</span>
+                History
+            </a>
+
         </nav>
 
+
+        <!-- SIDEBAR BOTTOM -->
         <div class="sidebar-bottom">
 
-            <a class="nav-item" href="./login.html">
+            <a
+                class="nav-item"
+                href="../login.html"
+            >
                 <span>←</span>
                 Logout
             </a>
 
-            <p>© 2026 Local Government Unit</p>
+            <p>
+                © 2026 Local Government Unit
+            </p>
 
         </div>
 
     </aside>
 
+
+    <!-- MAIN CONTENT -->
     <main class="admin-main">
 
+
+        <!-- TOPBAR -->
         <header class="topbar">
 
-            <button class="menu-button" id="menu-button">
+            <button
+                class="menu-button"
+                id="menu-button"
+                type="button"
+                aria-label="Open navigation"
+            >
                 ☰
             </button>
+
 
             <div class="crumb">
 
                 PERSONNEL PORTAL
-                <span>/</span>
+
+                <span>
+                    /
+                </span>
+
                 DASHBOARD
 
             </div>
 
+
+            <!-- PERSONNEL PROFILE -->
             <div class="admin-profile">
 
-                <span class="profile-avatar">P</span>
+                <span class="profile-avatar">
+                    P
+                </span>
 
                 <span>
 
-                    <b>Personnel</b>
+                    <b id="topbar-personnel-name">
+                        Personnel
+                    </b>
 
-                    <small>LGU Gym Staff</small>
+                    <small>
+                        LGU Personnel
+                    </small>
 
                 </span>
 
@@ -81,68 +185,113 @@
 
         </header>
 
+
+
+        <!-- DASHBOARD CONTENT -->
         <div class="dashboard-content">
 
-            <section class="welcome">
+
+            <!-- WELCOME SECTION -->
+            <section
+                class="welcome"
+                aria-labelledby="welcome-title"
+            >
 
                 <div>
 
                     <p class="eyebrow">
-                        OVERVIEW
+                        PERSONNEL PORTAL
                     </p>
 
-                    <h1>
-                        Welcome, Personnel!
+                    <h1 id="welcome-title">
+
+                        Welcome,
+
+                        <span id="personnel-name">
+                            Personnel
+                        </span>!
+
                     </h1>
 
                     <p>
-                        Manage client and personnel account registrations and monitor their approval status.
+                        Manage client accounts and monitor
+                        your account activities.
                     </p>
 
                 </div>
 
-                <div class="personnel-welcome-actions"><a class="manage-button" href="./client-register.html">+ Create Client Account</a><a class="manage-button secondary-manage-button" href="./register.html">+ Create Personnel Account</a></div>
+
+                <a
+                    class="manage-button"
+                    href="./personnel-create-account.html"
+                >
+                    + Create Client Account
+                </a>
 
             </section>
 
-            <section class="stat-grid">
 
+
+            <!-- STATISTICS -->
+            <section
+                class="stat-grid"
+                aria-label="Client statistics"
+            >
+
+
+                <!-- TOTAL CLIENTS -->
                 <article class="stat-card">
 
                     <span class="stat-icon clients">
-                        👥
+                        ♙
                     </span>
 
                     <div>
 
-                        <p>Accounts Created</p>
+                        <p>
+                            Total Clients
+                        </p>
 
-                        <strong id="totalClients">0</strong>
+                        <strong id="totalClients">
+                            0
+                        </strong>
 
-                        <small>Total Accounts</small>
+                        <small>
+                            Client accounts
+                        </small>
 
                     </div>
 
                 </article>
 
+
+                <!-- PENDING CLIENTS -->
                 <article class="stat-card">
 
                     <span class="stat-icon pending">
-                        ⏳
+                        ◷
                     </span>
 
                     <div>
 
-                        <p>Pending</p>
+                        <p>
+                            Pending Clients
+                        </p>
 
-                        <strong id="pendingClients">0</strong>
+                        <strong id="pendingClients">
+                            0
+                        </strong>
 
-                        <small>Waiting Approval</small>
+                        <small>
+                            Awaiting admin approval
+                        </small>
 
                     </div>
 
                 </article>
 
+
+                <!-- APPROVED CLIENTS -->
                 <article class="stat-card">
 
                     <span class="stat-icon approved">
@@ -151,87 +300,100 @@
 
                     <div>
 
-                        <p>Approved</p>
+                        <p>
+                            Approved Clients
+                        </p>
 
-                        <strong id="approvedClients">0</strong>
+                        <strong id="approvedClients">
+                            0
+                        </strong>
 
-                        <small>Approved Accounts</small>
+                        <small>
+                            Approved accounts
+                        </small>
 
                     </div>
 
                 </article>
 
-                <article class="stat-card">
+            </section>
 
-                    <span class="stat-icon personnel">
-                        🏋️
-                    </span>
+
+
+            <!-- CLIENT ACCOUNTS TABLE -->
+            <section
+                class="panel recent-panel"
+                aria-labelledby="client-list-title"
+            >
+
+                <div class="panel-title">
 
                     <div>
 
-                        <p>Your Status</p>
-
-                        <strong>Approved</strong>
-
-                        <small>Personnel Account</small>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-            <section class="overview-grid">
-
-                <article class="panel recent-panel">
-
-                    <div class="panel-title">
-
-                        <div>
-
-                        <h2>
-                            Accounts I Created
+                        <h2 id="client-list-title">
+                            Client Accounts
                         </h2>
 
-                            <p>
-                            Latest accounts registered by you.
-                            </p>
-
-                        </div>
-
-                        <a href="./client-accounts.html">
-
-                            View All
-
-                        </a>
+                        <p>
+                            Client accounts available in the system.
+                        </p>
 
                     </div>
 
-<div class="table-wrap">
+                    <a href="./personnel-accounts.html">
+                        View all
+                    </a>
 
-<table>
-
-<thead>
-<tr>
-<th>Client Name</th>
-<th>Email</th>
-<th>Contact</th>
-<th>Status</th>
-</tr>
-</thead>
+                </div>
 
 
-<tbody id="client-list">
+                <div class="table-wrap">
 
-</tbody>
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Client Name
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Contact Number
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
 
 
-</table>
+                        <tbody id="client-list">
 
-</div>
-      
+                            <tr>
+
+                                <td colspan="4">
+                                    Loading client accounts...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </section>
+
 
         </div>
 
@@ -239,7 +401,13 @@
 
 </div>
 
-<script src="../js/personnel-dashboard.js"></script>
+
+<!-- PERSONNEL DASHBOARD JS -->
+<script
+    type="module"
+    src="../js/personnel-dashboard.js"
+></script>
 
 </body>
+
 </html>

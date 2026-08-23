@@ -1,316 +1,234 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#087348" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+  <title>History | LGU Gym</title>
 
-    <meta
-      name="theme-color"
-      content="#087348"
-    />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/client-dashboard.css" />
+</head>
 
-    <title>History | LGU Gym</title>
+<body>
 
-    <link
-      rel="stylesheet"
-      href="../style.css"
-    />
+  <div class="admin-shell client-shell">
 
-    <link
-      rel="stylesheet"
-      href="../css/admin.css"
-    />
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
 
-    <link
-      rel="stylesheet"
-      href="../css/client-dashboard.css"
-    />
-  </head>
+      <a class="admin-brand" href="./client-dashboard.html">
+        <span class="brand-seal">LGU</span>
 
-  <body>
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
 
-    <div class="admin-shell client-shell">
+      <nav aria-label="Client navigation">
 
-      <!-- SIDEBAR -->
-      <aside
-        class="sidebar"
-        id="sidebar"
-      >
+        <a class="nav-item" href="./client-dashboard.html">
+          <span>⌂</span>
+          Dashboard
+        </a>
 
-        <a
-          class="admin-brand"
-          href="./client-dashboard.html"
+        <a class="nav-item" href="./profile.html">
+          <span>♙</span>
+          My Profile
+        </a>
+
+        <a class="nav-item" href="./change-password.html">
+          <span>⌘</span>
+          Change Password
+        </a>
+
+        <a class="nav-item" href="./services.html">
+          <span>●</span>
+          Services
+        </a>
+
+        <a class="nav-item" href="./reservation.html">
+          <span>□</span>
+          My Reservations
+        </a>
+
+        <a class="nav-item" href="./billing.html">
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+        <a class="nav-item active" href="./history.html">
+          <span>≡</span>
+          History
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a class="nav-item" href="../login.html">
+          <span>←</span>
+          Logout
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
         >
-          <span class="brand-seal">
-            LGU
+          ☰
+        </button>
+
+        <div class="crumb">
+          CLIENT PORTAL
+          <span>/</span>
+          HISTORY
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            C
           </span>
 
           <span>
-            LGU GYM
-            <small>RESERVATION SYSTEM</small>
+            <b id="client-name">
+              Client
+            </b>
+
+            <small>
+              Gym Member
+            </small>
           </span>
-        </a>
-
-
-        <nav aria-label="Client navigation">
-
-          <a
-            class="nav-item"
-            href="./client-dashboard.html"
-          >
-            <span>⌂</span>
-            Dashboard
-          </a>
-
-          <a
-            class="nav-item"
-            href="./profile.html"
-          >
-            <span>♙</span>
-            My Profile
-          </a>
-
-          <a
-            class="nav-item"
-            href="./change-password.html"
-          >
-            <span>⌘</span>
-            Change Password
-          </a>
-
-          <a
-            class="nav-item"
-            href="./services.html"
-          >
-            <span>●</span>
-            Services
-          </a>
-
-          <a
-            class="nav-item"
-            href="./reservation.html"
-          >
-            <span>□</span>
-            My Reservations
-          </a>
-
-          <a
-            class="nav-item"
-            href="./billing.html"
-          >
-            <span>₱</span>
-            Billing &amp; Payments
-          </a>
-
-          <a
-            class="nav-item active"
-            href="./history.html"
-          >
-            <span>≡</span>
-            History
-          </a>
-
-        </nav>
-
-
-        <div class="sidebar-bottom">
-
-          <a
-            class="nav-item"
-            href="../login.html"
-          >
-            <span>←</span>
-            Logout
-          </a>
-
-          <p>
-            © 2026 Local Government Unit
-          </p>
 
         </div>
 
-      </aside>
+      </header>
 
 
-      <!-- MAIN CONTENT -->
-      <main class="admin-main">
+      <!-- DASHBOARD CONTENT -->
+      <div class="dashboard-content client-single-content">
 
-        <!-- TOPBAR -->
-        <header class="topbar">
+        <section
+          class="client-section"
+          aria-labelledby="history-title"
+        >
 
-          <button
-            class="menu-button"
-            id="menu-button"
-            type="button"
-            aria-label="Open navigation"
-          >
-            ☰
-          </button>
+          <!-- PAGE INTRO -->
+          <div class="section-intro">
 
-          <div class="crumb">
-            CLIENT PORTAL
-            <span>/</span>
-            HISTORY
-          </div>
+            <div>
 
-          <div class="admin-profile">
+              <p class="eyebrow">
+                PAST ACTIVITY
+              </p>
 
-            <span class="profile-avatar">
-              C
-            </span>
+              <h1 id="history-title">
+                History
+              </h1>
 
-            <span>
-
-              <b id="client-name">
-                Juan Dela Cruz
-              </b>
-
-              <small>
-                Gym Member
-              </small>
-
-            </span>
-
-          </div>
-
-        </header>
-
-
-        <!-- DASHBOARD CONTENT -->
-        <div class="dashboard-content client-single-content">
-
-          <section
-            class="client-section"
-            aria-labelledby="history-title"
-          >
-
-            <!-- PAGE INTRO -->
-            <div class="section-intro">
-
-              <div>
-
-                <p class="eyebrow">
-                  PAST ACTIVITY
-                </p>
-
-                <h1 id="history-title">
-                  History
-                </h1>
-
-                <p>
-                  Your completed gym reservation records.
-                </p>
-
-              </div>
+              <p>
+                Your completed gym reservation records.
+              </p>
 
             </div>
 
-
-            <!-- HISTORY TABLE -->
-            <article class="panel table-panel">
-
-              <div class="table-wrap">
-
-                <table>
-
-                  <thead>
-
-                    <tr>
-                      <th>Reservation ID</th>
-                      <th>Date</th>
-                      <th>Service</th>
-                      <th>Reservation Status</th>
-                      <th>Payment Status</th>
-                    </tr>
-
-                  </thead>
+          </div>
 
 
-                  <tbody id="history-list">
+          <!-- HISTORY TABLE -->
+          <article class="panel table-panel">
 
-                    <tr>
+            <div class="table-wrap">
 
-                      <td>
-                        #100001
-                      </td>
+              <table>
 
-                      <td>
-                        Aug 10, 2026
-                      </td>
+                <thead>
 
-                      <td>
-                        Gym Use
-                      </td>
+                  <tr>
 
-                      <td>
-                        <span class="status completed">
-                          Completed
-                        </span>
-                      </td>
+                    <th>
+                      Reservation ID
+                    </th>
 
-                      <td>
-                        <span class="status paid">
-                          Paid
-                        </span>
-                      </td>
+                    <th>
+                      Date
+                    </th>
 
-                    </tr>
+                    <th>
+                      Service
+                    </th>
 
+                    <th>
+                      Reservation Status
+                    </th>
 
-                    <tr>
+                    <th>
+                      Payment Status
+                    </th>
 
-                      <td>
-                        #100003
-                      </td>
+                  </tr>
 
-                      <td>
-                        Aug 15, 2026
-                      </td>
-
-                      <td>
-                        Gym Use
-                      </td>
-
-                      <td>
-                        <span class="status completed">
-                          Completed
-                        </span>
-                      </td>
-
-                      <td>
-                        <span class="status paid">
-                          Paid
-                        </span>
-                      </td>
-
-                    </tr>
-
-                  </tbody>
-
-                </table>
-
-              </div>
-
-            </article>
-
-          </section>
-
-        </div>
-
-      </main>
-
-    </div>
+                </thead>
 
 
-    <!-- CLIENT DASHBOARD JS -->
-    <script
-      type="module"
-      src="../js/client-dashboard.js"
-    ></script>
+                <!-- JAVASCRIPT WILL LOAD DATA HERE -->
+                <tbody id="history-list">
 
-  </body>
+                  <tr>
+
+                    <td
+                      colspan="5"
+                      style="text-align: center;"
+                    >
+                      Loading history...
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- CLIENT HISTORY JS -->
+  <script
+    type="module"
+    src="../js/client-history.js"
+  ></script>
+
+</body>
 </html>
+

@@ -1,16 +1,11 @@
-```html
 <!doctype html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   />
-
   <meta
     name="theme-color"
     content="#087348"
@@ -32,14 +27,16 @@
     rel="stylesheet"
     href="../css/personnel.css"
   />
-
 </head>
 
 <body class="personnel-static-page">
 
   <div class="admin-shell personnel-page">
 
-    <aside class="sidebar">
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+    <aside class="sidebar" id="sidebar">
 
       <a
         class="admin-brand"
@@ -111,7 +108,7 @@
 
         <a
           class="nav-item"
-          href="./login.html"
+          href="../login.html"
         >
           <span>←</span>
           Logout
@@ -125,9 +122,23 @@
 
     </aside>
 
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
     <main class="admin-main">
 
+      <!-- TOPBAR -->
       <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
 
         <div class="crumb">
           PERSONNEL PORTAL
@@ -137,23 +148,41 @@
 
         <div class="admin-profile">
 
-          <span class="profile-avatar">
+          <span
+            class="profile-avatar"
+            id="profile-avatar"
+          >
             P
           </span>
 
           <span>
-            <b>Personnel</b>
-            <small>LGU Gym Staff</small>
+
+            <b id="topbar-personnel-name">
+              Personnel
+            </b>
+
+            <small>
+              LGU Gym Staff
+            </small>
+
           </span>
 
         </div>
 
       </header>
 
+
+      <!-- =========================
+           DASHBOARD CONTENT
+      ========================== -->
       <div class="dashboard-content">
 
-        <section class="client-section">
+        <section
+          class="client-section"
+          aria-labelledby="profile-title"
+        >
 
+          <!-- PAGE INTRO -->
           <div class="section-intro">
 
             <div>
@@ -162,12 +191,12 @@
                 PERSONNEL INFORMATION
               </p>
 
-              <h1>
+              <h1 id="profile-title">
                 My Profile
               </h1>
 
               <p>
-                Your personal and account details are shown below.
+                View and manage your personal and account information.
               </p>
 
             </div>
@@ -182,80 +211,181 @@
 
           </div>
 
+
+          <!-- =========================
+               PROFILE CARD
+          ========================== -->
           <article class="panel profile-card">
 
             <dl class="profile-grid">
 
+              <!-- PERSONNEL ID -->
               <div>
-                <dt>Personnel ID</dt>
-                <dd>PS-100001</dd>
+
+                <dt>
+                  Personnel ID
+                </dt>
+
+                <dd id="personnel-id">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- STATUS -->
               <div>
-                <dt>Status</dt>
-                <dd>
+
+                <dt>
+                  Status
+                </dt>
+
+                <dd id="personnel-status">
                   <span class="status approved">
-                    Approved
+                    Loading...
                   </span>
                 </dd>
+
               </div>
 
+
+              <!-- POSITION -->
               <div>
-                <dt>Position / Role</dt>
-                <dd>LGU Gym Staff</dd>
+
+                <dt>
+                  Position / Role
+                </dt>
+
+                <dd id="personnel-role">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- LAST NAME -->
               <div>
-                <dt>Last Name</dt>
-                <dd>Reyes</dd>
+
+                <dt>
+                  Last Name
+                </dt>
+
+                <dd id="personnel-lastname">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- FIRST NAME -->
               <div>
-                <dt>First Name</dt>
-                <dd>Maria</dd>
+
+                <dt>
+                  First Name
+                </dt>
+
+                <dd id="personnel-firstname">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- MIDDLE NAME -->
               <div>
-                <dt>Middle Name</dt>
-                <dd>Santos</dd>
+
+                <dt>
+                  Middle Name
+                </dt>
+
+                <dd id="personnel-middlename">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- BIRTHDATE -->
               <div>
-                <dt>Birthdate</dt>
-                <dd>January 15, 1995</dd>
+
+                <dt>
+                  Birthdate
+                </dt>
+
+                <dd id="personnel-birthdate">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- GENDER -->
               <div>
-                <dt>Gender</dt>
-                <dd>Female</dd>
+
+                <dt>
+                  Gender
+                </dt>
+
+                <dd id="personnel-gender">
+                  Loading...
+                </dd>
+
               </div>
 
+
+              <!-- ADDRESS -->
               <div class="wide">
-                <dt>Address</dt>
-                <dd>
-                  Sample Barangay, Municipality, Province
+
+                <dt>
+                  Address
+                </dt>
+
+                <dd id="personnel-address">
+                  Loading...
                 </dd>
+
               </div>
 
+
+              <!-- EMAIL -->
               <div>
-                <dt>Email Address</dt>
-                <dd>
-                  maria.reyes@example.com
+
+                <dt>
+                  Email Address
+                </dt>
+
+                <dd id="personnel-email">
+                  Loading...
                 </dd>
+
               </div>
 
+
+              <!-- PHONE -->
               <div>
-                <dt>Phone Number</dt>
-                <dd>
-                  0917 123 4567
+
+                <dt>
+                  Phone Number
+                </dt>
+
+                <dd id="personnel-phone">
+                  Loading...
                 </dd>
+
               </div>
 
+
+              <!-- USERNAME -->
               <div>
-                <dt>Username</dt>
-                <dd>
-                  mariareyes
+
+                <dt>
+                  Username
+                </dt>
+
+                <dd id="personnel-username">
+                  Loading...
                 </dd>
+
               </div>
 
             </dl>
@@ -270,7 +400,14 @@
 
   </div>
 
-</body>
 
+  <!-- =========================
+       PERSONNEL PROFILE JS
+  ========================== -->
+  <script
+    type="module"
+    src="../js/personnel-profile.js"
+  ></script>
+
+</body>
 </html>
-```
