@@ -147,5 +147,5 @@ form.addEventListener('reset', () => {
 
 // Close modal
 document.querySelector('#modal-close').addEventListener('click', () => {
-    window.location.href = './personnel-dashboard.html';
+    window.location.href = './login.html';
 });

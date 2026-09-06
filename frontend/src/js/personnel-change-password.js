@@ -1,79 +1,71 @@
-// =====================================
-// PERSONNEL CHANGE PASSWORD
-// =====================================
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const currentPasswordInput =
-        document.getElementById('personnel-current-password');
+        document.getElementById('current-password');
 
     const newPasswordInput =
-        document.getElementById('personnel-new-password');
+        document.getElementById('new-password');
 
     const confirmPasswordInput =
-        document.getElementById('personnel-confirm-password');
+        document.getElementById('confirm-new-password');
 
     const changePasswordButton =
-        document.getElementById('personnel-change-password-btn');
+        document.getElementById('change-password-btn');
 
+    // =====================================
+    // GET ACCOUNT ID FROM EMAIL LINK
+    // =====================================
+
+    const params = new URLSearchParams(window.location.search);
+    const accountId = params.get('account_id');
+
+    // =====================================
+    // CHECK IF THIS IS FIRST-TIME PASSWORD
+    // =====================================
+
+    const isFirstPasswordSetup = !!accountId;
+
+    // =====================================
+    // HIDE CURRENT PASSWORD FOR FIRST SETUP
+    // =====================================
+
+    if (isFirstPasswordSetup && currentPasswordInput) {
+
+        const currentPasswordLabel =
+            currentPasswordInput.closest('label');
+
+        if (currentPasswordLabel) {
+            currentPasswordLabel.style.display = 'none';
+        }
+    }
 
     // =====================================
     // PASSWORD SHOW / HIDE
     // =====================================
 
-    function createPasswordToggle(input) {
+    document.querySelectorAll('.password-toggle').forEach(button => {
 
-        if (!input) return;
+        button.addEventListener('click', () => {
 
-        const wrapper = document.createElement('div');
+            const targetId = button.dataset.target;
+            const input = document.getElementById(targetId);
 
-        wrapper.style.position = 'relative';
-        wrapper.style.width = '100%';
-
-        input.parentNode.insertBefore(wrapper, input);
-        wrapper.appendChild(input);
-
-        input.style.paddingRight = '45px';
-
-        const toggleButton = document.createElement('button');
-
-        toggleButton.type = 'button';
-        toggleButton.textContent = '👁️';
-
-        toggleButton.style.position = 'absolute';
-        toggleButton.style.right = '10px';
-        toggleButton.style.top = '50%';
-        toggleButton.style.transform = 'translateY(-50%)';
-        toggleButton.style.border = 'none';
-        toggleButton.style.background = 'transparent';
-        toggleButton.style.cursor = 'pointer';
-        toggleButton.style.fontSize = '18px';
-
-        wrapper.appendChild(toggleButton);
-
-        toggleButton.addEventListener('click', () => {
+            if (!input) return;
 
             if (input.type === 'password') {
 
                 input.type = 'text';
-                toggleButton.textContent = '🙈';
+                button.textContent = '🙈';
 
             } else {
 
                 input.type = 'password';
-                toggleButton.textContent = '👁️';
-
+                button.textContent = '👁';
             }
 
         });
 
-    }
-
-
-    createPasswordToggle(currentPasswordInput);
-    createPasswordToggle(newPasswordInput);
-    createPasswordToggle(confirmPasswordInput);
-
+    });
 
     // =====================================
     // CHANGE PASSWORD
@@ -84,109 +76,66 @@ document.addEventListener('DOMContentLoaded', () => {
         changePasswordButton.addEventListener('click', async () => {
 
             const currentPassword =
-                currentPasswordInput.value.trim();
+                currentPasswordInput?.value.trim() || '';
 
             const newPassword =
-                newPasswordInput.value.trim();
+                newPasswordInput?.value.trim() || '';
 
             const confirmPassword =
-                confirmPasswordInput.value.trim();
-
+                confirmPasswordInput?.value.trim() || '';
 
             // =====================================
             // VALIDATION
             // =====================================
 
-            if (!currentPassword) {
+            if (!isFirstPasswordSetup && !currentPassword) {
 
                 alert('Please enter your current password.');
+
                 currentPasswordInput.focus();
+
                 return;
-
             }
-
 
             if (!newPassword) {
 
                 alert('Please enter your new password.');
+
                 newPasswordInput.focus();
+
                 return;
-
             }
-
 
             if (!confirmPassword) {
 
                 alert('Please confirm your new password.');
+
                 confirmPasswordInput.focus();
+
                 return;
-
             }
-
 
             if (newPassword !== confirmPassword) {
 
-                alert('New password and confirm password do not match.');
+                alert(
+                    'New password and confirm password do not match.'
+                );
+
                 confirmPasswordInput.focus();
+
                 return;
-
             }
-
 
             if (newPassword.length < 6) {
 
-                alert('New password must be at least 6 characters.');
-                newPasswordInput.focus();
-                return;
-
-            }
-
-
-            // =====================================
-            // GET LOGGED-IN PERSONNEL
-            // =====================================
-
-            const personnelData =
-                localStorage.getItem('personnel');
-
-            if (!personnelData) {
-
-                alert('Personnel session not found. Please login again.');
-                return;
-
-            }
-
-
-            let personnel;
-
-            try {
-
-                personnel = JSON.parse(personnelData);
-
-            } catch (error) {
-
-                console.error(
-                    'Invalid personnel data:',
-                    error
+                alert(
+                    'New password must be at least 6 characters.'
                 );
 
-                alert('Invalid personnel session.');
+                newPasswordInput.focus();
+
                 return;
-
             }
-
-
-            const accountId =
-                personnel.account_id;
-
-
-            if (!accountId) {
-
-                alert('Personnel account ID not found.');
-                return;
-
-            }
-
 
             // =====================================
             // DISABLE BUTTON
@@ -195,35 +144,85 @@ document.addEventListener('DOMContentLoaded', () => {
             changePasswordButton.disabled = true;
             changePasswordButton.textContent = 'Changing...';
 
-
             try {
 
-                const response = await fetch(
-                    `http://localhost:3001/api/personnel/change-password/${accountId}`,
-                    {
-                        method: 'PUT',
+                let response;
 
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                // =====================================
+                // FIRST-TIME PASSWORD SETUP
+                // =====================================
 
-                        body: JSON.stringify({
-                            currentPassword,
-                            newPassword
-                        })
+                if (isFirstPasswordSetup) {
+
+                    response = await fetch(
+                        'http://localhost:3001/api/auth/set-password',
+                        {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                account_id: accountId,
+                                new_password: newPassword
+                            })
+                        }
+                    );
+
+                }
+
+                // =====================================
+                // NORMAL PASSWORD CHANGE
+                // =====================================
+
+                else {
+
+                    // For normal logged-in client
+                    const clientData =
+                        localStorage.getItem('client');
+
+                    if (!clientData) {
+
+                        alert(
+                            'Client session not found. Please login again.'
+                        );
+
+                        return;
                     }
-                );
 
+                    const client =
+                        JSON.parse(clientData);
 
-                const result =
-                    await response.json();
+                    if (!client.account_id) {
 
+                        alert(
+                            'Client account ID not found.'
+                        );
+
+                        return;
+                    }
+
+                    response = await fetch(
+                        'http://localhost:3001/api/auth/change-password',
+                        {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                account_id: client.account_id,
+                                current_password: currentPassword,
+                                new_password: newPassword
+                            })
+                        }
+                    );
+                }
+
+                const result = await response.json();
 
                 console.log(
                     'CHANGE PASSWORD RESPONSE:',
                     result
                 );
-
 
                 if (!response.ok || !result.success) {
 
@@ -233,9 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     );
 
                     return;
-
                 }
-
 
                 // =====================================
                 // SUCCESS
@@ -245,11 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Password changed successfully!'
                 );
 
-
                 currentPasswordInput.value = '';
                 newPasswordInput.value = '';
                 confirmPasswordInput.value = '';
 
+                // If first-time setup
+                if (isFirstPasswordSetup) {
+
+                    window.location.href =
+                        '../login.html';
+                }
 
             } catch (error) {
 
@@ -265,9 +267,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
 
                 changePasswordButton.disabled = false;
+
                 changePasswordButton.textContent =
                     'Change Password';
-
             }
 
         });
@@ -277,7 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(
             'Change Password button not found.'
         );
-
     }
 
 });

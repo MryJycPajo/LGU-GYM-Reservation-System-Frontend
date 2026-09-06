@@ -1,228 +1,294 @@
-// =========================================
-// SHOW / HIDE PASSWORD
-// =========================================
+document.addEventListener('DOMContentLoaded', () => {
 
-const passwordToggleButtons =
-    document.querySelectorAll('.password-toggle');
+    const newPasswordInput =
+        document.getElementById('new-password');
 
-passwordToggleButtons.forEach((button) => {
+    const confirmPasswordInput =
+        document.getElementById('confirm-new-password');
 
-    button.addEventListener('click', () => {
-
-        const targetId =
-            button.getAttribute('data-target');
-
-        const passwordInput =
-            document.getElementById(targetId);
-
-        if (!passwordInput) {
-            return;
-        }
-
-        if (passwordInput.type === 'password') {
-
-            passwordInput.type = 'text';
-
-            button.textContent = '🙈';
-
-            button.setAttribute(
-                'aria-label',
-                'Hide password'
-            );
-
-        } else {
-
-            passwordInput.type = 'password';
-
-            button.textContent = '👁';
-
-            button.setAttribute(
-                'aria-label',
-                'Show password'
-            );
-
-        }
-
-    });
-
-});
-
-const currentPasswordInput =
-    document.querySelector('#current-password');
-
-const newPasswordInput =
-    document.querySelector('#new-password');
-
-const confirmPasswordInput =
-    document.querySelector('#confirm-new-password');
-
-const changePasswordButton =
-    document.querySelector('#change-password-btn');
+    const changePasswordButton =
+        document.getElementById('change-password-btn');
 
     const successModal =
-    document.querySelector('#success-modal');
+        document.getElementById('success-modal');
 
-const successOkButton =
-    document.querySelector('#success-ok-btn');
+    const successMessage =
+        document.getElementById('success-message');
 
-    function showSuccessModal() {
-    successModal.classList.add('show');
-}
-
-function hideSuccessModal() {
-    successModal.classList.remove('show');
-}
-
-successOkButton.addEventListener('click', () => {
-    hideSuccessModal();
-});
+    const successOkBtn =
+        document.getElementById('success-ok-btn');
 
 
-// ================================
-// CHANGE PASSWORD
-// ================================
+    // =====================================
+    // GET ACCOUNT ID FROM EMAIL LINK
+    // =====================================
 
-changePasswordButton.addEventListener('click', async () => {
+    const params =
+        new URLSearchParams(window.location.search);
 
-    const currentPassword =
-        currentPasswordInput.value.trim();
-
-    const newPassword =
-        newPasswordInput.value.trim();
-
-    const confirmPassword =
-        confirmPasswordInput.value.trim();
+    const accountId =
+        params.get('account_id');
 
 
-    // ================================
-    // CHECK EMPTY FIELDS
-    // ================================
+    // =====================================
+    // CHECK ACCOUNT ID
+    // =====================================
 
-    if (!currentPassword || !newPassword || !confirmPassword) {
+    if (!accountId) {
 
-        alert('Please fill in all password fields.');
+        window.location.href =
+            '../login.html';
 
         return;
     }
 
 
-    // ================================
-    // CHECK PASSWORD CONFIRMATION
-    // ================================
+    // =====================================
+    // SHOW / HIDE PASSWORD
+    // =====================================
 
-    if (newPassword !== confirmPassword) {
+    document
+        .querySelectorAll('.password-toggle')
+        .forEach(button => {
 
-        alert('New password and confirm password do not match.');
+            button.addEventListener('click', () => {
 
-        return;
-    }
+                const targetId =
+                    button.dataset.target;
 
+                const input =
+                    document.getElementById(targetId);
 
-    // ================================
-    // PREVENT SAME PASSWORD
-    // ================================
+                if (!input) return;
 
-    if (currentPassword === newPassword) {
+                if (input.type === 'password') {
 
-        alert(
-            'New password must be different from your current password.'
-        );
+                    input.type = 'text';
+                    button.textContent = '🙈';
 
-        return;
-    }
+                } else {
 
+                    input.type = 'password';
+                    button.textContent = '👁';
 
-    try {
+                }
 
-        // ================================
-        // GET LOGGED-IN ACCOUNT ID
-        // ================================
+            });
 
-        const accountId =
-            localStorage.getItem('account_id');
-
-
-        console.log('ACCOUNT ID:', accountId);
+        });
 
 
-        if (!accountId) {
+    // =====================================
+    // CHANGE PASSWORD
+    // =====================================
 
-            alert(
-                'Your account session was not found. Please login again.'
-            );
+    if (changePasswordButton) {
 
-            window.location.href = '../login.html';
+        changePasswordButton.addEventListener(
+            'click',
+            async () => {
 
-            return;
-        }
+                const newPassword =
+                    newPasswordInput.value.trim();
+
+                const confirmPassword =
+                    confirmPasswordInput.value.trim();
 
 
-        // ================================
-        // SEND REQUEST TO BACKEND
-        // ================================
+                // =================================
+                // VALIDATION
+                // =================================
 
-        const response = await fetch(
-            'http://localhost:3001/api/auth/change-password',
-            {
-                method: 'PUT',
+                if (!newPassword) {
 
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                    showMessage(
+                        'Please enter your new password.'
+                    );
 
-                body: JSON.stringify({
-                    account_id: accountId,
-                    current_password: currentPassword,
-                    new_password: newPassword
-                })
+                    newPasswordInput.focus();
+
+                    return;
+                }
+
+
+                if (!confirmPassword) {
+
+                    showMessage(
+                        'Please confirm your new password.'
+                    );
+
+                    confirmPasswordInput.focus();
+
+                    return;
+                }
+
+
+                if (newPassword !== confirmPassword) {
+
+                    showMessage(
+                        'New password and confirm password do not match.'
+                    );
+
+                    confirmPasswordInput.focus();
+
+                    return;
+                }
+
+
+                if (newPassword.length < 6) {
+
+                    showMessage(
+                        'Password must be at least 6 characters.'
+                    );
+
+                    newPasswordInput.focus();
+
+                    return;
+                }
+
+
+                // =================================
+                // DISABLE BUTTON
+                // =================================
+
+                changePasswordButton.disabled = true;
+
+                changePasswordButton.textContent =
+                    'Changing...';
+
+
+                try {
+
+                    // =============================
+                    // SEND REQUEST
+                    // =============================
+
+                    const response = await fetch(
+                        'http://localhost:3001/api/auth/set-password',
+                        {
+                            method: 'PUT',
+
+                            headers: {
+                                'Content-Type':
+                                    'application/json'
+                            },
+
+                            body: JSON.stringify({
+                                account_id: accountId,
+                                new_password: newPassword
+                            })
+                        }
+                    );
+
+
+                    const result =
+                        await response.json();
+
+
+                    console.log(
+                        'SET PASSWORD RESPONSE:',
+                        result
+                    );
+
+
+                    // =============================
+                    // CHECK RESPONSE
+                    // =============================
+
+                    if (
+                        !response.ok ||
+                        !result.success
+                    ) {
+
+                        showMessage(
+                            result.message ||
+                            'Failed to change password.'
+                        );
+
+                        return;
+                    }
+
+
+                    // =============================
+                    // SUCCESS MODAL
+                    // =============================
+
+                    newPasswordInput.value = '';
+                    confirmPasswordInput.value = '';
+
+                    if (
+                        successModal &&
+                        successMessage
+                    ) {
+
+                        successMessage.textContent =
+                            'Your password has been successfully changed. Please login using your new password.';
+
+                        successModal.classList.add('show');
+
+                    }
+
+
+                    // =============================
+                    // OK → LOGIN
+                    // =============================
+
+                    if (successOkBtn) {
+
+                        successOkBtn.onclick = () => {
+
+                            window.location.href =
+                                '../login.html';
+
+                        };
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        'CHANGE PASSWORD ERROR:',
+                        error
+                    );
+
+                    showMessage(
+                        'Unable to connect to the server. Please make sure the backend server is running.'
+                    );
+
+                } finally {
+
+                    changePasswordButton.disabled =
+                        false;
+
+                    changePasswordButton.textContent =
+                        'Change Password';
+
+                }
+
             }
         );
 
-
-        const data = await response.json();
-
-
-        console.log('CHANGE PASSWORD RESPONSE:', data);
+    }
 
 
-        // ================================
-        // SUCCESS
-        // ================================
+    // =====================================
+    // MESSAGE FUNCTION
+    // =====================================
 
-if (data.success) {
+    function showMessage(message) {
 
-    currentPasswordInput.value = '';
-    newPasswordInput.value = '';
-    confirmPasswordInput.value = '';
+        if (
+            successModal &&
+            successMessage
+        ) {
 
-    showSuccessModal();
+            successMessage.textContent =
+                message;
 
-}
-
-        // ================================
-        // FAILED
-        // ================================
-
-        else {
-
-            alert(
-                data.message ||
-                'Failed to change password.'
-            );
+            successModal.classList.add('show');
 
         }
-
-
-    } catch (error) {
-
-        console.error(
-            'CHANGE PASSWORD ERROR:',
-            error
-        );
-
-        alert(
-            'Cannot connect to the server.'
-        );
 
     }
 
