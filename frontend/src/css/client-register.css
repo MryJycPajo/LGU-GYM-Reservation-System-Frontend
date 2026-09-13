@@ -1,3 +1,21 @@
+.client-page { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr); }
+.client-aside { display: flex; }
+.form-section { min-width: 0; padding: 1.5rem clamp(1.5rem, 4vw, 3.7rem); }
+.form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.field.wide, .client-id { grid-column: 1 / -1; }
+.field small { line-height: 1.35; }
+.credentials-grid { margin-top: 1.15rem; }
+
+@media (max-width: 800px) {
+    .client-page { display: block; }
+    .client-aside { display: flex; }
+    .form-section { padding: 1.5rem; }
+}
+
+@media (max-width: 560px) {
+    .form-grid, .contact-grid { grid-template-columns: 1fr; }
+    .field.wide, .client-id { grid-column: 1; }
+}
 body { background: #f7faf8; color: #173d2b; } .client-page {
     min-height: 100svh;
     display: block;
