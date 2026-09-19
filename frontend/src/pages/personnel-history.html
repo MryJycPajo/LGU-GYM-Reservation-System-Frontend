@@ -75,26 +75,10 @@
 
         <a
           class="nav-item"
-          href="./personnel-change-password.html"
-        >
-          <span>⌘</span>
-          Change Password
-        </a>
-
-        <a
-          class="nav-item"
-          href="./personnel-create-account.html"
-        >
-          <span>+</span>
-          Create Account
-        </a>
-
-        <a
-          class="nav-item"
-          href="./personnel-accounts.html"
+          href="./personnel-reservations.html"
         >
           <span>□</span>
-          Accounts I Created
+          Reservations
         </a>
 
         <a
@@ -132,7 +116,7 @@
         <div class="crumb">
           PERSONNEL PORTAL
           <span>/</span>
-          HISTORY / RECORDS
+          HISTORY
         </div>
 
         <div class="admin-profile">
@@ -159,15 +143,15 @@
             <div>
 
               <p class="eyebrow">
-                REGISTRATION RECORDS
+                RESERVATION HISTORY
               </p>
 
               <h1>
-                History / Records
+                History
               </h1>
 
               <p>
-                Your previous account registrations.
+                View completed and previously processed gym reservations.
               </p>
 
             </div>
@@ -178,41 +162,6 @@
 
             <div class="filter-row">
 
-              <button
-                class="filter-chip active"
-                type="button"
-              >
-                All
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-              >
-                Client
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-              >
-                Personnel
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-              >
-                Approved
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-              >
-                Declined
-              </button>
-
             </div>
 
             <div class="table-wrap">
@@ -222,11 +171,16 @@
                 <thead>
 
                   <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Status</th>
+                    <th>Reservation ID</th>
+                    <th>Client Name</th>
+                    <th>Service</th>
+                    <th>Purpose</th>
                     <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Participants</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
                   </tr>
 
                 </thead>
@@ -235,85 +189,7 @@
 
                   <tr>
 
-                    <td>
-                      100001
-                    </td>
-
-                    <td>
-                      Juan Cruz
-                    </td>
-
-                    <td>
-                      <span class="type-pill client">
-                        Client
-                      </span>
-                    </td>
-
-                    <td>
-                      <span class="status approved">
-                        Approved
-                      </span>
-                    </td>
-
-                    <td>
-                      Aug 10, 2026
-                    </td>
-
-                  </tr>
-
-                  <tr>
-
-                    <td>
-                      100002
-                    </td>
-
-                    <td>
-                      Ana Santos
-                    </td>
-
-                    <td>
-                      <span class="type-pill client">
-                        Client
-                      </span>
-                    </td>
-
-                    <td>
-                      <span class="status approved">
-                        Approved
-                      </span>
-                    </td>
-
-                    <td>
-                      Aug 11, 2026
-                    </td>
-
-                  </tr>
-
-                  <tr>
-
-                    <td>
-                      100003
-                    </td>
-
-                    <td>
-                      Mark Reyes
-                    </td>
-
-                    <td>
-                      <span class="type-pill personnel">
-                        Personnel
-                      </span>
-                    </td>
-
-                    <td>
-                      <span class="status declined">
-                        Declined
-                      </span>
-                    </td>
-
-                    <td>
-                      Aug 12, 2026
-                    </td>
+                    <td colspan="10">Loading reservation history...</td>
 
                   </tr>
 
@@ -334,5 +210,10 @@
   </div>
 
 </body>
+
+<script
+  type="module"
+  src="../js/personnel-history.js"
+></script>
 
 </html>

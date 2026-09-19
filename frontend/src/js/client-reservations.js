@@ -2,7 +2,21 @@
 // CLIENT RESERVATIONS
 // =========================================
 
+import { loadClientName } from './client-name.js';
+
 const accountId = localStorage.getItem('account_id');
+
+let loggedInClient = {};
+
+try {
+    loggedInClient = JSON.parse(
+        localStorage.getItem('client') || '{}'
+    );
+} catch (error) {
+    console.error('CLIENT SESSION DATA ERROR:', error);
+}
+
+loadClientName();
 
 // =========================================
 // CHECK LOGIN SESSION
@@ -48,7 +62,7 @@ async function loadClientReservations() {
 
             reservationsTable.innerHTML = `
                 <tr>
-                    <td colspan="7">
+                    <td colspan="10">
                         Unable to load your reservations.
                     </td>
                 </tr>
@@ -67,7 +81,7 @@ async function loadClientReservations() {
 
             reservationsTable.innerHTML = `
                 <tr>
-                    <td colspan="7">
+                    <td colspan="10">
                         You have no reservations yet.
                     </td>
                 </tr>
@@ -92,7 +106,11 @@ async function loadClientReservations() {
                 </td>
 
                 <td>
-                    ${escapeHtml(reservation.service)}
+                    ${escapeHtml(reservation.service || '—')}
+                </td>
+
+                <td>
+                    ${escapeHtml(reservation.purpose || '—')}
                 </td>
 
                 <td>
@@ -104,14 +122,22 @@ async function loadClientReservations() {
                 </td>
 
                 <td>
+                    ${formatTime(reservation.end_time)}
+                </td>
+
+                <td>
+                    ${escapeHtml(reservation.participants ?? '—')}
+                </td>
+
+                <td>
                     <span class="status ${getStatusClass(reservation.status)}">
-                        ${escapeHtml(reservation.status)}
+                        ${escapeHtml(reservation.status || '—')}
                     </span>
                 </td>
 
                 <td>
                     <span class="status ${getPaymentStatusClass(reservation.payment_status)}">
-                        ${escapeHtml(reservation.payment_status)}
+                        ${escapeHtml(reservation.payment_status || '—')}
                     </span>
                 </td>
 
@@ -174,7 +200,7 @@ async function loadClientReservations() {
 
         reservationsTable.innerHTML = `
             <tr>
-                <td colspan="7">
+                <td colspan="10">
                     Cannot connect to the server.
                 </td>
             </tr>
@@ -299,21 +325,53 @@ function showReservationDetails(reservation) {
 
     const details =
         reservation.reservation_details
-        || 'No reservation details provided.';
+        || reservation.details
+        || '—';
 
-    showMessage(
-        'Reservation Details',
-        `Reservation #${reservation.reservation_id}
+    const clientName = [
+        reservation.firstname || loggedInClient.firstname,
+        reservation.lastname || loggedInClient.lastname
+    ]
+        .filter(Boolean)
+        .join(' ') || reservation.client_name || '—';
 
-Service: ${reservation.service}
+    const modalValues = {
+        '#modal-reservation-id': reservation.reservation_id || '—',
+        '#modal-client-name': clientName,
+        '#modal-account-id': reservation.account_id || accountId || '—',
+        '#modal-service': reservation.service || '—',
+        '#modal-purpose': reservation.purpose || '—',
+        '#modal-date': formatDate(reservation.reservation_date),
+        '#modal-start-time': formatTime(reservation.reservation_time),
+        '#modal-end-time': formatTime(reservation.end_time),
+        '#modal-participants': reservation.participants ?? '—',
+        '#modal-details': details,
+        '#modal-status': reservation.status || '—',
+        '#modal-payment-status': reservation.payment_status || '—'
+    };
 
-Date: ${formatDate(reservation.reservation_date)}
+    Object.entries(modalValues).forEach(([selector, value]) => {
+        const element = document.querySelector(selector);
 
-Time: ${formatTime(reservation.reservation_time)}
+        if (element) {
+            element.textContent = value;
+        }
+    });
 
-Details: ${details}`,
-        '✓'
-    );
+    const overlay = document.querySelector('#message-overlay');
+    const messageTitle = document.querySelector('#message-title');
+    const okButton = document.querySelector('#message-ok-btn');
+
+    if (overlay && messageTitle) {
+        messageTitle.textContent = 'Reservation Details';
+        overlay.classList.add('show');
+
+        if (okButton) {
+            okButton.onclick = () => {
+                overlay.classList.remove('show');
+            };
+        }
+    }
 
 }
 

@@ -2,7 +2,11 @@
 // CLIENT SERVICES
 // =========================================
 
+import { loadClientName } from './client-name.js';
+
 const accountId = localStorage.getItem('account_id');
+
+loadClientName();
 
 // =========================================
 // CHECK LOGIN SESSION
@@ -17,9 +21,6 @@ if (!accountId) {
 // ELEMENTS
 // =========================================
 
-const selectServiceBtn =
-    document.querySelector('#select-service-btn');
-
 const reservationService =
     document.querySelector('#reservation-service');
 
@@ -29,30 +30,20 @@ const reservationDate =
 const reservationTime =
     document.querySelector('#reservation-time');
 
+const reservationPurpose =
+    document.querySelector('#reservation-purpose');
+
+const reservationEndTime =
+    document.querySelector('#reservation-end-time');
+
+const reservationParticipants =
+    document.querySelector('#reservation-participants');
+
 const reservationDetails =
     document.querySelector('#reservation-details');
 
 const submitReservationBtn =
     document.querySelector('#submit-reservation-btn');
-
-// =========================================
-// SELECT SERVICE
-// =========================================
-
-if (selectServiceBtn) {
-
-    selectServiceBtn.addEventListener('click', () => {
-
-        reservationService.focus();
-
-        reservationService.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-    });
-
-}
 
 // =========================================
 // SUBMIT RESERVATION
@@ -63,18 +54,39 @@ if (submitReservationBtn) {
     submitReservationBtn.addEventListener('click', async () => {
 
         const service = reservationService.value.trim();
+        const purpose = reservationPurpose.value.trim();
         const date = reservationDate.value;
-        const time = reservationTime.value;
+        const startTime = reservationTime.value;
+        const endTime = reservationEndTime.value;
+        const participants = reservationParticipants.value.trim();
         const details = reservationDetails.value.trim();
 
         // =========================================
         // REQUIRED FIELDS
         // =========================================
 
-        if (!service || !date || !time || !details) {
+        if (
+            !service ||
+            !purpose ||
+            !date ||
+            !startTime ||
+            !endTime ||
+            !participants ||
+            !details
+        ) {
 
             alert('Please fill in all reservation details.');
 
+            return;
+        }
+
+        if (Number(participants) < 1) {
+            alert('Number of participants must be at least 1.');
+            return;
+        }
+
+        if (endTime <= startTime) {
+            alert('End time must be later than start time.');
             return;
         }
 
@@ -113,9 +125,12 @@ if (submitReservationBtn) {
 
                         account_id: accountId,
                         service: service,
+                        purpose: purpose,
                         reservation_date: date,
-                        reservation_time: time,
-                        details: details
+                        reservation_time: startTime,
+                        end_time: endTime,
+                        participants: Number(participants),
+                        reservation_details: details
 
                     })
                 }
@@ -138,6 +153,9 @@ showMessage(
 
                 reservationDate.value = '';
                 reservationTime.value = '';
+                reservationPurpose.value = '';
+                reservationEndTime.value = '';
+                reservationParticipants.value = '';
                 reservationDetails.value = '';
 
             } else {

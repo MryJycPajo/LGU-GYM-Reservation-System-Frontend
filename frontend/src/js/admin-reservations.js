@@ -28,7 +28,7 @@ async function loadReservations() {
         if (!data.success) {
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="8">
+                    <td colspan="9">
                         Unable to load reservations.
                     </td>
                 </tr>
@@ -45,7 +45,7 @@ async function loadReservations() {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="8">
+                <td colspan="9">
                     Cannot connect to the server.
                 </td>
             </tr>
@@ -102,7 +102,7 @@ function displayReservations() {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="8">
+                <td colspan="9">
                     No reservations found.
                 </td>
             </tr>
@@ -142,6 +142,12 @@ function displayReservations() {
                 <td>
                     ${formatTime(
                         reservation.reservation_time
+                    )}
+                </td>
+
+                <td>
+                    ${formatTime(
+                        reservation.end_time
                     )}
                 </td>
 
@@ -637,6 +643,13 @@ function showReservationDetails(reservation) {
     ).textContent =
         formatTime(
             reservation.reservation_time
+        );
+
+    document.querySelector(
+        '#modal-end-time'
+    ).textContent =
+        formatTime(
+            reservation.end_time
         );
 
     document.querySelector(

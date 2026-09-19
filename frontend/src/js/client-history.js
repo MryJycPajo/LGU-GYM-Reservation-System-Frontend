@@ -1,6 +1,9 @@
 const API_URL = "http://localhost:3001/api/reservations";
 
+import { loadClientName } from './client-name.js';
+
 document.addEventListener("DOMContentLoaded", () => {
+    loadClientName();
     loadHistory();
 });
 

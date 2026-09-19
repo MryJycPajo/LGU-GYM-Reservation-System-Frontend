@@ -156,7 +156,7 @@
           <span>
 
             <b id="client-name">
-              Juan Dela Cruz
+              Client
             </b>
 
             <small>
@@ -185,42 +185,18 @@
               </p>
 
               <h1 id="services-title">
-                Available Services
+                LGU Gymnasium Rental
               </h1>
 
               <p>
-                Select a service, then provide your preferred reservation details.
+                Reserve the LGU Gymnasium for sports activities, events, school programs, government activities, and community gatherings.
               </p>
 
             </div>
 
           </div>
 
-          <div class="service-layout">
-
-            <article class="service-option">
-
-              <span class="service-symbol">
-                ●
-              </span>
-
-              <h2>
-                Gym Reservation
-              </h2>
-
-              <p>
-                Reserve the LGU Gym for approved activities, events, and community programs.
-              </p>
-
-              <button
-                class="outline-button"
-                id="select-service-btn"
-                type="button"
-              >
-                Select Service
-              </button>
-
-            </article>
+          <div class="service-layout reservation-only-layout">
 
             <article class="panel form-panel reservation-form">
 
@@ -233,7 +209,7 @@
               </h2>
 
               <p>
-                Complete these fields after selecting a service.
+                Complete these fields to submit your reservation request.
               </p>
 
               <form class="client-form">
@@ -241,30 +217,70 @@
                 <label>
                   Service
 
-                  <select id="reservation-service">
+                  <select id="reservation-service" required>
                     <option>
-                      Gym Reservation
+                      LGU Gymnasium Rental
                     </option>
                   </select>
 
                 </label>
 
                 <label>
-                  Date
+                  Purpose of Reservation
+
+                  <select id="reservation-purpose" required>
+                    <option value="">Select a purpose</option>
+                    <option>Sports Activity</option>
+                    <option>Event / Celebration</option>
+                    <option>School Activity</option>
+                    <option>Government / Community Activity</option>
+                    <option>Training / Fitness</option>
+                    <option>Other</option>
+                  </select>
+
+                </label>
+
+                <label>
+                  Reservation Date
 
                   <input
                     id="reservation-date"
                     type="date"
+                    required
                   />
 
                 </label>
 
                 <label>
-                  Time
+                  Start Time
 
                   <input
                     id="reservation-time"
                     type="time"
+                    required
+                  />
+
+                </label>
+
+                <label>
+                  End Time
+
+                  <input
+                    id="reservation-end-time"
+                    type="time"
+                    required
+                  />
+
+                </label>
+
+                <label>
+                  Number of Participants
+
+                  <input
+                    id="reservation-participants"
+                    type="number"
+                    min="1"
+                    required
                   />
 
                 </label>
@@ -276,6 +292,7 @@
                   <textarea
                     id="reservation-details"
                     placeholder="Describe your activity or reservation purpose"
+                    required
                   ></textarea>
 
                 </label>

@@ -79,6 +79,7 @@ form.addEventListener('submit', async (event) => {
         firstname: document.querySelector('#first-name').value.trim(),
         middlename: document.querySelector('#middle-name').value.trim(),
         birthdate: document.querySelector('#birthdate').value,
+        age: document.querySelector('#age').value,
         gender: document.querySelector('#gender').value,
         address: document.querySelector('#address').value.trim(),
         phone: document.querySelector('#contact').value.trim(),

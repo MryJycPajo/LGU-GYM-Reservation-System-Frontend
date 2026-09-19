@@ -3,6 +3,8 @@
 // CLIENT BILLING & PAYMENTS
 // =====================================
 
+import { loadClientName } from './client-name.js';
+
 const API_URL = "http://localhost:3001/api/reservations";
 
 
@@ -238,5 +240,8 @@ function escapeHTML(value) {
 
 document.addEventListener(
     "DOMContentLoaded",
-    loadBilling
+    () => {
+        loadClientName();
+        loadBilling();
+    }
 );
