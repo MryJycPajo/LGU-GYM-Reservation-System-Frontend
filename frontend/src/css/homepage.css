@@ -3,3 +3,27 @@
 @media (max-width: 840px) { .main-nav { display: none; }.site-header { padding-inline: 1.25rem; }.hero-content { padding-inline: clamp(1.25rem, 8vw, 4rem); }.service-grid { grid-template-columns: repeat(2, 1fr); }.about { grid-template-columns: 1fr; }.about-photo { min-height: 280px; }.steps { grid-template-columns: repeat(3, 1fr); gap: 2rem 0; }.steps li:nth-child(3)::after { display: none; }.footer-top { grid-template-columns: 1fr 1fr; }.footer-brand { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .site-header { padding-top: .85rem; }.brand img { width: 38px; height: 38px; }.brand strong { font-size: .73rem; }.brand small { font-size: .45rem; }.header-actions { gap: .7rem; font-size: .75rem; }.button-small { padding: .42rem .65rem; }.hero { min-height: 680px; }.hero-image { background-position: 62% center; }.scroll-cue { display: none; }.section-heading { display: block; }.section-heading > p { margin-top: 1rem; }.service-grid { grid-template-columns: 1fr; }.service-card { min-height: 0; }.steps { grid-template-columns: 1fr; gap: 1.35rem; }.steps li { padding-left: 3.2rem; }.steps b { position: absolute; left: 0; top: 0; }.steps li::after { display: none; }.cta { display: block; }.cta .button { margin-top: 1.5rem; }.footer-top { grid-template-columns: 1fr; gap: 1.7rem; }.footer-bottom { display: block; }.footer-bottom a { display: block; margin-top: .55rem; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+
+.registration-modal { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 1.25rem; background: rgba(7, 49, 30, .58); opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; }
+.registration-modal.is-open { opacity: 1; visibility: visible; }
+.registration-modal-card { position: relative; width: min(100%, 520px); padding: clamp(1.6rem, 5vw, 2.5rem); border: 1px solid #d7e9dd; border-radius: 16px; background: #fff; box-shadow: 0 24px 65px rgba(0, 35, 20, .24); text-align: center; transform: translateY(12px); transition: transform .25s; }
+.registration-modal.is-open .registration-modal-card { transform: translateY(0); }
+.modal-close { position: absolute; top: .7rem; right: .85rem; width: 2rem; height: 2rem; border: 0; color: #668073; background: transparent; font-size: 1.55rem; line-height: 1; cursor: pointer; }
+.modal-close:hover { color: #087348; }
+.registration-modal-card .eyebrow { margin-bottom: .6rem; color: #087348; }
+.registration-modal-card h2 { margin: 0 0 .5rem; color: #1c3f30; font-size: clamp(1.55rem, 4vw, 2rem); letter-spacing: -.04em; }
+.registration-modal-description { margin: 0; color: #6c8175; font-size: .9rem; }
+.account-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: .85rem; margin-top: 1.6rem; text-align: left; }
+.account-option { display: flex; min-width: 0; flex-direction: column; gap: .9rem; padding: 1.15rem; border: 1px solid #dce9e0; border-radius: 10px; color: #204634; background: #fbfdfb; transition: border-color .2s, box-shadow .2s, transform .2s; }
+.account-option:hover, .account-option:focus-visible { border-color: #70b58c; box-shadow: 0 8px 20px rgba(13, 67, 39, .1); transform: translateY(-2px); }
+.account-option-icon { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 8px; color: #087348; background: #e4f3e9; }
+.account-option-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.account-option-content { display: flex; min-width: 0; flex-direction: column; gap: .3rem; }
+.account-option-content strong { color: #183b2b; font-size: .78rem; letter-spacing: .1em; }
+.account-option-content > span:not(.account-option-action) { min-height: 2.6em; color: #6c8175; font-size: .78rem; line-height: 1.45; }
+.account-option-action { margin-top: .45rem; color: #087348; font-size: .76rem; font-weight: 850; }
+.account-option-action b { margin-left: .25rem; font-size: .95rem; }
+.modal-cancel { margin-top: 1.35rem; border: 0; color: #63786d; background: transparent; font-size: .8rem; font-weight: 800; cursor: pointer; }
+.modal-cancel:hover { color: #087348; text-decoration: underline; }
+body.modal-open { overflow: hidden; }
+@media (max-width: 520px) { .account-options { grid-template-columns: 1fr; }.account-option { flex-direction: row; align-items: flex-start; }.account-option-content > span:not(.account-option-action) { min-height: 0; } }

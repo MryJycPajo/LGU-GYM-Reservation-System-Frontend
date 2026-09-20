@@ -171,7 +171,20 @@ async function updateReservationStatus(id, status) {
         });
         const data = await response.json();
         if (!data.success) throw new Error(data.message || 'Unable to update reservation.');
-        showMessage('Reservation Updated', `Reservation #${id} has been ${status.toLowerCase()}.`);
+        const successMessage = status === 'Approved'
+            ? `Reservation #${id} has been approved successfully.`
+            : `Reservation #${id} has been ${status.toLowerCase()}.`;
+
+        if (status === 'Approved') {
+            showMessage(
+                'Reservation Approved',
+                successMessage,
+                () => loadReservations()
+            );
+            return;
+        }
+
+        showMessage(`Reservation ${status}`, successMessage);
         await loadReservations();
     } catch (error) {
         console.error('PERSONNEL STATUS UPDATE ERROR:', error);
@@ -180,24 +193,27 @@ async function updateReservationStatus(id, status) {
 }
 
 function showReservationDetails(reservation) {
-    const details = [
-        `Reservation ID: ${reservation.reservation_id || '—'}`,
-        `Client: ${reservation.client_name || '—'}`,
-        `Account ID: ${reservation.account_id || '—'}`,
-        `Service: ${reservation.service || '—'}`,
-        `Purpose: ${reservation.purpose || '—'}`,
-        `Date: ${formatDate(reservation.reservation_date)}`,
-        `Start Time: ${formatTime(reservation.reservation_time)}`,
-        `End Time: ${formatTime(reservation.end_time)}`,
-        `Participants: ${reservation.participants ?? '—'}`,
-        `Status: ${reservation.status || '—'}`,
-        `Payment Status: ${reservation.payment_status || '—'}`,
-        `Details: ${reservation.reservation_details || '—'}`
-    ].join('\n\n');
-    showMessage('Reservation Details', details);
+    const modal = document.querySelector('#reservation-modal');
+    if (!modal) return;
+
+    document.querySelector('#modal-reservation-id').textContent = `#${reservation.reservation_id || '—'}`;
+    document.querySelector('#modal-client-name').textContent = reservation.client_name || '—';
+    document.querySelector('#modal-account-id').textContent = reservation.account_id || '—';
+    document.querySelector('#modal-service').textContent = reservation.service || '—';
+    document.querySelector('#modal-date').textContent = formatDate(reservation.reservation_date);
+    document.querySelector('#modal-time').textContent = formatTime(reservation.reservation_time);
+    document.querySelector('#modal-end-time').textContent = formatTime(reservation.end_time);
+    document.querySelector('#modal-status').textContent = reservation.status || '—';
+    document.querySelector('#modal-payment').textContent = reservation.payment_status || '—';
+    document.querySelector('#modal-details').textContent = reservation.reservation_details || 'No reservation details provided.';
+    modal.classList.add('show');
 }
 
-function showMessage(title, message) {
+function closeReservationModal() {
+    document.querySelector('#reservation-modal')?.classList.remove('show');
+}
+
+function showMessage(title, message, onClose) {
     const overlay = document.querySelector('#personnel-message-overlay');
     const titleElement = document.querySelector('#personnel-message-title');
     const messageElement = document.querySelector('#personnel-message-text');
@@ -210,8 +226,18 @@ function showMessage(title, message) {
     closeButton.onclick = () => {
         overlay.classList.remove('show');
         overlay.setAttribute('aria-hidden', 'true');
+        onClose?.();
     };
 }
+
+document.querySelector('#close-reservation-modal')?.addEventListener('click', closeReservationModal);
+document.querySelector('#modal-close-btn')?.addEventListener('click', closeReservationModal);
+document.querySelector('#reservation-modal')?.addEventListener('click', event => {
+    if (event.target.id === 'reservation-modal') closeReservationModal();
+});
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeReservationModal();
+});
 
 setupFilters();
 setupSearch();

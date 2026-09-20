@@ -209,38 +209,30 @@ function selectAccount(account) {
             .replace(/\s+/g, ' ')
             .trim();
 
-    const detailsCard =
-        document.querySelector('.details-card');
+    const details = {
+        '#details-account-id': account.account_id || '—',
+        '#details-name': fullName || '—',
+        '#details-type': account.account_type || '—',
+        '#details-email': account.email || '—',
+        '#details-phone': account.phone_number || account.phone || '—',
+        '#details-position': account.position || account.role || '—',
+        '#details-status': account.status || '—',
+        '#details-created': account.created_at
+            ? new Date(account.created_at).toLocaleString()
+            : 'N/A'
+    };
 
-    if (!detailsCard) return;
+    Object.entries(details).forEach(([selector, value]) => {
+        const element = document.querySelector(selector);
+        if (element) element.textContent = value;
+    });
 
-    const details =
-        detailsCard.querySelectorAll(
-            '.details-grid > div'
-        );
-
-    details[0].querySelector('b').textContent =
-        account.account_id;
-
-    details[1].querySelector('b').textContent =
-        fullName;
-
-    details[2].querySelector('b').textContent =
-        account.account_type;
-
-    details[3].querySelector('b').textContent =
-        account.status;
-
-    details[4].querySelector('b').textContent =
-        account.created_by || 'Personnel';
-
-    details[5].querySelector('b').textContent =
-        account.created_at
-            ? new Date(account.created_at).toLocaleDateString()
-            : 'N/A';
-
-    details[6].querySelector('b').textContent =
-        'Waiting for Admin Approval';
+    const detailsModal = document.querySelector('#details-modal');
+    if (detailsModal) {
+        detailsModal.classList.add('visible');
+        detailsModal.setAttribute('aria-hidden', 'false');
+        document.querySelector('#close-details')?.focus();
+    }
 
     approveButton.disabled = false;
     declineButton.disabled = false;
@@ -248,29 +240,33 @@ function selectAccount(account) {
     console.log('Selected account:', account.account_id);
 }
 
+function closeDetailsModal() {
+    const detailsModal = document.querySelector('#details-modal');
+    if (!detailsModal) return;
+    detailsModal.classList.remove('visible');
+    detailsModal.setAttribute('aria-hidden', 'true');
+}
+
+document.querySelector('#modal-x')?.addEventListener('click', closeDetailsModal);
+document.querySelector('#close-details')?.addEventListener('click', closeDetailsModal);
+document.querySelector('#details-modal')?.addEventListener('click', event => {
+    if (event.target.id === 'details-modal') closeDetailsModal();
+});
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeDetailsModal();
+});
+
 // =====================================
 // CLEAR ACCOUNT DETAILS
 // =====================================
 
 function clearAccountDetails() {
 
-    const detailsCard = document.querySelector('.details-card');
+    document.querySelectorAll('#details-content b').forEach(element => {
+        element.textContent = '—';
+    });
 
-    if (!detailsCard) return;
-
-    const details = detailsCard.querySelectorAll(
-        '.details-grid > div'
-    );
-
-    details[0].querySelector('b').textContent = '—';
-    details[1].querySelector('b').textContent = '—';
-    details[2].querySelector('b').textContent = '—';
-    details[3].querySelector('b').textContent = '—';
-    details[4].querySelector('b').textContent = '—';
-    details[5].querySelector('b').textContent = '—';
-
-    details[6].querySelector('b').textContent =
-        'Select a pending account to review.';
+    closeDetailsModal();
 
     selectedAccountId = null;
 

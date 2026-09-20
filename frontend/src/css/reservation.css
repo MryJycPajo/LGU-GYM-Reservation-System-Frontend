@@ -1,0 +1,51 @@
+.reservation-search {
+  display: flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  gap: .65rem;
+  margin: .1rem 0 1rem;
+  border: 1px solid #b9d9c4;
+  border-radius: 9px;
+  padding: 0 .85rem;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(24, 77, 48, .04);
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.reservation-search:focus-within {
+  border-color: #087348;
+  box-shadow: 0 0 0 3px rgba(8, 115, 72, .11);
+}
+
+.reservation-search svg {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: #087348;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.reservation-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  color: #234936;
+  background: transparent;
+  font-size: .8rem;
+}
+
+.reservation-search input::placeholder {
+  color: #84978c;
+}
+
+@media (max-width: 560px) {
+  .reservation-search {
+    min-height: 44px;
+  }
+}

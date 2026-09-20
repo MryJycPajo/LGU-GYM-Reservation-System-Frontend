@@ -30,6 +30,11 @@
     rel="stylesheet"
     href="../css/client-dashboard.css"
   />
+
+  <link
+    rel="stylesheet"
+    href="../css/reservation.css"
+  />
 </head>
 
 <body>
@@ -226,6 +231,17 @@
             </a>
 
           </div>
+
+
+          <label class="reservation-search" for="reservation-search-input">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
+            <input
+              id="reservation-search-input"
+              type="search"
+              placeholder="Search by name, reservation ID, or date..."
+              autocomplete="off"
+            />
+          </label>
 
 
           <!-- RESERVATIONS TABLE -->

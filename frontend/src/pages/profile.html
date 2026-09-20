@@ -30,6 +30,7 @@
     rel="stylesheet"
     href="../css/client-dashboard.css"
   />
+  <link rel="stylesheet" href="../css/profile.css" />
 </head>
 
 <body>
@@ -222,175 +223,29 @@
 
 
           <!-- PROFILE INFORMATION -->
-          <article class="panel profile-card">
-
-            <dl class="profile-grid">
-
-
-              <!-- CLIENT ID -->
-              <div>
-
-                <dt>
-                  Client ID
-                </dt>
-
-                <dd id="profile-client-id">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- STATUS -->
-              <div>
-
-                <dt>
-                  Status
-                </dt>
-
-                <dd>
-
-                  <span
-                    class="status approved"
-                    id="profile-status"
-                  >
-                    -
-                  </span>
-
-                </dd>
-
-              </div>
-
-
-              <!-- LAST NAME -->
-              <div>
-
-                <dt>
-                  Last Name
-                </dt>
-
-                <dd id="profile-lastname">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- FIRST NAME -->
-              <div>
-
-                <dt>
-                  First Name
-                </dt>
-
-                <dd id="profile-firstname">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- MIDDLE NAME -->
-              <div>
-
-                <dt>
-                  Middle Name
-                </dt>
-
-                <dd id="profile-middlename">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- BIRTHDATE -->
-              <div>
-
-                <dt>
-                  Birthdate
-                </dt>
-
-                <dd id="profile-birthdate">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- GENDER -->
-              <div>
-
-                <dt>
-                  Gender
-                </dt>
-
-                <dd id="profile-gender">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- ADDRESS -->
-              <div class="wide">
-
-                <dt>
-                  Address
-                </dt>
-
-                <dd id="profile-address">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- EMAIL -->
-              <div>
-
-                <dt>
-                  Email Address
-                </dt>
-
-                <dd id="profile-email">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- PHONE -->
-              <div>
-
-                <dt>
-                  Phone Number
-                </dt>
-
-                <dd id="profile-phone">
-                  -
-                </dd>
-
-              </div>
-
-
-              <!-- USERNAME -->
-              <div>
-
-                <dt>
-                  Username
-                </dt>
-
-                <dd id="profile-username">
-                  -
-                </dd>
-
-              </div>
-
-
-            </dl>
-
-          </article>
+            <article class="panel profile-card">
+              <section class="profile-group" aria-labelledby="client-personal-information">
+                <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="client-personal-information">Personal Information</h2></div>
+                <dl class="profile-grid">
+                  <div><dt>Last Name</dt><dd id="profile-lastname">-</dd></div>
+                  <div><dt>First Name</dt><dd id="profile-firstname">-</dd></div>
+                  <div><dt>Middle Name</dt><dd id="profile-middlename">-</dd></div>
+                  <div><dt>Birthdate</dt><dd id="profile-birthdate">-</dd></div>
+                  <div><dt>Gender</dt><dd id="profile-gender">-</dd></div>
+                  <div class="wide"><dt>Address</dt><dd id="profile-address">-</dd></div>
+                </dl>
+              </section>
+              <section class="profile-group" aria-labelledby="client-account-information">
+                <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="client-account-information">Account Information</h2></div>
+                <dl class="profile-grid">
+                  <div><dt>Client ID</dt><dd id="profile-client-id">-</dd></div>
+                  <div><dt>Email Address</dt><dd id="profile-email">-</dd></div>
+                  <div><dt>Username</dt><dd id="profile-username">-</dd></div>
+                  <div><dt>Status</dt><dd><span class="status approved" id="profile-status">-</span></dd></div>
+                  <div><dt>Phone Number</dt><dd id="profile-phone">-</dd></div>
+                </dl>
+              </section>
+            </article>
 
         </section>
 

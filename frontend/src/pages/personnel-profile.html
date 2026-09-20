@@ -27,6 +27,7 @@
     rel="stylesheet"
     href="../css/personnel.css"
   />
+  <link rel="stylesheet" href="../css/profile.css" />
 </head>
 
 <body class="personnel-static-page">
@@ -146,7 +147,7 @@
             </b>
 
             <small>
-              LGU Gym Staff
+              LGU Personnel
             </small>
 
           </span>
@@ -200,180 +201,28 @@
                PROFILE CARD
           ========================== -->
           <article class="panel profile-card">
-
-            <dl class="profile-grid">
-
-              <!-- PERSONNEL ID -->
-              <div>
-
-                <dt>
-                  Personnel ID
-                </dt>
-
-                <dd id="personnel-id">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- STATUS -->
-              <div>
-
-                <dt>
-                  Status
-                </dt>
-
-                <dd id="personnel-status">
-                  <span class="status approved">
-                    Loading...
-                  </span>
-                </dd>
-
-              </div>
-
-
-              <!-- POSITION -->
-              <div>
-
-                <dt>
-                  Position / Role
-                </dt>
-
-                <dd id="personnel-role">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- LAST NAME -->
-              <div>
-
-                <dt>
-                  Last Name
-                </dt>
-
-                <dd id="personnel-lastname">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- FIRST NAME -->
-              <div>
-
-                <dt>
-                  First Name
-                </dt>
-
-                <dd id="personnel-firstname">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- MIDDLE NAME -->
-              <div>
-
-                <dt>
-                  Middle Name
-                </dt>
-
-                <dd id="personnel-middlename">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- BIRTHDATE -->
-              <div>
-
-                <dt>
-                  Birthdate
-                </dt>
-
-                <dd id="personnel-birthdate">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- GENDER -->
-              <div>
-
-                <dt>
-                  Gender
-                </dt>
-
-                <dd id="personnel-gender">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- ADDRESS -->
-              <div class="wide">
-
-                <dt>
-                  Address
-                </dt>
-
-                <dd id="personnel-address">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- EMAIL -->
-              <div>
-
-                <dt>
-                  Email Address
-                </dt>
-
-                <dd id="personnel-email">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- PHONE -->
-              <div>
-
-                <dt>
-                  Phone Number
-                </dt>
-
-                <dd id="personnel-phone">
-                  Loading...
-                </dd>
-
-              </div>
-
-
-              <!-- USERNAME -->
-              <div>
-
-                <dt>
-                  Username
-                </dt>
-
-                <dd id="personnel-username">
-                  Loading...
-                </dd>
-
-              </div>
-
-            </dl>
-
+            <section class="profile-group" aria-labelledby="personnel-personal-information">
+              <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="personnel-personal-information">Personal Information</h2></div>
+              <dl class="profile-grid">
+                <div><dt>Last Name</dt><dd id="personnel-lastname">Loading...</dd></div>
+                <div><dt>First Name</dt><dd id="personnel-firstname">Loading...</dd></div>
+                <div><dt>Middle Name</dt><dd id="personnel-middlename">Loading...</dd></div>
+                <div><dt>Birthdate</dt><dd id="personnel-birthdate">Loading...</dd></div>
+                <div><dt>Gender</dt><dd id="personnel-gender">Loading...</dd></div>
+                <div class="wide"><dt>Address</dt><dd id="personnel-address">Loading...</dd></div>
+              </dl>
+            </section>
+            <section class="profile-group" aria-labelledby="personnel-account-information">
+              <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="personnel-account-information">Account Information</h2></div>
+              <dl class="profile-grid">
+                <div><dt>Personnel ID</dt><dd id="personnel-id">Loading...</dd></div>
+                <div><dt>Email Address</dt><dd id="personnel-email">Loading...</dd></div>
+                <div><dt>Username</dt><dd id="personnel-username">Loading...</dd></div>
+                <div><dt>Status</dt><dd id="personnel-status"><span class="status approved">Loading...</span></dd></div>
+                <div><dt>Position / Role</dt><dd id="personnel-role">Loading...</dd></div>
+                <div><dt>Phone Number</dt><dd id="personnel-phone">Loading...</dd></div>
+              </dl>
+            </section>
           </article>
 
         </section>
@@ -382,6 +231,15 @@
 
     </main>
 
+  </div>
+
+  <div class="message-overlay personnel-success-overlay" id="personnel-success-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="personnel-success-title">
+    <div class="message-modal">
+      <div class="message-icon" aria-hidden="true">✓</div>
+      <h2 id="personnel-success-title">Profile Updated Successfully!</h2>
+      <p>Your profile information has been updated successfully.</p>
+      <button class="message-ok-btn" id="personnel-success-ok" type="button">OK</button>
+    </div>
   </div>
 
 

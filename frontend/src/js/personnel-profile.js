@@ -790,12 +790,7 @@ async function saveProfile(personnel) {
         // SUCCESS
         // =====================================
 
-        alert(
-            'Profile updated successfully!'
-        );
-
-
-        window.location.reload();
+        showPersonnelSuccessModal();
 
 
     } catch (error) {
@@ -812,6 +807,25 @@ async function saveProfile(personnel) {
 
     }
 
+}
+
+function showPersonnelSuccessModal() {
+    const overlay = document.querySelector('#personnel-success-overlay');
+    const okButton = document.querySelector('#personnel-success-ok');
+
+    if (!overlay || !okButton) {
+        window.location.reload();
+        return;
+    }
+
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
+    okButton.focus();
+    okButton.onclick = () => {
+        overlay.classList.remove('show');
+        overlay.setAttribute('aria-hidden', 'true');
+        window.location.reload();
+    };
 }
 
 

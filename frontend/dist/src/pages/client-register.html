@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a7047" />
     <title>Client Registration | LGU Gym Reservation System</title>
-    <script type="module" crossorigin src="/assets/clientRegister-6SvIsfaZ.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-BVCvSGnQ.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+    <script type="module" crossorigin src="/assets/clientRegister-8Yg0_zWu.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
     <link rel="stylesheet" crossorigin href="/assets/clientRegister-DzP5LyID.css">
+    <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
   </head>
   <body>
     <main class="client-page">
@@ -33,7 +33,12 @@
               <div class="field"><label for="middle-name">Middle Name <b>*</b></label><input id="middle-name" name="middleName" required /><p class="error"></p></div>
               <div class="field"><label for="suffix">Suffix</label><select id="suffix" name="suffix"><option value="">None</option><option value="Jr.">Jr.</option><option value="I">I</option><option value="II">II</option><option value="III">III</option></select><p class="error"></p></div>
               <div class="field"><label for="birthdate">Birthdate <b>*</b></label><input id="birthdate" name="birthdate" type="date" required /><small>Pick a date — age fills automatically</small><p class="error"></p></div>
-              <div class="field"><label for="age">Age <b>*</b></label><input id="age" name="age" type="number" readonly aria-readonly="true" /><small>Auto-calculated from birthdate</small><p class="error"></p></div>
+             <div class="field">
+  <label for="age">Age <b>*</b></label>
+  <input id="age" name="age" type="number" required />
+  <small>Enter your age</small>
+  <p class="error"></p>
+</div>
               <div class="field"><label for="gender">Gender <b>*</b></label><select id="gender" name="gender" required><option value="">— Select —</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select><p class="error"></p></div>
               <div class="field"><label for="status">Status <b>*</b></label><select id="status" name="status" required><option value="">— Select —</option><option value="Single">Single</option><option value="Married">Married</option><option value="Widowed">Widowed</option><option value="Separated">Separated</option><option value="Divorced">Divorced</option></select><p class="error"></p></div>
               <div class="field wide"><label for="address">Complete Address <b>*</b></label><input id="address" name="address" placeholder="House no., street, barangay, municipality/city, province" required /><p class="error"></p></div>

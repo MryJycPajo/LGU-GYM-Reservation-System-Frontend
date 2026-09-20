@@ -7,6 +7,7 @@ import { loadClientName } from './client-name.js';
 const accountId = localStorage.getItem('account_id');
 
 let loggedInClient = {};
+let clientReservations = [];
 
 try {
     loggedInClient = JSON.parse(
@@ -71,13 +72,13 @@ async function loadClientReservations() {
             return;
         }
 
-        const reservations = data.reservations;
+        clientReservations = data.reservations || [];
 
         // =========================================
         // NO RESERVATIONS
         // =========================================
 
-        if (reservations.length === 0) {
+        if (clientReservations.length === 0) {
 
             reservationsTable.innerHTML = `
                 <tr>
@@ -90,19 +91,61 @@ async function loadClientReservations() {
             return;
         }
 
-        // =========================================
-        // DISPLAY RESERVATIONS
-        // =========================================
+        renderReservations();
+        document.querySelector('#reservation-search-input')?.addEventListener('input', renderReservations);
 
-        reservationsTable.innerHTML = '';
+    } catch (error) {
 
-        reservations.forEach(reservation => {
+        console.error(
+            'CLIENT RESERVATIONS ERROR:',
+            error
+        );
 
-            const row = document.createElement('tr');
+        reservationsTable.innerHTML = `
+            <tr>
+                <td colspan="10">
+                    Cannot connect to the server.
+                </td>
+            </tr>
+        `;
 
-            row.innerHTML = `
+    }
+
+}
+
+function renderReservations() {
+    const reservationsTable = document.querySelector('#client-reservations');
+    const searchInput = document.querySelector('#reservation-search-input');
+    const query = normalizeSearchValue(searchInput?.value || '');
+    const filteredReservations = clientReservations.filter(reservation => {
+        if (!query) return true;
+
+        const clientName = [
+            reservation.client_name,
+            reservation.firstname,
+            reservation.lastname,
+            loggedInClient.firstname,
+            loggedInClient.lastname
+        ].filter(Boolean).join(' ');
+        const reservationId = String(reservation.reservation_id || '');
+        const rawDate = String(reservation.reservation_date || '');
+        const displayDate = formatDate(reservation.reservation_date);
+
+        return [clientName, reservationId, `#${reservationId}`, rawDate, displayDate]
+            .some(value => normalizeSearchValue(value).includes(query));
+    });
+
+    if (!filteredReservations.length) {
+        reservationsTable.innerHTML = '<tr><td colspan="10">No matching reservations found.</td></tr>';
+        return;
+    }
+
+    reservationsTable.innerHTML = '';
+    filteredReservations.forEach(reservation => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
                 <td>
-                    #${reservation.reservation_id}
+                    #${escapeHtml(reservation.reservation_id)}
                 </td>
 
                 <td>
@@ -152,20 +195,12 @@ async function loadClientReservations() {
                 </td>
             `;
 
-            reservationsTable.appendChild(row);
+        reservationsTable.appendChild(row);
+    });
 
-        });
+    const viewButtons = document.querySelectorAll('.view-reservation-btn');
 
-        // =========================================
-        // VIEW BUTTONS
-        // =========================================
-
-        const viewButtons =
-            document.querySelectorAll(
-                '.view-reservation-btn'
-            );
-
-        viewButtons.forEach(button => {
+    viewButtons.forEach(button => {
 
             button.addEventListener('click', () => {
 
@@ -173,7 +208,7 @@ async function loadClientReservations() {
                     button.dataset.id;
 
                 const reservation =
-                    reservations.find(
+                    clientReservations.find(
                         item =>
                             String(item.reservation_id) ===
                             String(reservationId)
@@ -189,24 +224,14 @@ async function loadClientReservations() {
 
             });
 
-        });
+    });
+}
 
-    } catch (error) {
-
-        console.error(
-            'CLIENT RESERVATIONS ERROR:',
-            error
-        );
-
-        reservationsTable.innerHTML = `
-            <tr>
-                <td colspan="10">
-                    Cannot connect to the server.
-                </td>
-            </tr>
-        `;
-
-    }
+function normalizeSearchValue(value) {
+    return String(value)
+        .trim()
+        .replace(/\s+/g, ' ')
+        .toLowerCase();
 
 }
 

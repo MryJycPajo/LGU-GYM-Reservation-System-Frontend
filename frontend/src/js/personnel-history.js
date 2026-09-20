@@ -1,5 +1,21 @@
 const API_URL = 'http://localhost:3001/api/reservations';
 
+const personnelData = JSON.parse(localStorage.getItem('personnel') || 'null');
+
+if (personnelData) {
+    const fullName = `${personnelData.firstname || ''} ${personnelData.lastname || ''}`.trim();
+    const nameElement = document.querySelector('#personnel-history-name');
+    const avatar = document.querySelector('#personnel-history-avatar');
+
+    if (nameElement) {
+        nameElement.textContent = fullName || 'Personnel';
+    }
+
+    if (avatar && personnelData.firstname) {
+        avatar.textContent = personnelData.firstname.charAt(0).toUpperCase();
+    }
+}
+
 function formatDate(value) {
     if (!value) return '—';
     const date = new Date(value);

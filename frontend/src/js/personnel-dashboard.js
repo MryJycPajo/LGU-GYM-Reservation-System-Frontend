@@ -24,22 +24,26 @@ const personnelData = JSON.parse(
 
 if (personnelData) {
 
+    const fullName = `${personnelData.firstname || ''} ${personnelData.lastname || ''}`.trim();
+
     // Personnel name
     const nameElement = document.querySelector('#personnel-name');
 
     if (nameElement) {
-        nameElement.textContent =
-            personnelData.firstname + ' ' +
-            personnelData.lastname;
+        nameElement.textContent = fullName || 'Personnel';
+    }
+
+    const topbarName = document.querySelector('#topbar-personnel-name');
+
+    if (topbarName) {
+        topbarName.textContent = fullName || 'Personnel';
     }
 
     // Welcome message
     const welcomeName = document.querySelector('#welcome-name');
 
     if (welcomeName) {
-        welcomeName.textContent =
-            personnelData.firstname + ' ' +
-            personnelData.lastname;
+        welcomeName.textContent = fullName || 'Personnel';
     }
 
     // Avatar
@@ -161,41 +165,45 @@ async function loadClientList() {
         }
 
 
-        const clients = data.clients || [];
+        const clients = (data.clients || [])
+            .filter(client => client.status === 'Approved')
+            .sort((firstClient, secondClient) => {
+                return getApprovalTimestamp(secondClient) - getApprovalTimestamp(firstClient);
+            });
 
 
         if (clients.length === 0) {
 
             table.innerHTML =
-                '<tr><td colspan="4">No clients found.</td></tr>';
+                '<tr><td colspan="4">No approved clients found.</td></tr>';
 
             return;
         }
 
 
-        // Build table without template literals
-        table.innerHTML = clients.map(function (client) {
+        // Build the approved-client table with the newest approval first.
+        table.innerHTML = clients.map(function (client, index) {
 
             return (
-                '<tr>' +
+            '<tr class="' + (index === 0 ? 'newest-approved' : '') + '">' +
 
                 '<td>' +
-                (client.firstname || '') +
+            escapeHtml((client.firstname || '') +
                 ' ' +
-                (client.lastname || '') +
+            (client.lastname || '')) +
                 '</td>' +
 
                 '<td>' +
-                (client.email || '-') +
+            escapeHtml(client.email || '-') +
                 '</td>' +
 
                 '<td>' +
-                (client.phone_number || '-') +
+            escapeHtml(client.phone_number || '-') +
                 '</td>' +
 
                 '<td>' +
-                '<span class="status">' +
-                (client.status || '-') +
+            '<span class="status approved">' +
+            'Approved' +
                 '</span>' +
                 '</td>' +
 
@@ -213,6 +221,26 @@ async function loadClientList() {
 
     }
 
+}
+
+function getApprovalTimestamp(client) {
+    const timestamp = client.approved_at ||
+        client.approvedAt ||
+        client.updated_at ||
+        client.updatedAt ||
+        client.created_at ||
+        client.createdAt;
+    const parsedTimestamp = timestamp ? Date.parse(timestamp) : 0;
+    return Number.isNaN(parsedTimestamp) ? 0 : parsedTimestamp;
+}
+
+function escapeHtml(value) {
+    return String(value ?? '-')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 }
 
 
