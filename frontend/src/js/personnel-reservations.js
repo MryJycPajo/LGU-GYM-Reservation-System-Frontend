@@ -1,6 +1,7 @@
 const API_URL = 'http://localhost:3001/api/reservations';
 let reservations = [];
 let currentFilter = 'All';
+let pendingConfirmation = null;
 
 const personnel = JSON.parse(localStorage.getItem('personnel') || '{}');
 const personnelName = document.querySelector('#personnel-name');
@@ -112,6 +113,9 @@ function renderReservations(table) {
                     <button class="table-button approve-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Approve</button>
                     <button class="table-button decline-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Decline</button>
                 ` : ''}
+                ${reservation.status === 'Approved' && reservation.payment_status === 'Unpaid' ? `
+                    <button class="table-button paid-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Mark as Paid</button>
+                ` : ''}
                 ${reservation.status === 'Approved' && reservation.payment_status === 'Paid' ? `
                     <button class="table-button complete-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Complete</button>
                 ` : ''}
@@ -129,9 +133,23 @@ function renderReservations(table) {
     table.querySelectorAll('.approve-personnel-reservation, .decline-personnel-reservation').forEach(button => {
         button.addEventListener('click', () => {
             const status = button.classList.contains('approve-personnel-reservation') ? 'Approved' : 'Declined';
-            if (window.confirm(`Are you sure you want to mark this reservation as ${status.toLowerCase()}?`)) {
-                updateReservationStatus(button.dataset.id, status);
-            }
+            showConfirmation(
+                button.dataset.id,
+                status,
+                `Are you sure you want to mark this reservation as ${status.toLowerCase()}?`,
+                status === 'Approved' ? 'Confirm / Approve' : 'Confirm / Decline'
+            );
+        });
+    });
+
+    table.querySelectorAll('.paid-personnel-reservation').forEach(button => {
+        button.addEventListener('click', () => {
+            showConfirmation(
+                button.dataset.id,
+                'Paid',
+                'Are you sure you want to mark this reservation as paid?',
+                'Mark as Paid'
+            );
         });
     });
 
@@ -192,6 +210,27 @@ async function updateReservationStatus(id, status) {
     }
 }
 
+async function updatePaymentStatus(id, paymentStatus) {
+    try {
+        const response = await fetch(`${API_URL}/${id}/payment`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ payment_status: paymentStatus })
+        });
+        const data = await response.json();
+        if (!data.success) throw new Error(data.message || 'Unable to update payment status.');
+
+        showMessage(
+            'Payment Updated',
+            `Reservation #${id} has been marked as ${paymentStatus}.`,
+            () => loadReservations()
+        );
+    } catch (error) {
+        console.error('PERSONNEL PAYMENT UPDATE ERROR:', error);
+        showMessage('Payment Update Failed', 'Unable to update payment status.');
+    }
+}
+
 function showReservationDetails(reservation) {
     const modal = document.querySelector('#reservation-modal');
     if (!modal) return;
@@ -211,6 +250,29 @@ function showReservationDetails(reservation) {
 
 function closeReservationModal() {
     document.querySelector('#reservation-modal')?.classList.remove('show');
+}
+
+function closeConfirmation() {
+    const overlay = document.querySelector('#personnel-approval-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden', 'true');
+    pendingConfirmation = null;
+}
+
+function showConfirmation(id, action, message, confirmLabel) {
+    const overlay = document.querySelector('#personnel-approval-overlay');
+    const title = document.querySelector('#personnel-approval-title');
+    const messageElement = document.querySelector('#personnel-approval-message');
+    const confirmButton = document.querySelector('#personnel-approval-confirm');
+    if (!overlay) return;
+
+    pendingConfirmation = { id, action };
+    title.textContent = action === 'Paid' ? 'Mark Reservation as Paid' : `${action} Reservation`;
+    messageElement.textContent = message;
+    confirmButton.textContent = confirmLabel;
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
 }
 
 function showMessage(title, message, onClose) {
@@ -235,8 +297,23 @@ document.querySelector('#modal-close-btn')?.addEventListener('click', closeReser
 document.querySelector('#reservation-modal')?.addEventListener('click', event => {
     if (event.target.id === 'reservation-modal') closeReservationModal();
 });
+document.querySelector('#personnel-approval-cancel')?.addEventListener('click', closeConfirmation);
+document.querySelector('#personnel-approval-overlay')?.addEventListener('click', event => {
+    if (event.target.id === 'personnel-approval-overlay') closeConfirmation();
+});
+document.querySelector('#personnel-approval-confirm')?.addEventListener('click', () => {
+    const confirmation = pendingConfirmation;
+    closeConfirmation();
+    if (!confirmation) return;
+    if (confirmation.action === 'Paid') {
+        updatePaymentStatus(confirmation.id, 'Paid');
+    } else {
+        updateReservationStatus(confirmation.id, confirmation.action);
+    }
+});
 document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closeReservationModal();
+    if (event.key === 'Escape') closeConfirmation();
 });
 
 setupFilters();

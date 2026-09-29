@@ -126,6 +126,18 @@
     </div>
   </div>
 
+  <div class="message-overlay" id="personnel-approval-overlay" aria-hidden="true">
+    <div class="message-box" role="dialog" aria-modal="true" aria-labelledby="personnel-approval-title">
+      <div class="message-icon">?</div>
+      <h2 id="personnel-approval-title">Approve Reservation</h2>
+      <p id="personnel-approval-message">Are you sure you want to approve this reservation?</p>
+      <div style="display: flex; justify-content: center; gap: .75rem;">
+        <button class="table-button" id="personnel-approval-cancel" type="button">Cancel</button>
+        <button class="message-ok-btn" id="personnel-approval-confirm" type="button">Confirm / Approve</button>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="../js/personnel-reservations.js"></script>
 </body>
 </html>

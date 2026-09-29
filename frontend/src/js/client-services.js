@@ -27,14 +27,8 @@ const reservationService =
 const reservationDate =
     document.querySelector('#reservation-date');
 
-const reservationTime =
-    document.querySelector('#reservation-time');
-
 const reservationPurpose =
     document.querySelector('#reservation-purpose');
-
-const reservationEndTime =
-    document.querySelector('#reservation-end-time');
 
 const reservationParticipants =
     document.querySelector('#reservation-participants');
@@ -44,6 +38,78 @@ const reservationDetails =
 
 const submitReservationBtn =
     document.querySelector('#submit-reservation-btn');
+
+const reservationDateMessage =
+    document.querySelector('#reservation-date-message');
+
+const RESERVATION_START_TIME = '08:00:00';
+const RESERVATION_END_TIME = '22:00:00';
+const RESERVATIONS_API_URL = 'http://localhost:3001/api/reservations';
+const DUPLICATE_DATE_MESSAGE = 'Sorry, this date is already reserved. Please select another available date.';
+const INACTIVE_RESERVATION_STATUSES = new Set([
+    'Declined',
+    'Rejected',
+    'Cancelled',
+    'Completed'
+]);
+
+function setDateAvailabilityMessage(message = '') {
+    if (!reservationDateMessage) {
+        return;
+    }
+
+    reservationDateMessage.textContent = message;
+    reservationDateMessage.style.display = message ? 'block' : 'none';
+    reservationDateMessage.style.marginTop = '.35rem';
+    reservationDateMessage.style.color = '#b42318';
+}
+
+function showDateUnavailableMessage() {
+    showMessage(
+        'Reservation Date Unavailable',
+        DUPLICATE_DATE_MESSAGE,
+        '!'
+    );
+}
+
+async function isDateReserved(date) {
+    const response = await fetch(RESERVATIONS_API_URL);
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Unable to check reservation availability.');
+    }
+
+    return (data.reservations || []).some((reservation) => {
+        const reservationDate = String(reservation.reservation_date || '').slice(0, 10);
+        const status = String(reservation.status || '').trim();
+
+        return reservationDate === date && !INACTIVE_RESERVATION_STATUSES.has(status);
+    });
+}
+
+if (reservationDate) {
+    reservationDate.addEventListener('change', async () => {
+        const date = reservationDate.value;
+
+        setDateAvailabilityMessage('');
+
+        if (!date) {
+            return;
+        }
+
+        try {
+            if (await isDateReserved(date) && reservationDate.value === date) {
+                showDateUnavailableMessage();
+            }
+        } catch (error) {
+            console.error('DATE AVAILABILITY ERROR:', error);
+            setDateAvailabilityMessage(
+                'Unable to verify this date. Please try again before submitting.'
+            );
+        }
+    });
+}
 
 // =========================================
 // SUBMIT RESERVATION
@@ -56,8 +122,6 @@ if (submitReservationBtn) {
         const service = reservationService.value.trim();
         const purpose = reservationPurpose.value.trim();
         const date = reservationDate.value;
-        const startTime = reservationTime.value;
-        const endTime = reservationEndTime.value;
         const participants = reservationParticipants.value.trim();
         const details = reservationDetails.value.trim();
 
@@ -69,8 +133,6 @@ if (submitReservationBtn) {
             !service ||
             !purpose ||
             !date ||
-            !startTime ||
-            !endTime ||
             !participants ||
             !details
         ) {
@@ -82,11 +144,6 @@ if (submitReservationBtn) {
 
         if (Number(participants) < 1) {
             alert('Number of participants must be at least 1.');
-            return;
-        }
-
-        if (endTime <= startTime) {
-            alert('End time must be later than start time.');
             return;
         }
 
@@ -106,6 +163,17 @@ if (submitReservationBtn) {
             return;
         }
 
+        try {
+            if (await isDateReserved(date)) {
+                showDateUnavailableMessage();
+                return;
+            }
+        } catch (error) {
+            console.error('DATE AVAILABILITY ERROR:', error);
+            alert('Unable to verify reservation availability. Please try again.');
+            return;
+        }
+
         // =========================================
         // SEND TO BACKEND
         // =========================================
@@ -113,7 +181,7 @@ if (submitReservationBtn) {
         try {
 
             const response = await fetch(
-                'http://localhost:3001/api/reservations',
+                RESERVATIONS_API_URL,
                 {
                     method: 'POST',
 
@@ -127,8 +195,9 @@ if (submitReservationBtn) {
                         service: service,
                         purpose: purpose,
                         reservation_date: date,
-                        reservation_time: startTime,
-                        end_time: endTime,
+                        reservation_time: RESERVATION_START_TIME,
+                        start_time: RESERVATION_START_TIME,
+                        end_time: RESERVATION_END_TIME,
                         participants: Number(participants),
                         reservation_details: details
 
@@ -152,18 +221,21 @@ showMessage(
 );
 
                 reservationDate.value = '';
-                reservationTime.value = '';
                 reservationPurpose.value = '';
-                reservationEndTime.value = '';
                 reservationParticipants.value = '';
                 reservationDetails.value = '';
+                setDateAvailabilityMessage('');
 
             } else {
 
-                alert(
-                    data.message ||
-                    'Failed to submit reservation.'
-                );
+                if (data.message === DUPLICATE_DATE_MESSAGE) {
+                    showDateUnavailableMessage();
+                } else {
+                    alert(
+                        data.message ||
+                        'Failed to submit reservation.'
+                    );
+                }
 
             }
 
