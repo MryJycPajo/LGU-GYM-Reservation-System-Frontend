@@ -14,7 +14,7 @@
     content="#087348"
   />
 
-  <title>Billing &amp; Payments | LGU Gym</title>
+  <title>Billing | LGU Gym</title>
 
   <link
     rel="stylesheet"
@@ -92,12 +92,14 @@
           Reservations
         </a>
 
-        <a
-          class="nav-item active"
-          href="./admin-billing.html"
-        >
+        <a class="nav-item active" href="./admin-billing.html">
           <span>₱</span>
-          Billing &amp; Payments
+          Billing
+        </a>
+
+        <a class="nav-item" href="./admin-payments.html">
+          <span>▣</span>
+          Payments
         </a>
 
         <a
@@ -153,7 +155,7 @@
 
           <span>/</span>
 
-          BILLING &amp; PAYMENTS
+          BILLING
 
         </div>
 
@@ -194,16 +196,16 @@
 
             <div>
 
-              <p class="eyebrow">
-                PAYMENT MONITORING
+                <p class="eyebrow">
+                RESERVATION BILLING
               </p>
 
               <h1>
-                Billing &amp; Payments
+                Billing
               </h1>
 
               <p>
-                Review reservation billing and payment records.
+                Review reservation charges, balances, and payment status.
               </p>
 
             </div>
@@ -227,30 +229,6 @@
                 type="search"
                 placeholder="Search client, reservation ID, or date"
               />
-
-              <button
-                class="filter-chip active"
-                type="button"
-                data-status="All"
-              >
-                All
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-                data-status="Paid"
-              >
-                Paid
-              </button>
-
-              <button
-                class="filter-chip"
-                type="button"
-                data-status="Unpaid"
-              >
-                Unpaid
-              </button>
 
             </div>
 
@@ -279,17 +257,21 @@
                       Service
                     </th>
 
-                    <th>
-                      Amount
-                    </th>
+                    <th>Rental Date</th>
+
+                    <th>Days</th>
+
+                    <th>Rate / Day</th>
+
+                    <th>Total Due</th>
 
                     <th>
                       Payment Status
                     </th>
 
-                    <th>
-                      Payment Date
-                    </th>
+                    <th>Outstanding</th>
+
+                    <th>Record Payment</th>
 
                   </tr>
 
@@ -308,7 +290,7 @@
                   <tr>
 
                     <td
-                      colspan="6"
+                      colspan="10"
                       style="text-align: center;"
                     >
                       Loading billing records...
@@ -330,6 +312,26 @@
 
     </main>
 
+  </div>
+
+  <div class="billing-payment-modal" id="billing-payment-modal" role="dialog" aria-modal="true" aria-labelledby="billing-payment-title">
+    <div class="billing-payment-card">
+      <div class="billing-modal-heading"><div class="billing-avatar" id="billing-client-initials">C</div><div><p class="eyebrow">BILLING DETAILS</p><h2 id="billing-payment-title">Confirm Payment</h2><strong id="billing-client-name">Client</strong></div><button type="button" class="modal-close" id="billing-payment-close" aria-label="Close billing details">×</button></div>
+      <form id="billing-payment-form">
+        <div class="billing-detail-grid"><div><span>Client ID</span><strong id="billing-client-id">—</strong></div><div><span>Reservation ID</span><strong id="billing-reservation-id">—</strong></div><div><span>Rental date(s)</span><strong id="billing-rental-date">—</strong></div><div><span>Rental days</span><strong id="billing-rental-days">—</strong></div><div><span>Rate per day</span><strong id="billing-rate-per-day">—</strong></div><div class="billing-total"><span>Total amount due</span><strong id="billing-total-due">—</strong></div></div>
+        <div class="billing-form-grid"><label>Payment method<select id="billing-payment-method" required><option value="Cash" selected>Cash</option></select></label><label>Payment date<input id="billing-payment-date" type="date" required></label></div>
+        <p class="payment-contract-notice" id="billing-payment-error" hidden></p><div class="billing-modal-actions"><button type="button" class="table-button" id="billing-payment-cancel">Cancel</button><button type="submit" class="message-ok-btn" id="billing-payment-confirm">Confirm Payment</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="message-overlay" id="billing-payment-success" aria-hidden="true">
+    <div class="message-box">
+      <div class="message-icon">✓</div>
+      <h2>Payment Recorded</h2>
+      <p id="billing-payment-success-text"></p>
+      <button type="button" class="message-ok-btn" id="billing-payment-success-close">OK</button>
+    </div>
   </div>
 
 

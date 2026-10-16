@@ -66,7 +66,7 @@ async function loadPersonnelHistory() {
         }
 
         const reservations = (data.reservations || [])
-            .filter(reservation => reservation.status !== 'Pending');
+            .filter(reservation => reservation.status === 'Completed');
 
         if (reservations.length === 0) {
             table.innerHTML = '<tr><td colspan="10">No reservation history found.</td></tr>';

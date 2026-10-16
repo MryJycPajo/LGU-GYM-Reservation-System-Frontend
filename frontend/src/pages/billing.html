@@ -29,6 +29,11 @@
       rel="stylesheet"
       href="../css/client-dashboard.css"
     />
+
+    <link
+      rel="stylesheet"
+      href="../css/admin-ui.css"
+    />
   </head>
 
   <body>
@@ -205,12 +210,13 @@
                       <th>Amount</th>
                       <th>Payment Status</th>
                       <th>Payment Date</th>
+                      <th>Receipt</th>
                     </tr>
                   </thead>
 
 <tbody id="billing-list">
     <tr>
-        <td colspan="5" style="text-align: center;">
+        <td colspan="6" style="text-align: center;">
             Loading payment records...
         </td>
     </tr>
@@ -228,6 +234,14 @@
 
       </main>
 
+    </div>
+
+    <div class="billing-payment-modal" id="client-receipt-modal" role="dialog" aria-modal="true" aria-labelledby="client-receipt-title">
+      <div class="billing-payment-card">
+        <div class="billing-modal-heading"><div class="billing-avatar" id="client-receipt-initials">C</div><div><p class="eyebrow">LGU GYM RESERVATION SYSTEM</p><h2 id="client-receipt-title">Payment Receipt</h2><strong id="client-receipt-client-name">—</strong></div><button type="button" class="modal-close" id="client-receipt-close" aria-label="Close receipt">×</button></div>
+        <div class="billing-detail-grid"><div><span>Transaction ID</span><strong id="client-receipt-transaction-id">—</strong></div><div><span>Reservation ID</span><strong id="client-receipt-reservation-id">—</strong></div><div><span>Rental date(s)</span><strong id="client-receipt-rental-date">—</strong></div><div><span>Rental days</span><strong id="client-receipt-rental-days">—</strong></div><div><span>Daily rental rate</span><strong id="client-receipt-daily-rate">—</strong></div><div class="billing-total"><span>Total amount paid</span><strong id="client-receipt-amount">—</strong></div><div><span>Payment date</span><strong id="client-receipt-payment-date">—</strong></div><div><span>Payment method</span><strong id="client-receipt-payment-method">—</strong></div></div>
+        <div class="billing-modal-actions"><button type="button" class="message-ok-btn" id="client-receipt-close-action">Close</button></div>
+      </div>
     </div>
 
 

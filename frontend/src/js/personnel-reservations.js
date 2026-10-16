@@ -113,9 +113,6 @@ function renderReservations(table) {
                     <button class="table-button approve-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Approve</button>
                     <button class="table-button decline-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Decline</button>
                 ` : ''}
-                ${reservation.status === 'Approved' && reservation.payment_status === 'Unpaid' ? `
-                    <button class="table-button paid-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Mark as Paid</button>
-                ` : ''}
                 ${reservation.status === 'Approved' && reservation.payment_status === 'Paid' ? `
                     <button class="table-button complete-personnel-reservation" data-id="${escapeHtml(reservation.reservation_id)}" type="button">Complete</button>
                 ` : ''}
@@ -138,17 +135,6 @@ function renderReservations(table) {
                 status,
                 `Are you sure you want to mark this reservation as ${status.toLowerCase()}?`,
                 status === 'Approved' ? 'Confirm / Approve' : 'Confirm / Decline'
-            );
-        });
-    });
-
-    table.querySelectorAll('.paid-personnel-reservation').forEach(button => {
-        button.addEventListener('click', () => {
-            showConfirmation(
-                button.dataset.id,
-                'Paid',
-                'Are you sure you want to mark this reservation as paid?',
-                'Mark as Paid'
             );
         });
     });
@@ -207,27 +193,6 @@ async function updateReservationStatus(id, status) {
     } catch (error) {
         console.error('PERSONNEL STATUS UPDATE ERROR:', error);
         showMessage('Update Failed', 'Unable to update this reservation.');
-    }
-}
-
-async function updatePaymentStatus(id, paymentStatus) {
-    try {
-        const response = await fetch(`${API_URL}/${id}/payment`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ payment_status: paymentStatus })
-        });
-        const data = await response.json();
-        if (!data.success) throw new Error(data.message || 'Unable to update payment status.');
-
-        showMessage(
-            'Payment Updated',
-            `Reservation #${id} has been marked as ${paymentStatus}.`,
-            () => loadReservations()
-        );
-    } catch (error) {
-        console.error('PERSONNEL PAYMENT UPDATE ERROR:', error);
-        showMessage('Payment Update Failed', 'Unable to update payment status.');
     }
 }
 
@@ -305,11 +270,7 @@ document.querySelector('#personnel-approval-confirm')?.addEventListener('click',
     const confirmation = pendingConfirmation;
     closeConfirmation();
     if (!confirmation) return;
-    if (confirmation.action === 'Paid') {
-        updatePaymentStatus(confirmation.id, 'Paid');
-    } else {
-        updateReservationStatus(confirmation.id, confirmation.action);
-    }
+    updateReservationStatus(confirmation.id, confirmation.action);
 });
 document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closeReservationModal();

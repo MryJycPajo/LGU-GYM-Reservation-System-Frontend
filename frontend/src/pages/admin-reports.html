@@ -35,49 +35,56 @@
   <style>
     .report-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
     }
 
     .report-card {
       background: #fff;
-      border-radius: 14px;
-      padding: 22px;
+      min-width: 0;
+      border-radius: 9px;
+      padding: 10px 11px;
       border: 1px solid #e5e7eb;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .report-card p {
-      margin: 0 0 8px;
+      margin: 0 0 3px;
       color: #667085;
-      font-size: 14px;
+      font-size: 11px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
     }
 
     .report-card strong {
-      font-size: 28px;
+      display: block;
+      font-size: 19px;
+      line-height: 1.2;
+      white-space: nowrap;
       color: #087348;
     }
 
     .chart-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 14px;
     }
 
     .report-panel {
-      padding: 22px;
-      min-height: 360px;
+      padding: 14px;
+      min-height: 0;
     }
 
     .report-panel h2 {
-      margin-bottom: 20px;
+      margin: 0 0 10px;
+      font-size: 1rem;
     }
 
     .chart-container {
       position: relative;
       width: 100%;
-      height: 280px;
+      height: 220px;
     }
 
     .chart-full {
@@ -90,9 +97,31 @@
       color: #667085;
     }
 
+    .report-controls {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 18px;
+    }
+
+    .report-controls label {
+      color: #527263;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .report-controls input {
+      margin-left: 8px;
+      border: 1px solid #cfdfd5;
+      border-radius: 7px;
+      padding: 8px 10px;
+      color: #183f2c;
+      background: #fff;
+      font: inherit;
+    }
+
     @media (max-width: 900px) {
       .report-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .chart-grid {
@@ -105,6 +134,20 @@
     }
 
     @media (max-width: 600px) {
+      .report-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .report-panel {
+        padding: 12px;
+      }
+
+      .chart-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 380px) {
       .report-grid {
         grid-template-columns: 1fr;
       }
@@ -172,7 +215,12 @@
           href="./admin-billing.html"
         >
           <span>₱</span>
-          Billing & Payments
+          Billing
+        </a>
+
+        <a class="nav-item" href="./admin-payments.html">
+          <span>▣</span>
+          Payments
         </a>
 
         <a
@@ -271,33 +319,25 @@
 
           </div>
 
+          <div class="report-controls">
+            <label>
+              Revenue month
+              <input id="report-month-filter" type="month" />
+            </label>
+          </div>
+
 
           <!-- REPORT SUMMARY -->
           <div class="report-grid">
 
             <article class="report-card">
-
-              <p>
-                Total Clients
-              </p>
-
-              <strong id="report-total-clients">
-                0
-              </strong>
-
+              <p>Collected Revenue</p>
+              <strong id="report-collected-revenue">₱0.00</strong>
             </article>
 
-
             <article class="report-card">
-
-              <p>
-                Total Personnel
-              </p>
-
-              <strong id="report-total-personnel">
-                0
-              </strong>
-
+              <p>Unpaid Balance</p>
+              <strong id="report-unpaid-balance">₱0.00</strong>
             </article>
 
 
@@ -381,27 +421,11 @@
             </article>
 
 
-            <!-- MONTHLY REPORT -->
-            <article class="panel report-panel">
-
-              <h2>
-                Monthly Reservations
-              </h2>
-
-              <div class="chart-container">
-
-                <canvas id="monthly-chart"></canvas>
-
-              </div>
-
-            </article>
-
-
             <!-- REVENUE -->
             <article class="panel report-panel chart-full">
 
               <h2>
-                Revenue Summary
+                Monthly Collected Revenue
               </h2>
 
               <div class="chart-container">

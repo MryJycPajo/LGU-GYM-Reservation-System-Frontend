@@ -63,7 +63,7 @@ async function loadClientReservations() {
 
             reservationsTable.innerHTML = `
                 <tr>
-                    <td colspan="10">
+                    <td colspan="8">
                         Unable to load your reservations.
                     </td>
                 </tr>
@@ -82,7 +82,7 @@ async function loadClientReservations() {
 
             reservationsTable.innerHTML = `
                 <tr>
-                    <td colspan="10">
+                    <td colspan="8">
                         You have no reservations yet.
                     </td>
                 </tr>
@@ -103,7 +103,7 @@ async function loadClientReservations() {
 
         reservationsTable.innerHTML = `
             <tr>
-                <td colspan="10">
+                <td colspan="8">
                     Cannot connect to the server.
                 </td>
             </tr>
@@ -136,7 +136,7 @@ function renderReservations() {
     });
 
     if (!filteredReservations.length) {
-        reservationsTable.innerHTML = '<tr><td colspan="10">No matching reservations found.</td></tr>';
+        reservationsTable.innerHTML = '<tr><td colspan="8">No matching reservations found.</td></tr>';
         return;
     }
 
@@ -161,29 +161,18 @@ function renderReservations() {
                 </td>
 
                 <td>
-                    ${formatTime(reservation.reservation_time)}
-                </td>
-
-                <td>
-                    ${formatTime(reservation.end_time)}
-                </td>
-
-                <td>
                     ${escapeHtml(reservation.participants ?? '—')}
                 </td>
-
                 <td>
                     <span class="status ${getStatusClass(reservation.status)}">
                         ${escapeHtml(reservation.status || '—')}
                     </span>
                 </td>
-
                 <td>
                     <span class="status ${getPaymentStatusClass(reservation.payment_status)}">
                         ${escapeHtml(reservation.payment_status || '—')}
                     </span>
                 </td>
-
                 <td>
                     <button
                         class="table-button view-reservation-btn"

@@ -70,6 +70,69 @@
   background: #e7f5eb;
 }
 
+.payment-contract-notice {
+  margin: 0 0 1rem;
+  padding: .75rem .9rem;
+  border: 1px solid #d4e4da;
+  border-radius: 7px;
+  color: #527263;
+  background: #f5faf6;
+  font-size: .76rem;
+  line-height: 1.5;
+}
+
+.billing-payment-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(13, 45, 29, .42);
+}
+
+.billing-payment-modal.show { display: flex; }
+
+.billing-payment-card {
+  width: min(680px, 100%);
+  max-height: min(760px, 92vh);
+  overflow-y: auto;
+  border: 1px solid #d5e4da;
+  border-radius: 12px;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(20, 56, 38, .22);
+}
+
+.billing-modal-heading {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1ece5;
+}
+
+.billing-modal-heading h2 { margin: 0 .2rem .2rem 0; color: #183f2c; font-size: 1.25rem; }
+.billing-modal-heading strong { color: #527263; font-size: .86rem; }
+.billing-modal-heading .modal-close { margin-left: auto; }
+.billing-avatar { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 50%; color: #fff; background: #087348; font-weight: 800; }
+.billing-detail-grid, .billing-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin-top: 1rem; }
+.billing-detail-grid > div { padding: .75rem; border: 1px solid #e1ece5; border-radius: 7px; background: #f7fbf8; }
+.billing-detail-grid span, .billing-form-grid span { display: block; margin-bottom: .25rem; color: #73867b; font-size: .7rem; }
+.billing-detail-grid strong { color: #183f2c; font-size: .84rem; }
+.billing-detail-grid .billing-total { border-color: #b9dcc5; background: #e7f5eb; }
+.billing-detail-grid .billing-total strong { color: #087348; font-size: 1.15rem; }
+.billing-form-grid label { color: #527263; font-size: .75rem; font-weight: 700; }
+.billing-form-grid input, .billing-form-grid select, .billing-form-grid textarea { width: 100%; box-sizing: border-box; margin-top: .35rem; border: 1px solid #cfdfd5; border-radius: 6px; padding: .65rem; color: #183f2c; background: #fff; font: inherit; }
+.billing-modal-actions { display: flex; justify-content: flex-end; gap: .65rem; margin-top: 1rem; }
+
+@media (max-width: 560px) {
+  .billing-detail-grid, .billing-form-grid { grid-template-columns: 1fr; }
+  .billing-modal-actions { flex-direction: column-reverse; }
+  .billing-modal-actions button { width: 100%; }
+}
+
 .admin-ui-page .table-panel {
   padding: .65rem;
 }

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#087348" />
+  <title>Payments | LGU Gym</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/admin-ui.css" />
+</head>
+<body class="admin-static-page">
+  <div class="admin-shell admin-ui-page">
+    <aside class="sidebar">
+      <a class="admin-brand" href="./admin-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a>
+      <nav aria-label="Admin navigation">
+        <a class="nav-item" href="./admin-dashboard.html"><span>⌂</span>Dashboard</a>
+        <a class="nav-item" href="./user-accounts.html"><span>♙</span>User Accounts</a>
+        <a class="nav-item" href="./pending-approvals.html"><span>◷</span>Pending Approvals</a>
+        <a class="nav-item" href="./admin-reservations.html"><span>●</span>Reservations</a>
+        <a class="nav-item" href="./admin-billing.html"><span>₱</span>Billing</a>
+        <a class="nav-item active" href="./admin-payments.html"><span>▣</span>Payments</a>
+        <a class="nav-item" href="./admin-history.html"><span>≡</span>History / Records</a>
+        <a class="nav-item" href="./admin-reports.html"><span>▥</span>Reports</a>
+      </nav>
+      <div class="sidebar-bottom"><a class="nav-item" href="../login.html"><span>←</span>Log Out</a><p>© 2026 Local Government Unit</p></div>
+    </aside>
+    <main class="admin-main">
+      <header class="topbar"><div class="crumb">ADMIN PORTAL <span>/</span> PAYMENTS</div><div class="admin-profile"><span class="profile-avatar">A</span><span><b>Administrator</b><small>System Admin</small></span></div></header>
+      <div class="dashboard-content">
+        <section class="admin-section">
+          <div class="section-intro"><div><p class="eyebrow">PAYMENT TRANSACTIONS</p><h1>Payments</h1><p>Review saved payment records returned by the reservation service.</p></div></div>
+          <article class="panel table-panel">
+            <div class="filter-row"><input class="search-input" id="payments-search" type="search" placeholder="Search reservation, client, or date" /><button class="filter-chip active" type="button" data-status="All">All</button><button class="filter-chip" type="button" data-status="Paid">Paid</button></div>
+            <div class="table-wrap"><table><thead><tr><th>Payment ID</th><th>Reservation ID</th><th>Client</th><th>Amount Paid</th><th>Payment Date</th><th>Payment Method</th><th>Recorded By</th><th>Status</th><th>Receipt</th></tr></thead><tbody id="payments-list"><tr><td colspan="9">Loading payment records...</td></tr></tbody></table></div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="billing-payment-modal" id="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receipt-title">
+    <div class="billing-payment-card">
+      <div class="billing-modal-heading"><div class="billing-avatar" id="receipt-initials">LG</div><div><p class="eyebrow">LGU GYM RESERVATION SYSTEM</p><h2 id="receipt-title">Payment Receipt</h2><strong id="receipt-client-name">—</strong></div><button type="button" class="modal-close" id="receipt-close" aria-label="Close receipt">×</button></div>
+      <div class="billing-detail-grid"><div><span>Transaction ID</span><strong id="receipt-transaction-id">—</strong></div><div><span>Reservation ID</span><strong id="receipt-reservation-id">—</strong></div><div><span>Rental date(s)</span><strong id="receipt-rental-date">—</strong></div><div><span>Rental days</span><strong id="receipt-rental-days">—</strong></div><div><span>Daily rental rate</span><strong id="receipt-daily-rate">—</strong></div><div class="billing-total"><span>Total amount paid</span><strong id="receipt-amount">—</strong></div><div><span>Payment date</span><strong id="receipt-payment-date">—</strong></div><div><span>Payment method</span><strong id="receipt-payment-method">—</strong></div><div><span>Recorded by</span><strong id="receipt-recorded-by">—</strong></div></div>
+      <div class="billing-modal-actions"><button type="button" class="table-button" id="receipt-print">Print Receipt</button><button type="button" class="message-ok-btn" id="receipt-close-action">Close</button></div>
+    </div>
+  </div>
+  <script type="module" src="../js/payments.js"></script>
+</body>
+</html>

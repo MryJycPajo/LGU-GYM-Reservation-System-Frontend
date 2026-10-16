@@ -28,7 +28,7 @@ async function loadReservations() {
         if (!data.success) {
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="9">
+                    <td colspan="7">
                         Unable to load reservations.
                     </td>
                 </tr>
@@ -45,7 +45,7 @@ async function loadReservations() {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="9">
+                    <td colspan="7">
                     Cannot connect to the server.
                 </td>
             </tr>
@@ -102,7 +102,7 @@ function displayReservations() {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="9">
+                <td colspan="7">
                     No reservations found.
                 </td>
             </tr>
@@ -136,18 +136,6 @@ function displayReservations() {
                 <td>
                     ${formatDate(
                         reservation.reservation_date
-                    )}
-                </td>
-
-                <td>
-                    ${formatTime(
-                        reservation.reservation_time
-                    )}
-                </td>
-
-                <td>
-                    ${formatTime(
-                        reservation.end_time
                     )}
                 </td>
 
@@ -200,22 +188,6 @@ function displayReservations() {
                                 data-id="${reservation.reservation_id}"
                             >
                                 Decline
-                            </button>
-                        `
-                        : ''
-                    }
-
-                    <!-- MARK PAID -->
-                    ${
-                        reservation.status === 'Approved' &&
-                        reservation.payment_status === 'Unpaid'
-                        ? `
-                            <button
-                                class="table-button paid-btn"
-                                type="button"
-                                data-id="${reservation.reservation_id}"
-                            >
-                                Mark Paid
                             </button>
                         `
                         : ''
@@ -338,28 +310,6 @@ function setupActionButtons() {
 
 
     // =================================
-    // MARK PAID
-    // =================================
-
-    document
-        .querySelectorAll('.paid-btn')
-        .forEach(button => {
-
-            button.addEventListener('click', async () => {
-
-                const id = button.dataset.id;
-
-                await updatePaymentStatus(
-                    id,
-                    'Paid'
-                );
-
-            });
-
-        });
-
-
-    // =================================
     // COMPLETE
     // =================================
 
@@ -461,73 +411,6 @@ async function updateReservationStatus(id, status) {
 
         console.error(
             'Update reservation status error:',
-            error
-        );
-
-        showMessage(
-            'Server Error',
-            'Cannot connect to the server.',
-            '!'
-        );
-
-    }
-
-}
-
-// =====================================
-// UPDATE PAYMENT STATUS
-// =====================================
-
-async function updatePaymentStatus(id, paymentStatus) {
-
-    try {
-
-        const response = await fetch(
-            `${API_URL}/${id}/payment`,
-            {
-                method: 'PUT',
-
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-
-                body: JSON.stringify({
-                    payment_status: paymentStatus
-                })
-            }
-        );
-
-        const data = await response.json();
-
-        console.log('PAYMENT UPDATE RESPONSE:', data);
-
-        if (!data.success) {
-
-            showMessage(
-                'Payment Update Failed',
-                data.message || 'Unable to update payment status.',
-                '!'
-            );
-
-            return;
-        }
-
-        // =================================
-        // PAYMENT SUCCESS MESSAGE
-        // =================================
-
-        showMessage(
-            'Payment Updated',
-            `Reservation #${id} has been marked as ${paymentStatus}.`,
-            '✓'
-        );
-
-        await loadReservations();
-
-    } catch (error) {
-
-        console.error(
-            'Update payment status error:',
             error
         );
 

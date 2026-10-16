@@ -92,7 +92,7 @@ async function loadHistory() {
 
                         <td>
                             <span class="status completed">
-                                Completed
+                                ${escapeHTML(reservation.status || "—")}
                             </span>
                         </td>
 

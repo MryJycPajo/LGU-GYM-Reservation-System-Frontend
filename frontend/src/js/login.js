@@ -97,6 +97,10 @@ form.addEventListener('submit', async (event) => {
 
         if (data.success) {
 
+            if (data.token) {
+                localStorage.setItem('auth_token', data.token);
+            }
+
             message.textContent =
                 'Login Successful!';
 

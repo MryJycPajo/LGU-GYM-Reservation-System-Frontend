@@ -4,12 +4,19 @@
 // =====================================
 
 const API_URL = 'http://localhost:3001/api';
+const PAYMENTS_API_URL = `${API_URL}/payments`;
 
 let reservationChart = null;
 let accountChart = null;
 let paymentChart = null;
-let monthlyChart = null;
 let revenueChart = null;
+let reportReservations = [];
+let reportTransactions = [];
+
+function authHeaders() {
+    const token = localStorage.getItem('auth_token');
+    return token ? { Authorization: `Bearer ${token}` } : {};
+}
 
 
 // =====================================
@@ -40,6 +47,28 @@ async function loadReports() {
         }
 
         const reservations = data.reservations || [];
+        reportReservations = reservations;
+
+        const paymentResponse = await fetch(PAYMENTS_API_URL, {
+            headers: authHeaders()
+        });
+        const paymentData = await paymentResponse.json();
+
+        if (paymentResponse.status === 401) {
+            throw new Error('Your login session is missing or expired.');
+        }
+
+        if (paymentResponse.status === 403) {
+            throw new Error('You are not authorized to view payment transactions.');
+        }
+
+        if (!paymentResponse.ok || !paymentData.success) {
+            throw new Error(paymentData.message || 'Failed to load payment transactions.');
+        }
+
+        reportTransactions = Array.isArray(paymentData.transactions)
+            ? paymentData.transactions
+            : [];
 
         console.log(
             'Report reservations:',
@@ -88,22 +117,6 @@ async function loadReports() {
             reservations.filter(
                 r => r.payment_status === 'Unpaid'
             ).length;
-
-
-        // =====================================
-        // REVENUE
-        // =====================================
-
-        const totalRevenue =
-            reservations
-                .filter(
-                    r => r.payment_status === 'Paid'
-                )
-                .reduce(
-                    (total, r) =>
-                        total + Number(r.amount || 0),
-                    0
-                );
 
 
         // =====================================
@@ -156,16 +169,6 @@ async function loadReports() {
         // =====================================
 
         setText(
-            '#report-total-clients',
-            totalClients
-        );
-
-        setText(
-            '#report-total-personnel',
-            totalPersonnel
-        );
-
-        setText(
             '#report-total-reservations',
             totalReservations
         );
@@ -174,6 +177,9 @@ async function loadReports() {
             '#report-completed',
             completed
         );
+
+        setupRevenueFilter();
+        updateRevenueReport();
 
 
         // =====================================
@@ -197,15 +203,6 @@ async function loadReports() {
             unpaid
         );
 
-        createMonthlyChart(
-            reservations
-        );
-
-        createRevenueChart(
-            reservations
-        );
-
-
     } catch (error) {
 
         console.error(
@@ -219,6 +216,69 @@ async function loadReports() {
 
     }
 
+}
+
+function setupRevenueFilter() {
+    const filter = document.querySelector('#report-month-filter');
+    if (!filter || filter.dataset.bound === 'true') return;
+
+    filter.value = new Date().toISOString().slice(0, 7);
+    filter.dataset.bound = 'true';
+    filter.addEventListener('change', updateRevenueReport);
+}
+
+function updateRevenueReport() {
+    const filter = document.querySelector('#report-month-filter');
+    const selectedMonth = filter?.value || new Date().toISOString().slice(0, 7);
+    const selectedYear = selectedMonth.slice(0, 4);
+
+    const collectedRevenue = reportTransactions
+        .filter(transaction => String(transaction.payment_date || '').slice(0, 7) === selectedMonth)
+        .reduce((total, transaction) => total + Number(transaction.amount || 0), 0);
+
+    const unpaidBalance = reportReservations
+        .filter(reservation => reservation.payment_status === 'Unpaid')
+        .reduce((total, reservation) => total + Number(reservation.amount || 0), 0);
+
+    setText('#report-collected-revenue', formatCurrency(collectedRevenue));
+    setText('#report-unpaid-balance', formatCurrency(unpaidBalance));
+    createTransactionRevenueChart(reportTransactions, selectedYear);
+}
+
+function formatCurrency(value) {
+    return `₱${Number(value || 0).toLocaleString('en-PH', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+}
+
+function createTransactionRevenueChart(transactions, year) {
+    const canvas = document.querySelector('#revenue-chart');
+    if (!canvas) return;
+    if (revenueChart) revenueChart.destroy();
+
+    const monthlyRevenue = new Array(12).fill(0);
+    transactions.forEach(transaction => {
+        const paymentDate = String(transaction.payment_date || '');
+        if (!paymentDate.startsWith(year + '-')) return;
+        const month = Number(paymentDate.slice(5, 7)) - 1;
+        if (month >= 0 && month < 12) monthlyRevenue[month] += Number(transaction.amount || 0);
+    });
+
+    revenueChart = new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{ label: `Collected Revenue (${year})`, data: monthlyRevenue }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: value => formatCurrency(value) } }
+            }
+        }
+    });
 }
 
 
@@ -440,120 +500,6 @@ function createPaymentChart(
 
                     legend: {
                         position: 'bottom'
-                    }
-
-                }
-
-            }
-
-        });
-
-}
-
-
-// =====================================
-// MONTHLY RESERVATIONS
-// =====================================
-
-function createMonthlyChart(
-    reservations
-) {
-
-    const canvas =
-        document.querySelector(
-            '#monthly-chart'
-        );
-
-    if (!canvas) return;
-
-    if (monthlyChart) {
-        monthlyChart.destroy();
-    }
-
-
-    const monthNames = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-    ];
-
-    const monthlyCounts =
-        new Array(12).fill(0);
-
-
-    reservations.forEach(
-        reservation => {
-
-            if (
-                !reservation.reservation_date
-            ) {
-                return;
-            }
-
-            const date =
-                new Date(
-                    reservation.reservation_date
-                );
-
-            const month =
-                date.getMonth();
-
-            monthlyCounts[month]++;
-
-        }
-    );
-
-
-    monthlyChart =
-        new Chart(canvas, {
-
-            type: 'line',
-
-            data: {
-
-                labels: monthNames,
-
-                datasets: [{
-
-                    label:
-                        'Reservations',
-
-                    data:
-                        monthlyCounts,
-
-                    tension: 0.3,
-
-                    fill: false
-
-                }]
-
-            },
-
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                scales: {
-
-                    y: {
-
-                        beginAtZero: true,
-
-                        ticks: {
-                            precision: 0
-                        }
-
                     }
 
                 }
