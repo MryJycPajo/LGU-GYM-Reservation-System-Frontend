@@ -1,225 +1,132 @@
 const pendingAccountsList = document.querySelector('#pending-accounts-list');
-const approveButton = document.querySelector('#approve-account-btn');
-const declineButton = document.querySelector('#decline-account-btn');
+const filterButtons = document.querySelectorAll('.filter-chip');
 
+const API_URL = 'http://localhost:3001/api';
+let pendingAccounts = [];
 let selectedAccountId = null;
+let selectedFilter = 'all';
+let decisionInProgress = false;
 
+function authHeaders() {
+    const token = localStorage.getItem('auth_token');
+    return token ? { Authorization: `Bearer ${token}` } : {};
+}
 
-// =====================================
-// CENTER POPUP
-// =====================================
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function accountName(account) {
+    return `${account.firstname || ''} ${account.middlename || ''} ${account.lastname || ''}`
+        .replace(/\s+/g, ' ')
+        .trim();
+}
 
 function showMessage(message, type = 'success') {
+    document.querySelector('#system-message')?.remove();
 
-    // Remove old popup if naa
-    const oldPopup = document.querySelector('#system-message');
-
-    if (oldPopup) {
-        oldPopup.remove();
-    }
-
-    // Create popup
     const popup = document.createElement('div');
-
     popup.id = 'system-message';
-
     popup.innerHTML = `
         <div class="system-message-box">
-
-            <div class="system-message-icon">
-                ${type === 'success' ? '✓' : '!'}
-            </div>
-
-            <h2>
-                ${type === 'success' ? 'Success' : 'Notice'}
-            </h2>
-
-            <p>${message}</p>
-
-            <button type="button" id="system-message-close">
-                OK
-            </button>
-
+            <div class="system-message-icon">${type === 'success' ? '✓' : '!'}</div>
+            <h2>${type === 'success' ? 'Success' : 'Notice'}</h2>
+            <p>${escapeHtml(message)}</p>
+            <button type="button" id="system-message-close">OK</button>
         </div>
     `;
-
     document.body.appendChild(popup);
-
-    // Show popup
-    requestAnimationFrame(() => {
-        popup.classList.add('show');
-    });
-
-    // Close
-    popup.querySelector('#system-message-close')
-        .addEventListener('click', () => {
-            popup.remove();
-        });
+    requestAnimationFrame(() => popup.classList.add('show'));
+    popup.querySelector('#system-message-close').addEventListener('click', () => popup.remove());
 }
 
+function renderAccounts() {
+    const accounts = selectedFilter === 'all'
+        ? pendingAccounts
+        : pendingAccounts.filter(account => account.account_type === selectedFilter);
 
-// =====================================
-// LOAD PENDING ACCOUNTS
-// =====================================
+    pendingAccountsList.innerHTML = accounts.length
+        ? accounts.map(account => `
+            <tr>
+                <td>${escapeHtml(account.account_id)}</td>
+                <td>${escapeHtml(accountName(account))}</td>
+                <td><span class="type-pill ${(account.account_type || 'Client').toLowerCase()}">${escapeHtml(account.account_type || 'Client')}</span></td>
+                <td><span class="status pending-approval">${escapeHtml(account.status || 'Pending')}</span></td>
+                <td>
+                    <button class="table-button view-account-btn" type="button" data-account-id="${escapeHtml(account.account_id)}">View</button>
+                    <button class="approve-action row-decision-btn" type="button" data-account-id="${escapeHtml(account.account_id)}">Approve</button>
+                    <button class="decline-action row-decision-btn" type="button" data-account-id="${escapeHtml(account.account_id)}">Reject</button>
+                </td>
+            </tr>
+        `).join('')
+        : '<tr><td colspan="5" style="text-align:center;">No pending accounts found.</td></tr>';
+
+    pendingAccountsList.querySelectorAll('.view-account-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const account = pendingAccounts.find(item =>
+                String(item.account_id) === String(button.dataset.accountId)
+            );
+            if (account) selectAccount(account);
+        });
+    });
+
+    pendingAccountsList.querySelectorAll('.row-decision-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            decideAccount(button.classList.contains('approve-action') ? 'approve' : 'decline', button.dataset.accountId);
+        });
+    });
+}
 
 async function loadPendingAccounts() {
-
     try {
+        if (!localStorage.getItem('auth_token')) {
+            showMessage('Your session has expired. Please log in again.', 'error');
+            return;
+        }
 
-        const response = await fetch(
-            'http://localhost:3001/api/admin/pending'
-        );
-
+        const response = await fetch(`${API_URL}/admin/pending`, {
+            headers: authHeaders()
+        });
         const data = await response.json();
 
-        console.log('Pending accounts:', data);
-
-        if (!data.success) {
-
-            showMessage(
-                data.message || 'Failed to load accounts.',
-                'error'
-            );
-
+        if (response.status === 401) {
+            showMessage('Your session has expired. Please log in again.', 'error');
             return;
         }
 
-        pendingAccountsList.innerHTML = '';
-
-        // No pending accounts
-        if (!data.accounts || data.accounts.length === 0) {
-
-            pendingAccountsList.innerHTML = `
-                <tr>
-                    <td colspan="5" style="text-align:center;">
-                        No pending accounts found.
-                    </td>
-                </tr>
-            `;
-
-            approveButton.disabled = true;
-            declineButton.disabled = true;
-
-             clearAccountDetails();
-
-            return;
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || 'Failed to load pending accounts.');
         }
 
-
-        // =====================================
-        // DISPLAY ACCOUNTS
-        // =====================================
-
-        data.accounts.forEach(account => {
-
-            const row = document.createElement('tr');
-
-            const fullName =
-                `${account.firstname || ''} ${account.middlename || ''} ${account.lastname || ''}`
-                    .replace(/\s+/g, ' ')
-                    .trim();
-
-            const typeClass =
-                (account.account_type || 'Client').toLowerCase();
-
-            row.innerHTML = `
-                <td>${account.account_id}</td>
-
-                <td>${fullName}</td>
-
-                <td>
-                    <span class="type-pill ${typeClass}">
-                        ${account.account_type}
-                    </span>
-                </td>
-
-                <td>
-                    <span class="status pending-approval">
-                        ${account.status}
-                    </span>
-                </td>
-
-                <td>
-                    <button
-                        class="table-button view-account-btn"
-                        type="button"
-                        data-account-id="${account.account_id}">
-                        View
-                    </button>
-                </td>
-            `;
-
-            pendingAccountsList.appendChild(row);
-
-        });
-
-
-        // =====================================
-        // VIEW BUTTONS
-        // =====================================
-
-        document
-            .querySelectorAll('.view-account-btn')
-            .forEach(button => {
-
-                button.addEventListener('click', () => {
-
-                    const accountId =
-                        button.dataset.accountId;
-
-                    const account =
-                        data.accounts.find(
-                            item =>
-                                String(item.account_id) ===
-                                String(accountId)
-                        );
-
-                    if (!account) return;
-
-                    selectAccount(account);
-                });
-
-            });
-
+        pendingAccounts = Array.isArray(data.accounts) ? data.accounts : [];
+        if (selectedAccountId && !pendingAccounts.some(account =>
+            String(account.account_id) === String(selectedAccountId)
+        )) {
+            clearAccountDetails();
+        }
+        renderAccounts();
     } catch (error) {
-
-        console.error(
-            'Failed to load pending accounts:',
-            error
-        );
-
-        showMessage(
-            'Cannot connect to the server.',
-            'error'
-        );
+        console.error('Failed to load pending accounts:', error);
+        showMessage(error.message || 'Cannot connect to the server.', 'error');
     }
 }
 
-
-// =====================================
-// SELECT ACCOUNT
-// =====================================
-
 function selectAccount(account) {
-
     selectedAccountId = account.account_id;
-
-    const fullName =
-        `${account.firstname || ''} ${account.middlename || ''} ${account.lastname || ''}`
-            .replace(/\s+/g, ' ')
-            .trim();
-
     const details = {
         '#details-account-id': account.account_id || '—',
-        '#details-name': fullName || '—',
+        '#details-name': accountName(account) || '—',
         '#details-type': account.account_type || '—',
         '#details-email': account.email || '—',
         '#details-phone': account.phone_number || account.phone || '—',
         '#details-position': account.position || account.role || '—',
         '#details-status': account.status || '—',
-        '#details-created': account.created_at
-            ? new Date(account.created_at).toLocaleString()
-            : 'N/A'
+        '#details-created': account.created_at ? new Date(account.created_at).toLocaleString() : 'N/A'
     };
 
     Object.entries(details).forEach(([selector, value]) => {
@@ -227,25 +134,73 @@ function selectAccount(account) {
         if (element) element.textContent = value;
     });
 
-    const detailsModal = document.querySelector('#details-modal');
-    if (detailsModal) {
-        detailsModal.classList.add('visible');
-        detailsModal.setAttribute('aria-hidden', 'false');
-        document.querySelector('#close-details')?.focus();
-    }
-
-    approveButton.disabled = false;
-    declineButton.disabled = false;
-
-    console.log('Selected account:', account.account_id);
+    const modal = document.querySelector('#details-modal');
+    modal.classList.add('visible');
+    modal.setAttribute('aria-hidden', 'false');
+    document.querySelector('#close-details')?.focus();
 }
 
 function closeDetailsModal() {
-    const detailsModal = document.querySelector('#details-modal');
-    if (!detailsModal) return;
-    detailsModal.classList.remove('visible');
-    detailsModal.setAttribute('aria-hidden', 'true');
+    const modal = document.querySelector('#details-modal');
+    modal.classList.remove('visible');
+    modal.setAttribute('aria-hidden', 'true');
 }
+
+function clearAccountDetails() {
+    document.querySelectorAll('#details-content b').forEach(element => {
+        element.textContent = '—';
+    });
+    closeDetailsModal();
+    selectedAccountId = null;
+}
+
+async function decideAccount(decision, accountIdOverride = selectedAccountId) {
+    if (!accountIdOverride || decisionInProgress) return;
+
+    const accountId = accountIdOverride;
+    decisionInProgress = true;
+    pendingAccountsList.querySelectorAll('.row-decision-btn').forEach(button => {
+        button.disabled = true;
+    });
+
+    try {
+        const response = await fetch(`${API_URL}/personnel/${decision}/${encodeURIComponent(accountId)}`, {
+            method: 'PUT',
+            headers: authHeaders()
+        });
+        const data = await response.json();
+
+        if (response.status === 401) {
+            throw new Error('Your session has expired. Please log in again.');
+        }
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || `Failed to ${decision} account.`);
+        }
+
+        if (String(selectedAccountId) === String(accountId)) {
+            clearAccountDetails();
+        }
+        showMessage(data.message || `Account ${accountId} ${decision === 'approve' ? 'approved' : 'rejected'} successfully.`);
+        await loadPendingAccounts();
+    } catch (error) {
+        console.error(`${decision} account error:`, error);
+        showMessage(error.message || 'Cannot connect to the server.', 'error');
+    } finally {
+        decisionInProgress = false;
+        pendingAccountsList.querySelectorAll('.row-decision-btn').forEach(button => {
+            button.disabled = false;
+        });
+    }
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        selectedFilter = button.dataset.filter;
+        filterButtons.forEach(item => item.classList.toggle('active', item === button));
+        renderAccounts();
+    });
+});
 
 document.querySelector('#modal-x')?.addEventListener('click', closeDetailsModal);
 document.querySelector('#close-details')?.addEventListener('click', closeDetailsModal);
@@ -255,180 +210,5 @@ document.querySelector('#details-modal')?.addEventListener('click', event => {
 document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closeDetailsModal();
 });
-
-// =====================================
-// CLEAR ACCOUNT DETAILS
-// =====================================
-
-function clearAccountDetails() {
-
-    document.querySelectorAll('#details-content b').forEach(element => {
-        element.textContent = '—';
-    });
-
-    closeDetailsModal();
-
-    selectedAccountId = null;
-
-    approveButton.disabled = true;
-    declineButton.disabled = true;
-}
-
-
-// =====================================
-// APPROVE
-// =====================================
-
-approveButton.addEventListener('click', async () => {
-
-    if (!selectedAccountId) {
-
-        showMessage(
-            'Please select an account first.',
-            'error'
-        );
-
-        return;
-    }
-
-    const accountId = selectedAccountId;
-
-    try {
-
-        approveButton.disabled = true;
-        declineButton.disabled = true;
-
-        const response = await fetch(
-            `http://localhost:3001/api/personnel/approve/${accountId}`,
-            {
-                method: 'PUT'
-            }
-        );
-
-        const data = await response.json();
-
-        console.log('Approve response:', data);
-
-        if (!data.success) {
-
-            showMessage(
-                data.message || 'Failed to approve account.',
-                'error'
-            );
-
-            approveButton.disabled = false;
-            declineButton.disabled = false;
-
-            return;
-        }
-
-        selectedAccountId = null;
-
-clearAccountDetails();
-
-// SHOW POPUP
-showMessage(
-    `Account ${accountId} approved successfully.`,
-    'success'
-);
-
-// Refresh table
-await loadPendingAccounts();
-
-    } catch (error) {
-
-        console.error('Approve error:', error);
-
-        showMessage(
-            'Cannot connect to the server.',
-            'error'
-        );
-
-    }
-
-});
-
-
-// =====================================
-// DECLINE
-// =====================================
-
-declineButton.addEventListener('click', async () => {
-
-    if (!selectedAccountId) {
-
-        showMessage(
-            'Please select an account first.',
-            'error'
-        );
-
-        return;
-    }
-
-    const accountId = selectedAccountId;
-
-    try {
-
-        approveButton.disabled = true;
-        declineButton.disabled = true;
-
-        const response = await fetch(
-            `http://localhost:3001/api/personnel/decline/${accountId}`,
-            {
-                method: 'PUT'
-            }
-        );
-
-        const data = await response.json();
-
-        console.log('Decline response:', data);
-
-        if (!data.success) {
-
-            showMessage(
-                data.message || 'Failed to decline account.',
-                'error'
-            );
-
-            approveButton.disabled = false;
-            declineButton.disabled = false;
-
-            return;
-        }
-
-clearAccountDetails();
-
-showMessage(
-    `Account ${accountId} declined successfully.`,
-    'success'
-);
-
-await loadPendingAccounts();
-
-    } catch (error) {
-
-        console.error('Decline error:', error);
-
-        showMessage(
-            'Cannot connect to the server.',
-            'error'
-        );
-
-    }
-
-});
-
-
-// =====================================
-// INITIAL STATE
-// =====================================
-
-approveButton.disabled = true;
-declineButton.disabled = true;
-
-
-// =====================================
-// START
-// =====================================
 
 loadPendingAccounts();
