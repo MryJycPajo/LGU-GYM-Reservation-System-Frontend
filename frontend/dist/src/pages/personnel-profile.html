@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>My Profile | Personnel Portal</title>
+
+
+
+  <script type="module" crossorigin src="/assets/src/pages/personnel-profile-DtTfTWhy.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+  <link rel="stylesheet" crossorigin href="/assets/personnel-DQyHz3xA.css">
+  <link rel="stylesheet" crossorigin href="/assets/profile-CiIG-Oiq.css">
+</head>
+
+<body class="personnel-static-page">
+
+  <div class="admin-shell personnel-page">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+    <aside class="sidebar" id="sidebar">
+
+      <a
+        class="admin-brand"
+        href="./personnel-dashboard.html"
+      >
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
+
+      <nav aria-label="Personnel navigation">
+
+        <a
+          class="nav-item"
+          href="./personnel-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a
+          class="nav-item active"
+          href="./personnel-profile.html"
+        >
+          <span>♙</span>
+          My Profile
+        </a>
+
+        <a
+          class="nav-item"
+          href="./personnel-reservations.html"
+        >
+          <span>□</span>
+          Reservations
+        </a>
+
+        <a class="nav-item" href="./personnel-billing.html"><span>₱</span>Billing</a>
+
+        <a class="nav-item" href="./personnel-payments.html"><span>▣</span>Payments</a>
+
+        <a
+          class="nav-item"
+          href="./personnel-history.html"
+        >
+          <span>≡</span>
+          History / Records
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="../login.html"
+        >
+          <span>←</span>
+          Logout
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+        <div class="crumb">
+          PERSONNEL PORTAL
+          <span>/</span>
+          MY PROFILE
+        </div>
+
+        <div class="admin-profile">
+
+          <span
+            class="profile-avatar"
+            id="profile-avatar"
+          >
+            P
+          </span>
+
+          <span>
+
+            <b id="topbar-personnel-name">
+              Personnel
+            </b>
+
+            <small>
+              LGU Personnel
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+
+      <!-- =========================
+           DASHBOARD CONTENT
+      ========================== -->
+      <div class="dashboard-content">
+
+        <section
+          class="client-section"
+          aria-labelledby="profile-title"
+        >
+
+          <!-- PAGE INTRO -->
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                PERSONNEL INFORMATION
+              </p>
+
+              <h1 id="profile-title">
+                My Profile
+              </h1>
+
+              <p>
+                View and manage your personal and account information.
+              </p>
+
+            </div>
+
+            <button
+              class="outline-button"
+              id="edit-personnel-profile-btn"
+              type="button"
+            >
+              Edit Profile
+            </button>
+
+          </div>
+
+
+          <!-- =========================
+               PROFILE CARD
+          ========================== -->
+          <article class="panel profile-card">
+            <section class="profile-group" aria-labelledby="personnel-personal-information">
+              <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="personnel-personal-information">Personal Information</h2></div>
+              <dl class="profile-grid">
+                <div><dt>Last Name</dt><dd id="personnel-lastname">Loading...</dd></div>
+                <div><dt>First Name</dt><dd id="personnel-firstname">Loading...</dd></div>
+                <div><dt>Middle Name</dt><dd id="personnel-middlename">Loading...</dd></div>
+                <div><dt>Birthdate</dt><dd id="personnel-birthdate">Loading...</dd></div>
+                <div><dt>Gender</dt><dd id="personnel-gender">Loading...</dd></div>
+                <div class="wide"><dt>Address</dt><dd id="personnel-address">Loading...</dd></div>
+              </dl>
+            </section>
+            <section class="profile-group" aria-labelledby="personnel-account-information">
+              <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="personnel-account-information">Account Information</h2></div>
+              <dl class="profile-grid">
+                <div><dt>Personnel ID</dt><dd id="personnel-id">Loading...</dd></div>
+                <div><dt>Email Address</dt><dd id="personnel-email">Loading...</dd></div>
+                <div><dt>Username</dt><dd id="personnel-username">Loading...</dd></div>
+                <div><dt>Status</dt><dd id="personnel-status"><span class="status approved">Loading...</span></dd></div>
+                <div><dt>Position / Role</dt><dd id="personnel-role">Loading...</dd></div>
+                <div><dt>Phone Number</dt><dd id="personnel-phone">Loading...</dd></div>
+              </dl>
+            </section>
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <div class="message-overlay personnel-success-overlay" id="personnel-success-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="personnel-success-title">
+    <div class="message-modal">
+      <div class="message-icon" aria-hidden="true">✓</div>
+      <h2 id="personnel-success-title">Profile Updated Successfully!</h2>
+      <p>Your profile information has been updated successfully.</p>
+      <button class="message-ok-btn" id="personnel-success-ok" type="button">OK</button>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       PERSONNEL PROFILE JS
+  ========================== -->
+
+</body>
+</html>

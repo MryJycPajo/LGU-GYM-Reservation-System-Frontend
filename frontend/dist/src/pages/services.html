@@ -1,0 +1,346 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>Services | LGU Gym</title>
+
+
+
+
+  <script type="module" crossorigin src="/assets/src/pages/services-BCEADfd_.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="modulepreload" crossorigin href="/assets/client-name-BMX32YGT.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+  <link rel="stylesheet" crossorigin href="/assets/client-dashboard-CMPBJ35Y.css">
+</head>
+
+<body>
+
+  <div class="admin-shell client-shell">
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+      <a
+        class="admin-brand"
+        href="./client-dashboard.html"
+      >
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
+
+      <nav aria-label="Client navigation">
+
+        <a
+          class="nav-item"
+          href="./client-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a
+          class="nav-item"
+          href="./profile.html"
+        >
+          <span>♙</span>
+          My Profile
+        </a>
+
+        <a
+          class="nav-item active"
+          href="./services.html"
+        >
+          <span>●</span>
+          Services
+        </a>
+
+        <a
+          class="nav-item"
+          href="./reservation.html"
+        >
+          <span>□</span>
+          My Reservations
+        </a>
+
+        <a
+          class="nav-item"
+          href="./billing.html"
+        >
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+        <a
+          class="nav-item"
+          href="./history.html"
+        >
+          <span>≡</span>
+          History
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="../login.html"
+        >
+          <span>←</span>
+          Logout
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+    <main class="admin-main">
+
+      <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+        <div class="crumb">
+          CLIENT PORTAL
+          <span>/</span>
+          SERVICES
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            C
+          </span>
+
+          <span>
+
+            <b id="client-name">
+              Client
+            </b>
+
+            <small>
+              Gym Member
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+      <div class="dashboard-content client-single-content">
+
+        <section
+          class="client-section"
+          aria-labelledby="services-title"
+        >
+
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                LGU GYM SERVICES
+              </p>
+
+              <h1 id="services-title">
+                LGU Gymnasium Rental
+              </h1>
+
+              <p>
+                Reserve the LGU Gymnasium for sports activities, events, school programs, government activities, and community gatherings.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="service-layout reservation-only-layout">
+
+            <article class="panel form-panel reservation-form">
+
+              <p class="eyebrow">
+                RESERVATION DETAILS
+              </p>
+
+              <h2>
+                Reservation Details
+              </h2>
+
+              <p>
+                Complete these fields to submit your reservation request.
+              </p>
+
+              <form class="client-form">
+
+                <label>
+                  Service
+
+                  <select id="reservation-service" required>
+                    <option>
+                      LGU Gymnasium Rental
+                    </option>
+                  </select>
+
+                </label>
+
+                <label>
+                  Purpose of Reservation
+
+                  <select id="reservation-purpose" required>
+                    <option value="">Select a purpose</option>
+                    <option>Sports Activity</option>
+                    <option>Event / Celebration</option>
+                    <option>School Activity</option>
+                    <option>Government / Community Activity</option>
+                    <option>Training / Fitness</option>
+                    <option>Other</option>
+                  </select>
+
+                </label>
+
+                <label>
+                  Reservation Date
+
+                  <input
+                    id="reservation-date"
+                    type="date"
+                    required
+                  />
+
+                  <span
+                    id="reservation-date-message"
+                    role="alert"
+                    aria-live="polite"
+                  ></span>
+
+                </label>
+
+                <label>
+                  Rental Hours
+
+                  <span
+                    role="note"
+                    style="display: grid; min-height: 43px; gap: .18rem; border: 1px solid #cfdfd5; border-radius: 7px; padding: .65rem .72rem; color: #1d4030; background: #fcfefd; font-size: .78rem; line-height: 1.25;"
+                  >
+                    <strong>8:00 AM – 10:00 PM</strong>
+                    <span>Whole-Day Rental Only</span>
+                  </span>
+                </label>
+
+                <label>
+                  Number of Participants
+
+                  <input
+                    id="reservation-participants"
+                    type="number"
+                    min="1"
+                    required
+                  />
+
+                </label>
+
+                <label class="full-field">
+
+                  Reservation Details
+
+                  <textarea
+                    id="reservation-details"
+                    placeholder="Describe your activity or reservation purpose"
+                    required
+                  ></textarea>
+
+                </label>
+
+                <div class="form-footer">
+
+                  <span></span>
+
+                  <button
+                    class="primary-button"
+                    id="submit-reservation-btn"
+                    type="button"
+                  >
+                    Submit Reservation
+                  </button>
+
+                </div>
+
+              </form>
+
+            </article>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+<!-- CUSTOM MESSAGE -->
+<div class="message-overlay" id="message-overlay">
+
+    <div class="message-modal">
+
+        <div class="message-icon" id="message-icon">
+            ✓
+        </div>
+
+        <h2 id="message-title">
+            Success!
+        </h2>
+
+        <p id="message-text">
+            Your reservation has been submitted successfully.
+        </p>
+
+        <button
+            type="button"
+            class="message-ok-btn"
+            id="message-ok-btn"
+        >
+            OK
+        </button>
+
+    </div>
+
+</div>
+

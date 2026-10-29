@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="theme-color"
+      content="#087348"
+    />
+
+    <title>Billing &amp; Payments | LGU Gym</title>
+
+
+
+
+    <script type="module" crossorigin src="/assets/src/pages/billing-DujQvV9d.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+    <link rel="modulepreload" crossorigin href="/assets/client-name-BMX32YGT.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+    <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+    <link rel="stylesheet" crossorigin href="/assets/admin-ui-DA9jzmnu.css">
+    <link rel="stylesheet" crossorigin href="/assets/client-dashboard-CMPBJ35Y.css">
+  </head>
+
+  <body>
+    <div class="admin-shell client-shell">
+
+      <!-- SIDEBAR -->
+      <aside
+        class="sidebar"
+        id="sidebar"
+      >
+        <a
+          class="admin-brand"
+          href="./client-dashboard.html"
+        >
+          <span class="brand-seal">LGU</span>
+
+          <span>
+            LGU GYM
+            <small>RESERVATION SYSTEM</small>
+          </span>
+        </a>
+
+        <nav aria-label="Client navigation">
+
+          <a
+            class="nav-item"
+            href="./client-dashboard.html"
+          >
+            <span>⌂</span>
+            Dashboard
+          </a>
+
+          <a
+            class="nav-item"
+            href="./profile.html"
+          >
+            <span>♙</span>
+            My Profile
+          </a>
+
+          <a
+            class="nav-item"
+            href="./services.html"
+          >
+            <span>●</span>
+            Services
+          </a>
+
+          <a
+            class="nav-item"
+            href="./reservation.html"
+          >
+            <span>□</span>
+            My Reservations
+          </a>
+
+          <a
+            class="nav-item active"
+            href="./billing.html"
+          >
+            <span>₱</span>
+            Billing &amp; Payments
+          </a>
+
+          <a
+            class="nav-item"
+            href="./history.html"
+          >
+            <span>≡</span>
+            History
+          </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+          <a
+            class="nav-item"
+            href="../login.html"
+          >
+            <span>←</span>
+            Logout
+          </a>
+
+          <p>© 2026 Local Government Unit</p>
+
+        </div>
+      </aside>
+
+
+      <!-- MAIN CONTENT -->
+      <main class="admin-main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+          <button
+            class="menu-button"
+            id="menu-button"
+            type="button"
+            aria-label="Open navigation"
+          >
+            ☰
+          </button>
+
+          <div class="crumb">
+            CLIENT PORTAL
+            <span>/</span>
+            BILLING &amp; PAYMENTS
+          </div>
+
+          <div class="admin-profile">
+
+            <span class="profile-avatar">
+              C
+            </span>
+
+            <span>
+              <b id="client-name">
+                Client
+              </b>
+
+              <small>
+                Gym Member
+              </small>
+            </span>
+
+          </div>
+
+        </header>
+
+
+        <!-- DASHBOARD CONTENT -->
+        <div class="dashboard-content client-single-content">
+
+          <section
+            class="client-section"
+            aria-labelledby="billing-title"
+          >
+
+            <!-- PAGE INTRO -->
+            <div class="section-intro">
+
+              <div>
+
+                <p class="eyebrow">
+                  PAYMENT RECORDS
+                </p>
+
+                <h1 id="billing-title">
+                  Billing &amp; Payments
+                </h1>
+
+                <p>
+                  Review payment details for your reservation requests.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- BILLING TABLE -->
+            <article class="panel table-panel">
+
+              <div class="table-wrap">
+
+                <table>
+
+                  <thead>
+                    <tr>
+                      <th>Reservation ID</th>
+                      <th>Service</th>
+                      <th>Amount</th>
+                      <th>Payment Status</th>
+                      <th>Payment Date</th>
+                      <th>Receipt</th>
+                    </tr>
+                  </thead>
+
+<tbody id="billing-list">
+    <tr>
+        <td colspan="6" style="text-align: center;">
+            Loading payment records...
+        </td>
+    </tr>
+</tbody>
+
+                </table>
+
+              </div>
+
+            </article>
+
+          </section>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <div class="billing-payment-modal" id="client-receipt-modal" role="dialog" aria-modal="true" aria-labelledby="client-receipt-title">
+      <div class="billing-payment-card">
+        <div class="billing-modal-heading"><div class="billing-avatar" id="client-receipt-initials">C</div><div><p class="eyebrow">LGU GYM RESERVATION SYSTEM</p><h2 id="client-receipt-title">Payment Receipt</h2><strong id="client-receipt-client-name">—</strong></div><button type="button" class="modal-close" id="client-receipt-close" aria-label="Close receipt">×</button></div>
+        <div class="billing-detail-grid"><div><span>Transaction ID</span><strong id="client-receipt-transaction-id">—</strong></div><div><span>Reservation ID</span><strong id="client-receipt-reservation-id">—</strong></div><div><span>Rental date(s)</span><strong id="client-receipt-rental-date">—</strong></div><div><span>Rental days</span><strong id="client-receipt-rental-days">—</strong></div><div><span>Daily rental rate</span><strong id="client-receipt-daily-rate">—</strong></div><div class="billing-total"><span>Total amount paid</span><strong id="client-receipt-amount">—</strong></div><div><span>Payment date</span><strong id="client-receipt-payment-date">—</strong></div><div><span>Payment method</span><strong id="client-receipt-payment-method">—</strong></div></div>
+        <div class="billing-modal-actions"><button type="button" class="message-ok-btn" id="client-receipt-close-action">Close</button></div>
+      </div>
+    </div>
+
+
+    <!-- CLIENT DASHBOARD JS -->
+
+  </body>
+</html>

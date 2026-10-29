@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>Billing | LGU Gym</title>
+
+
+
+  <script type="module" crossorigin src="/assets/modulepreload-polyfill-P2Xu9kJm.js"></script>
+  <script type="module" crossorigin src="/assets/admin-billing-BJAJ2OZE.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-ui-DA9jzmnu.css">
+</head>
+
+<body class="admin-static-page">
+
+  <div class="admin-shell admin-ui-page">
+
+    <!-- ===================================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================================== -->
+
+    <aside class="sidebar">
+
+      <a
+        class="admin-brand"
+        href="./admin-dashboard.html"
+      >
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>
+            RESERVATION SYSTEM
+          </small>
+        </span>
+      </a>
+
+      <nav aria-label="Admin navigation">
+
+        <a
+          class="nav-item"
+          href="./admin-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a
+          class="nav-item"
+          href="./user-accounts.html"
+        >
+          <span>♙</span>
+          User Accounts
+        </a>
+
+        <a
+          class="nav-item"
+          href="./pending-approvals.html"
+        >
+          <span>◷</span>
+          Pending Approvals
+        </a>
+
+        <a
+          class="nav-item"
+          href="./admin-reservations.html"
+        >
+          <span>●</span>
+          Reservations
+        </a>
+
+        <a class="nav-item active" href="./admin-billing.html">
+          <span>₱</span>
+          Billing
+        </a>
+
+        <a class="nav-item" href="./admin-payments.html">
+          <span>▣</span>
+          Payments
+        </a>
+
+        <a
+          class="nav-item"
+          href="./admin-history.html"
+        >
+          <span>≡</span>
+          History / Records
+        </a>
+
+        <a
+          class="nav-item"
+          href="./admin-reports.html"
+        >
+          <span>▥</span>
+          Reports
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="../login.html"
+        >
+          <span>←</span>
+          Log Out
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- ===================================== -->
+    <!-- MAIN CONTENT -->
+    <!-- ===================================== -->
+
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+
+        <div class="crumb">
+
+          ADMIN PORTAL
+
+          <span>/</span>
+
+          BILLING
+
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            A
+          </span>
+
+          <span>
+
+            <b>
+              Administrator
+            </b>
+
+            <small>
+              System Admin
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+
+      <!-- ===================================== -->
+      <!-- DASHBOARD CONTENT -->
+      <!-- ===================================== -->
+
+      <div class="dashboard-content">
+
+        <section class="admin-section">
+
+          <!-- PAGE INTRO -->
+
+          <div class="section-intro">
+
+            <div>
+
+                <p class="eyebrow">
+                RESERVATION BILLING
+              </p>
+
+              <h1>
+                Billing
+              </h1>
+
+              <p>
+                Review reservation charges, balances, and payment status.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- ===================================== -->
+          <!-- BILLING TABLE -->
+          <!-- ===================================== -->
+
+          <article class="panel table-panel">
+
+            <!-- SEARCH AND FILTER -->
+
+            <div class="filter-row">
+
+              <input
+                class="search-input"
+                id="admin-billing-search"
+                type="search"
+                placeholder="Search client, reservation ID, or date"
+              />
+
+            </div>
+
+
+            <!-- ===================================== -->
+            <!-- TABLE -->
+            <!-- ===================================== -->
+
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+
+                    <th>
+                      Reservation ID
+                    </th>
+
+                    <th>
+                      Client
+                    </th>
+
+                    <th>
+                      Service
+                    </th>
+
+                    <th>Rental Date</th>
+
+                    <th>Days</th>
+
+                    <th>Rate / Day</th>
+
+                    <th>Total Due</th>
+
+                    <th>
+                      Payment Status
+                    </th>
+
+                    <th>Outstanding</th>
+
+                    <th>Record Payment</th>
+
+                  </tr>
+
+                </thead>
+
+
+                <!--
+                  IMPORTANT:
+                  No hardcoded billing records here.
+                  JavaScript will load records
+                  directly from the database.
+                -->
+
+                <tbody id="admin-billing-list">
+
+                  <tr>
+
+                    <td
+                      colspan="10"
+                      style="text-align: center;"
+                    >
+                      Loading billing records...
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <div class="billing-payment-modal" id="billing-payment-modal" role="dialog" aria-modal="true" aria-labelledby="billing-payment-title">
+    <div class="billing-payment-card">
+      <div class="billing-modal-heading"><div class="billing-avatar" id="billing-client-initials">C</div><div><p class="eyebrow">BILLING DETAILS</p><h2 id="billing-payment-title">Confirm Payment</h2><strong id="billing-client-name">Client</strong></div><button type="button" class="modal-close" id="billing-payment-close" aria-label="Close billing details">×</button></div>
+      <form id="billing-payment-form">
+        <div class="billing-detail-grid"><div><span>Client ID</span><strong id="billing-client-id">—</strong></div><div><span>Reservation ID</span><strong id="billing-reservation-id">—</strong></div><div><span>Rental date(s)</span><strong id="billing-rental-date">—</strong></div><div><span>Rental days</span><strong id="billing-rental-days">—</strong></div><div><span>Rate per day</span><strong id="billing-rate-per-day">—</strong></div><div class="billing-total"><span>Total amount due</span><strong id="billing-total-due">—</strong></div></div>
+        <div class="billing-form-grid"><label>Payment method<select id="billing-payment-method" required><option value="Cash" selected>Cash</option></select></label><label>Payment date<input id="billing-payment-date" type="date" required></label></div>
+        <p class="payment-contract-notice" id="billing-payment-error" hidden></p><div class="billing-modal-actions"><button type="button" class="table-button" id="billing-payment-cancel">Cancel</button><button type="submit" class="message-ok-btn" id="billing-payment-confirm">Confirm Payment</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="message-overlay" id="billing-payment-success" aria-hidden="true">
+    <div class="message-box">
+      <div class="message-icon">✓</div>
+      <h2>Payment Recorded</h2>
+      <p id="billing-payment-success-text"></p>
+      <button type="button" class="message-ok-btn" id="billing-payment-success-close">OK</button>
+    </div>
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- ADMIN BILLING JS -->
+  <!-- ===================================== -->
+
+
+</body>
+
+</html>

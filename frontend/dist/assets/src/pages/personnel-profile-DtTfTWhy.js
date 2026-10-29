@@ -1,0 +1,34 @@
+import"../../modulepreload-polyfill-P2Xu9kJm.js";/* empty css                  *//* empty css                  *//* empty css                      *//* empty css                    */document.addEventListener(`DOMContentLoaded`,()=>{let r=localStorage.getItem(`personnel`);if(console.log(`PERSONNEL LOCALSTORAGE:`,r),!r){console.error(`No personnel session found.`);return}let i;try{i=JSON.parse(r)}catch(e){console.error(`Invalid personnel data:`,e);return}console.log(`Logged-in personnel:`,i),e(i),t(i);let a=document.getElementById(`edit-personnel-profile-btn`);a?a.onclick=()=>{console.log(`Edit Profile clicked`),n(i)}:console.error(`Edit Profile button not found.`)});function e(e){let t=`${e.firstname||``} ${e.lastname||``}`.trim(),n=document.querySelector(`#topbar-personnel-name`);n&&(n.textContent=t||`Personnel`);let r=document.querySelector(`#profile-avatar`);r&&e.firstname&&(r.textContent=e.firstname.charAt(0).toUpperCase())}function t(e){a(`personnel-id`,e.account_id||e.personnel_id),o(`personnel-status`,e.status),a(`personnel-role`,e.position||e.role||`LGU Gym Staff`),a(`personnel-lastname`,e.lastname),a(`personnel-firstname`,e.firstname),a(`personnel-middlename`,e.middlename),a(`personnel-birthdate`,c(e.birthdate)),a(`personnel-gender`,e.gender),a(`personnel-address`,e.address),a(`personnel-email`,e.email),a(`personnel-phone`,e.phone_number||e.phone),a(`personnel-username`,e.username)}function n(e){let t=document.getElementById(`edit-personnel-profile-btn`);if(!t)return;[{id:`personnel-lastname`,key:`lastname`,type:`text`,placeholder:`Enter last name`},{id:`personnel-firstname`,key:`firstname`,type:`text`,placeholder:`Enter first name`},{id:`personnel-middlename`,key:`middlename`,type:`text`,placeholder:`Enter middle name`},{id:`personnel-birthdate`,key:`birthdate`,type:`date`,placeholder:``},{id:`personnel-gender`,key:`gender`,type:`select`,placeholder:``},{id:`personnel-address`,key:`address`,type:`text`,placeholder:`Enter address`},{id:`personnel-email`,key:`email`,type:`email`,placeholder:`Enter email address`},{id:`personnel-phone`,key:`phone`,type:`text`,placeholder:`Enter phone number`}].forEach(t=>{let n=document.getElementById(t.id);if(!n){console.warn(`Element not found: ${t.id}`);return}let r=e[t.key]||``;if(t.key===`birthdate`&&r&&!/^\d{4}-\d{2}-\d{2}$/.test(r)){let e=new Date(r);Number.isNaN(e.getTime())||(r=e.toISOString().split(`T`)[0])}if((t.type===`text`||t.type===`email`||t.type===`date`)&&(n.innerHTML=`
+                <input
+                    type="${t.type}"
+                    id="${t.id}-input"
+                    value="${l(r)}"
+                    placeholder="${t.placeholder}"
+                >
+            `),t.type===`select`){let e=String(r).toLowerCase();n.innerHTML=`
+                <select id="${t.id}-input">
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option
+                        value="Male"
+                        ${e===`male`?`selected`:``}
+                    >
+                        Male
+                    </option>
+
+                    <option
+                        value="Female"
+                        ${e===`female`?`selected`:``}
+                    >
+                        Female
+                    </option>
+
+                </select>
+            `}}),t.textContent=`Save Changes`,t.classList.add(`save-mode`),t.onclick=()=>{r(e)};let n=document.getElementById(`cancel-personnel-edit`);n||(n=document.createElement(`button`),n.id=`cancel-personnel-edit`,n.type=`button`,n.className=`outline-button`,n.textContent=`Cancel`,t.parentElement.appendChild(n)),n.onclick=()=>{window.location.reload()}}async function r(e){console.log(`========== SAVING PROFILE ==========`);let t=document.getElementById(`personnel-firstname-input`),n=document.getElementById(`personnel-lastname-input`),r=document.getElementById(`personnel-middlename-input`),a=document.getElementById(`personnel-birthdate-input`),o=document.getElementById(`personnel-gender-input`),s=document.getElementById(`personnel-address-input`),c=document.getElementById(`personnel-email-input`),l=document.getElementById(`personnel-phone-input`),u=t?t.value.trim():e.firstname,d=n?n.value.trim():e.lastname,f=r?r.value.trim():e.middlename,p=a?a.value:e.birthdate,m=o?o.value:e.gender,h=s?s.value.trim():e.address,g=c?c.value.trim():e.email,_=l?l.value.trim():e.phone_number||e.phone||``;if(console.log(`FIRSTNAME:`,u),console.log(`LASTNAME:`,d),console.log(`MIDDLENAME:`,f),console.log(`BIRTHDATE:`,p),console.log(`GENDER:`,m),console.log(`ADDRESS:`,h),console.log(`EMAIL:`,g),console.log(`PHONE:`,_),!u){alert(`Please enter your first name.`);return}if(!d){alert(`Please enter your last name.`);return}if(!g){alert(`Please enter your email address.`);return}let v=e.account_id;if(!v){alert(`Personnel account ID not found.`);return}let y={firstname:u,lastname:d,middlename:f,birthdate:p,gender:m,address:h,phone:_,email:g};console.log(`DATA SENT TO MYSQL:`,y);try{let t=await fetch(`http://localhost:3001/api/personnel/profile/${v}`,{method:`PUT`,headers:{"Content-Type":`application/json`},body:JSON.stringify(y)});console.log(`HTTP STATUS:`,t.status);let n=await t.json();if(console.log(`SERVER RESPONSE:`,n),!t.ok||!n.success){alert(n.message||`Failed to update profile.`);return}let r={...e,firstname:u,lastname:d,middlename:f,birthdate:p,gender:m,address:h,email:g,phone_number:_};localStorage.setItem(`personnel`,JSON.stringify(r)),console.log(`LOCALSTORAGE UPDATED:`,r),i()}catch(e){console.error(`PROFILE UPDATE ERROR:`,e),alert(`Unable to connect to the server. Please make sure the backend server is running.`)}}function i(){let e=document.querySelector(`#personnel-success-overlay`),t=document.querySelector(`#personnel-success-ok`);if(!e||!t){window.location.reload();return}e.classList.add(`show`),e.setAttribute(`aria-hidden`,`false`),t.focus(),t.onclick=()=>{e.classList.remove(`show`),e.setAttribute(`aria-hidden`,`true`),window.location.reload()}}function a(e,t){let n=document.getElementById(e);n&&(n.textContent=t!=null&&t!==``?t:`-`)}function o(e,t){let n=document.getElementById(e);if(!n)return;let r=t||`Pending`;n.innerHTML=`
+        <span class="status ${s(r)}">
+            ${r}
+        </span>
+    `}function s(e){let t=String(e).toLowerCase();return t===`approved`||t===`active`?`approved`:t===`declined`||t===`inactive`?`declined`:`pending`}function c(e){if(!e)return`-`;if(/^\d{4}-\d{2}-\d{2}$/.test(e)){let[t,n,r]=e.split(`-`);return new Date(Number(t),Number(n)-1,Number(r)).toLocaleDateString(`en-US`,{year:`numeric`,month:`long`,day:`numeric`})}let t=new Date(e);return Number.isNaN(t.getTime())?e:t.toLocaleDateString(`en-US`,{year:`numeric`,month:`long`,day:`numeric`})}function l(e){return String(e).replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`)}

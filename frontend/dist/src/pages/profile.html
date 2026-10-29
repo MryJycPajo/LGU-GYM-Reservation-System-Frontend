@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#087348"
+  />
+
+  <title>My Profile | LGU Gym</title>
+
+
+
+  <script type="module" crossorigin src="/assets/src/pages/profile-KtXQyOGq.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="modulepreload" crossorigin href="/assets/client-change-password-DWjXxEz6.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+  <link rel="stylesheet" crossorigin href="/assets/client-dashboard-CMPBJ35Y.css">
+  <link rel="stylesheet" crossorigin href="/assets/profile-CiIG-Oiq.css">
+</head>
+
+<body>
+
+  <div class="admin-shell client-shell">
+
+    <!-- SIDEBAR -->
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+      <a
+        class="admin-brand"
+        href="./client-dashboard.html"
+      >
+
+        <span class="brand-seal">
+          LGU
+        </span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+
+      </a>
+
+
+      <nav aria-label="Client navigation">
+
+        <a
+          class="nav-item"
+          href="./client-dashboard.html"
+        >
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+
+        <a
+          class="nav-item active"
+          href="./profile.html"
+        >
+          <span>♙</span>
+          My Profile
+        </a>
+
+        <a
+          class="nav-item"
+          href="./services.html"
+        >
+          <span>●</span>
+          Services
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./reservation.html"
+        >
+          <span>□</span>
+          My Reservations
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./billing.html"
+        >
+          <span>₱</span>
+          Billing &amp; Payments
+        </a>
+
+
+        <a
+          class="nav-item"
+          href="./history.html"
+        >
+          <span>≡</span>
+          History
+        </a>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <a
+          class="nav-item"
+          href="../login.html"
+        >
+          <span>←</span>
+          Logout
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+
+        <div class="crumb">
+          CLIENT PORTAL
+          <span>/</span>
+          MY PROFILE
+        </div>
+
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            C
+          </span>
+
+          <span>
+
+            <b id="client-name">
+              Client
+            </b>
+
+            <small>
+              Gym Member
+            </small>
+
+          </span>
+
+        </div>
+
+      </header>
+
+
+      <!-- DASHBOARD CONTENT -->
+      <div class="dashboard-content client-single-content">
+
+        <section
+          class="client-section"
+          aria-labelledby="profile-title"
+        >
+
+          <!-- PAGE INTRO -->
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                ACCOUNT INFORMATION
+              </p>
+
+              <h1 id="profile-title">
+                My Profile
+              </h1>
+
+              <p>
+                Your personal and account details are shown below.
+              </p>
+
+            </div>
+
+
+            <button
+              class="outline-button"
+              id="edit-profile-btn"
+              type="button"
+            >
+              Edit Profile
+            </button>
+
+          </div>
+
+
+          <!-- PROFILE INFORMATION -->
+            <article class="panel profile-card">
+              <section class="profile-group" aria-labelledby="client-personal-information">
+                <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="client-personal-information">Personal Information</h2></div>
+                <dl class="profile-grid">
+                  <div><dt>Last Name</dt><dd id="profile-lastname">-</dd></div>
+                  <div><dt>First Name</dt><dd id="profile-firstname">-</dd></div>
+                  <div><dt>Middle Name</dt><dd id="profile-middlename">-</dd></div>
+                  <div><dt>Birthdate</dt><dd id="profile-birthdate">-</dd></div>
+                  <div><dt>Gender</dt><dd id="profile-gender">-</dd></div>
+                  <div class="wide"><dt>Address</dt><dd id="profile-address">-</dd></div>
+                </dl>
+              </section>
+              <section class="profile-group" aria-labelledby="client-account-information">
+                <div class="profile-group-heading"><span class="profile-group-marker" aria-hidden="true"></span><h2 id="client-account-information">Account Information</h2></div>
+                <dl class="profile-grid">
+                  <div><dt>Client ID</dt><dd id="profile-client-id">-</dd></div>
+                  <div><dt>Email Address</dt><dd id="profile-email">-</dd></div>
+                  <div><dt>Username</dt><dd id="profile-username">-</dd></div>
+                  <div><dt>Status</dt><dd><span class="status approved" id="profile-status">-</span></dd></div>
+                  <div><dt>Phone Number</dt><dd id="profile-phone">-</dd></div>
+                </dl>
+              </section>
+            </article>
+
+            <section
+              class="panel change-password-panel"
+              id="change-password"
+              aria-labelledby="change-password-title"
+            >
+              <div class="profile-group-heading">
+                <span class="profile-group-marker" aria-hidden="true"></span>
+                <h2 id="change-password-title">Change Password</h2>
+              </div>
+
+              <p class="change-password-description">
+                Update your password without needing an email link. Your current password is required.
+              </p>
+
+              <form id="client-change-password-form" class="change-password-form">
+                <div class="change-password-fields">
+                  <label class="password-field">
+                    Current Password
+                    <span class="password-input-wrapper">
+                      <input
+                        id="current-password"
+                        name="current_password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                      />
+                      <button
+                        class="password-toggle"
+                        type="button"
+                        data-target="current-password"
+                        aria-label="Show current password"
+                        aria-pressed="false"
+                      >👁</button>
+                    </span>
+                  </label>
+
+                  <label class="password-field">
+                    New Password
+                    <span class="password-input-wrapper">
+                      <input
+                        id="new-password"
+                        name="new_password"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                      />
+                      <button
+                        class="password-toggle"
+                        type="button"
+                        data-target="new-password"
+                        aria-label="Show new password"
+                        aria-pressed="false"
+                      >👁</button>
+                    </span>
+                  </label>
+
+                  <label class="password-field">
+                    Confirm New Password
+                    <span class="password-input-wrapper">
+                      <input
+                        id="confirm-new-password"
+                        name="confirm_new_password"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                      />
+                      <button
+                        class="password-toggle"
+                        type="button"
+                        data-target="confirm-new-password"
+                        aria-label="Show confirm new password"
+                        aria-pressed="false"
+                      >👁</button>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="change-password-actions">
+                  <p id="change-password-message" class="change-password-message" role="status" aria-live="polite"></p>
+                  <button
+                    id="change-password-btn"
+                    class="primary-button"
+                    type="submit"
+                  >
+                    Change Password
+                  </button>
+                </div>
+              </form>
+            </section>
+
+        </section>
+
+      </div>
+
+    </main>
+
+   </div>
+
+  <!-- CUSTOM CENTER MESSAGE -->
+  <div class="message-overlay" id="message-overlay">
+
+    <div class="message-modal">
+
+      <div class="message-icon" id="message-icon">
+        ✓
+      </div>
+
+      <h2 id="message-title">
+        Success!
+      </h2>
+
+      <p id="message-text">
+        Your changes have been updated successfully.
+      </p>
+
+      <button
+        type="button"
+        class="message-ok-btn"
+        id="message-ok-btn"
+      >
+        OK
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- CLIENT PROFILE JS -->
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#087348" />
+
+  <title>Pending Approvals | LGU Gym</title>
+
+  <script type="module" crossorigin src="/assets/src/pages/pending-approvals-CILgnoaT.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-ui-DA9jzmnu.css">
+</head>
+
+<body class="admin-static-page">
+
+  <div class="admin-shell admin-ui-page">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <a class="admin-brand" href="./admin-dashboard.html">
+        <span class="brand-seal">LGU</span>
+
+        <span>
+          LGU GYM
+          <small>RESERVATION SYSTEM</small>
+        </span>
+      </a>
+
+      <nav aria-label="Admin navigation">
+
+        <a class="nav-item" href="./admin-dashboard.html">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a class="nav-item" href="./user-accounts.html">
+          <span>♙</span>
+          User Accounts
+        </a>
+
+        <a class="nav-item active" href="./pending-approvals.html">
+          <span>◷</span>
+          Pending Approvals
+        </a>
+
+        <a class="nav-item" href="./admin-reservations.html">
+          <span>●</span>
+          Reservations
+        </a>
+
+        <a class="nav-item" href="./admin-billing.html">
+          <span>₱</span>
+          Billing
+        </a>
+
+        <a class="nav-item" href="./admin-payments.html">
+          <span>▣</span>
+          Payments
+        </a>
+
+        <a class="nav-item" href="./admin-history.html">
+          <span>≡</span>
+          History / Records
+        </a>
+
+        <a class="nav-item" href="./admin-reports.html">
+          <span>▥</span>
+          Reports
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a class="nav-item" href="./login.html">
+          <span>←</span>
+          Log Out
+        </a>
+
+        <p>
+          © 2026 Local Government Unit
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <div class="crumb">
+          ADMIN PORTAL
+          <span>/</span>
+          PENDING APPROVALS
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="profile-avatar">
+            A
+          </span>
+
+          <span>
+            <b>Administrator</b>
+            <small>System Admin</small>
+          </span>
+
+        </div>
+
+      </header>
+
+
+      <!-- DASHBOARD CONTENT -->
+      <div class="dashboard-content">
+
+        <section class="admin-section">
+
+          <!-- PAGE INTRO -->
+          <div class="section-intro">
+
+            <div>
+
+              <p class="eyebrow">
+                ACCOUNT REVIEW
+              </p>
+
+              <h1>
+                Pending Approvals
+              </h1>
+
+              <p>
+                Accounts waiting for Admin review.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- PENDING ACCOUNTS TABLE -->
+          <article class="panel table-panel">
+
+            <!-- FILTERS -->
+            <div class="filter-row">
+
+              <button
+                class="filter-chip active"
+                type="button"
+                data-filter="all">
+                All
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter="Client">
+                Client
+              </button>
+
+              <button
+                class="filter-chip"
+                type="button"
+                data-filter="Personnel">
+                Personnel
+              </button>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+
+                </thead>
+
+                <tbody id="pending-accounts-list">
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <div class="modal" id="details-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="details-title">
+    <div class="details-card">
+      <button class="modal-x" id="modal-x" type="button" aria-label="Close account details">×</button>
+      <p class="eyebrow">ACCOUNT DETAILS</p>
+      <h2 id="details-title">Pending account details</h2>
+      <div id="details-content" class="details-content">
+        <div><span>Account ID</span><b id="details-account-id">—</b></div>
+        <div><span>Name</span><b id="details-name">—</b></div>
+        <div><span>Account Type</span><b id="details-type">—</b></div>
+        <div><span>Email</span><b id="details-email">—</b></div>
+        <div><span>Contact Number</span><b id="details-phone">—</b></div>
+        <div><span>Position / Role</span><b id="details-position">—</b></div>
+        <div><span>Status</span><b id="details-status">—</b></div>
+        <div><span>Created</span><b id="details-created">—</b></div>
+      </div>
+      <button class="close-details" id="close-details" type="button">Close</button>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

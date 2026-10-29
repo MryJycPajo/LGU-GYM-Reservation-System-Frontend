@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#087348" /><title>Client Dashboard | LGU Gym</title>
+    <script type="module" crossorigin src="/assets/src/pages/client-dashboard-DwDhu_AE.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+    <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+    <link rel="stylesheet" crossorigin href="/assets/client-dashboard-CMPBJ35Y.css">
+  </head>
+  <body>
+    <div class="admin-shell client-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="admin-brand" href="./client-dashboard.html"><span class="brand-seal">LGU</span><span>LGU GYM<small>RESERVATION SYSTEM</small></span></a>
+        <nav aria-label="Client navigation">
+          <a class="nav-item active" href="./client-dashboard.html"><span>⌂</span>Dashboard</a><a class="nav-item" href="./profile.html"><span>♙</span>My Profile</a><a class="nav-item" href="./services.html"><span>●</span>Services</a><a class="nav-item" href="./reservation.html"><span>□</span>My Reservations</a><a class="nav-item" href="./billing.html"><span>₱</span>Billing &amp; Payments</a><a class="nav-item" href="./history.html"><span>≡</span>History</a>
+        </nav>
+        <div class="sidebar-bottom"><a class="nav-item" href="../login.html"><span>←</span>Logout</a><p>© 2026 Local Government Unit</p></div>
+      </aside>
+      <main class="admin-main">
+        <header class="topbar"><button class="menu-button" id="menu-button" type="button" aria-label="Open navigation">☰</button><div class="crumb">CLIENT PORTAL <span>/</span> DASHBOARD</div><div class="admin-profile"><span class="profile-avatar">C</span><span><b id="client-name">Client</b><small>Gym Member</small></span></div></header>
+        <div class="dashboard-content client-content">
+          <section class="welcome client-welcome" aria-labelledby="welcome-title"><div><p class="eyebrow">CLIENT OVERVIEW</p><h1 id="welcome-title">Welcome!  </h1><p>Manage your gym reservations and account information.</p></div><a class="manage-button" href="./services.html">+ Make a Reservation</a></section>
+          <section class="stat-grid client-stat-grid" aria-label="Reservation statistics"><article class="stat-card"><span class="stat-icon clients">□</span><div><p>Total Reservations</p><strong id="total-reservations">0</strong><small>All submitted requests</small></div></article><article class="stat-card"><span class="stat-icon pending">◷</span><div><p>Pending</p><strong id="pending-reservations">0</strong><small>Awaiting approval</small></div></article><article class="stat-card"><span class="stat-icon approved">✓</span><div><p>Completed</p><strong id="completed-reservations">0</strong><small>Completed reservations</small></div></article></section>
+          <section class="panel recent-panel client-recent" aria-labelledby="recent-title"><div class="panel-title"><div><h2 id="recent-title">Recent Reservations</h2><p>Your latest gym facility requests.</p></div><a href="./reservation.html">View all</a></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Service</th><th>Status</th></tr></thead><tbody><tbody id="recent-reservations-list">
+</tbody></table></div><div id="reservation-list" class="recent-list" aria-live="polite"></div></section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

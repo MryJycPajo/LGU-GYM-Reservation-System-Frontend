@@ -79,7 +79,6 @@
           My Profile
         </a>
 
-
         <a
           class="nav-item"
           href="./services.html"
@@ -247,6 +246,96 @@
               </section>
             </article>
 
+            <section
+              class="panel change-password-panel"
+              id="change-password"
+              aria-labelledby="change-password-title"
+            >
+              <div class="profile-group-heading">
+                <span class="profile-group-marker" aria-hidden="true"></span>
+                <h2 id="change-password-title">Change Password</h2>
+              </div>
+
+              <p class="change-password-description">
+                Update your password without needing an email link. Your current password is required.
+              </p>
+
+              <form id="client-change-password-form" class="change-password-form">
+                <div class="change-password-fields">
+                  <label class="password-field">
+                    Current Password
+                    <span class="password-input-wrapper">
+                      <input
+                        id="current-password"
+                        name="current_password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                      />
+                      <button
+                        class="password-toggle"
+                        type="button"
+                        data-target="current-password"
+                        aria-label="Show current password"
+                        aria-pressed="false"
+                      >👁</button>
+                    </span>
+                  </label>
+
+                  <label class="password-field">
+                    New Password
+                    <span class="password-input-wrapper">
+                      <input
+                        id="new-password"
+                        name="new_password"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                      />
+                      <button
+                        class="password-toggle"
+                        type="button"
+                        data-target="new-password"
+                        aria-label="Show new password"
+                        aria-pressed="false"
+                      >👁</button>
+                    </span>
+                  </label>
+
+                  <label class="password-field">
+                    Confirm New Password
+                    <span class="password-input-wrapper">
+                      <input
+                        id="confirm-new-password"
+                        name="confirm_new_password"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                      />
+                      <button
+                        class="password-toggle"
+                        type="button"
+                        data-target="confirm-new-password"
+                        aria-label="Show confirm new password"
+                        aria-pressed="false"
+                      >👁</button>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="change-password-actions">
+                  <p id="change-password-message" class="change-password-message" role="status" aria-live="polite"></p>
+                  <button
+                    id="change-password-btn"
+                    class="primary-button"
+                    type="submit"
+                  >
+                    Change Password
+                  </button>
+                </div>
+              </form>
+            </section>
+
         </section>
 
       </div>
@@ -288,6 +377,10 @@
   <script
     type="module"
     src="../js/client-profile.js"
+  ></script>
+  <script
+    type="module"
+    src="../js/client-change-password.js"
   ></script>
 
 </body>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#087348" />
+  <title>Reservations | Personnel Portal</title>
+  <script type="module" crossorigin src="/assets/src/pages/personnel-reservations-DvOxTu6A.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-P2Xu9kJm.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-BNZCjen-.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Cf06JC7H.css">
+  <link rel="stylesheet" crossorigin href="/assets/admin-ui-DA9jzmnu.css">
+  <link rel="stylesheet" crossorigin href="/assets/personnel-DQyHz3xA.css">
+</head>
+<body class="personnel-static-page">
+  <div class="admin-shell personnel-page">
+    <aside class="sidebar" id="sidebar">
+      <a class="admin-brand" href="./personnel-dashboard.html">
+        <span class="brand-seal">LGU</span>
+        <span>LGU GYM<small>RESERVATION SYSTEM</small></span>
+      </a>
+      <nav aria-label="Personnel navigation">
+        <a class="nav-item" href="./personnel-dashboard.html"><span>⌂</span>Dashboard</a>
+        <a class="nav-item" href="./personnel-profile.html"><span>♙</span>My Profile</a>
+        <a class="nav-item active" href="./personnel-reservations.html"><span>□</span>Reservations</a>
+        <a class="nav-item" href="./personnel-billing.html"><span>₱</span>Billing</a>
+        <a class="nav-item" href="./personnel-payments.html"><span>▣</span>Payments</a>
+        <a class="nav-item" href="./personnel-history.html"><span>≡</span>History</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="../login.html"><span>←</span>Logout</a>
+        <p>© 2026 Local Government Unit</p>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open navigation">☰</button>
+        <div class="crumb">PERSONNEL PORTAL <span>/</span> RESERVATIONS</div>
+        <div class="admin-profile">
+          <span class="profile-avatar" id="personnel-avatar">P</span>
+          <span><b id="personnel-name">Personnel</b><small>LGU Gym Staff</small></span>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <section class="client-section">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow">RESERVATION MANAGEMENT</p>
+              <h1>Reservations</h1>
+              <p>Review and process LGU Gym reservation requests.</p>
+            </div>
+          </div>
+
+          <article class="panel table-panel">
+            <div class="filter-row">
+              <input
+                class="search-input"
+                id="personnel-reservation-search"
+                type="search"
+                placeholder="Search reservation ID, client, service, or status"
+              />
+
+              <button class="filter-chip active" type="button" data-status="All">All</button>
+              <button class="filter-chip" type="button" data-status="Pending">Pending</button>
+              <button class="filter-chip" type="button" data-status="Approved">Approved</button>
+              <button class="filter-chip" type="button" data-status="Completed">Completed</button>
+              <button class="filter-chip" type="button" data-status="Declined">Declined</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Reservation ID</th>
+                    <th>Client Name</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="personnel-reservations-list">
+                  <tr><td colspan="9">Loading reservations...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="reservation-modal" class="reservation-modal" role="dialog" aria-modal="true" aria-labelledby="personnel-reservation-modal-title">
+    <div class="reservation-modal-content">
+      <div class="reservation-modal-header">
+        <h2 id="personnel-reservation-modal-title">Reservation Details</h2>
+        <button type="button" id="close-reservation-modal" class="modal-close" aria-label="Close reservation details">×</button>
+      </div>
+
+      <div class="reservation-details">
+        <div class="detail-item"><span>Reservation ID</span><strong id="modal-reservation-id">-</strong></div>
+        <div class="detail-item"><span>Client</span><strong id="modal-client-name">-</strong></div>
+        <div class="detail-item"><span>Account ID</span><strong id="modal-account-id">-</strong></div>
+        <div class="detail-item"><span>Service</span><strong id="modal-service">-</strong></div>
+        <div class="detail-item"><span>Date</span><strong id="modal-date">-</strong></div>
+        <div class="detail-item"><span>Time</span><strong id="modal-time">-</strong></div>
+        <div class="detail-item"><span>End Time</span><strong id="modal-end-time">-</strong></div>
+        <div class="detail-item"><span>Status</span><strong id="modal-status">-</strong></div>
+        <div class="detail-item"><span>Payment Status</span><strong id="modal-payment">-</strong></div>
+        <div class="detail-item detail-full"><span>Reservation Details</span><p id="modal-details">-</p></div>
+      </div>
+
+      <div class="reservation-modal-footer">
+        <button type="button" id="modal-close-btn" class="table-button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="message-overlay" id="personnel-message-overlay" aria-hidden="true">
+    <div class="message-box">
+      <div class="message-icon">✓</div>
+      <h2 id="personnel-message-title">Reservation Updated</h2>
+      <p id="personnel-message-text"></p>
+      <button class="table-button message-ok-btn" id="personnel-message-ok" type="button">Close</button>
+    </div>
+  </div>
+
+  <div class="message-overlay" id="personnel-approval-overlay" aria-hidden="true">
+    <div class="message-box" role="dialog" aria-modal="true" aria-labelledby="personnel-approval-title">
+      <div class="message-icon">?</div>
+      <h2 id="personnel-approval-title">Approve Reservation</h2>
+      <p id="personnel-approval-message">Are you sure you want to approve this reservation?</p>
+      <div style="display: flex; justify-content: center; gap: .75rem;">
+        <button class="table-button" id="personnel-approval-cancel" type="button">Cancel</button>
+        <button class="message-ok-btn" id="personnel-approval-confirm" type="button">Confirm / Approve</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
